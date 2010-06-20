@@ -11,8 +11,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+		<service android:enabled="true" android:name=".HomeAloneService"/>
     </application>
-
+    <receiver android:name=".IncomingCallReceiver"> 
+    	<intent-filter><action android:name="android.telephony.TelephonyManager.ACTION_PHONE_STATE_CHANGED"/> </intent-filter>
+	</receiver>
+    <receiver android:name=".IncomingSmsReceiver"> 
+    	<intent-filter><action android:name="android.provider.Telephony.SMS_RECEIVED"/> </intent-filter>
+	</receiver>	
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+	<uses-permission android:name="android.permission.RECEIVE_SMS"/>
 
 </manifest> 
