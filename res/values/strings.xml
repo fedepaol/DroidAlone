@@ -2,4 +2,6 @@
 <resources>
     <string name="hello">Hello World, HomeAlone!</string>
     <string name="app_name">HomeAlone</string>
+    <string name="password">Password</string>
+    <string name="password_summary">Activation Password</string>
 </resources>

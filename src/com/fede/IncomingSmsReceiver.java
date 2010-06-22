@@ -18,14 +18,26 @@ public class IncomingSmsReceiver extends BroadcastReceiver {
 			SmsMessage[] messages = new SmsMessage[pdus.length]; 
 			for (int i = 0; i < pdus.length; i++)
 				messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
-			notifyMessages(messages);
+			notifyMessages(context, messages);
 		}		
 	}
 	
-	private void notifyMessages(SmsMessage[] messages)
+	private void notifyMessages(Context c, SmsMessage[] messages)
 	{
 		// TODO
 		Log.d("SMS", "Received message");
+		for(int i = 0; i < messages.length; i++){
+			Intent myServiceIntent = new Intent(c, HomeAloneService.class);
+			
+			myServiceIntent.putExtra(HomeAloneService.EVENT_TYPE, 
+									 HomeAloneService.RECEIVED_SMS);
+			
+			String body = messages[i].getMessageBody();
+			String from = messages[i].getOriginatingAddress();
+			myServiceIntent.putExtra(HomeAloneService.NUMBER, from);
+			myServiceIntent.putExtra(HomeAloneService.MESSAGE_BODY, body);
+			c.startService(myServiceIntent);
+		}
 	}
 
 }
