@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
+import com.fede.MessageException.CommandParseException;
 import com.fede.MessageException.InvalidCommandException;
 import com.fede.MessageException.InvalidPasswordException;
 
@@ -25,8 +26,13 @@ import com.fede.MessageException.InvalidPasswordException;
 
 
 public class CommandSms {
+
+
 	public enum BoolCommand {UNDEF, ENABLED, DISABLED};
 	public static final String STATUS_COMMAND = "s";
+	public static final String STATUS_OFF = "off";
+	public static final String STATUS_ON = "on";
+	
 	public static final String SMS_DEST_COMMAND = "sms";
 	public static final String MAIL_DEST_COMMAND = "m";
 	public static final String REPLY_COMMAND = "r";
@@ -34,14 +40,14 @@ public class CommandSms {
 	SharedPreferences prefs;
 	
 	/* status variables */
-	private BoolCommand status;
+	private BoolCommand status = BoolCommand.UNDEF;
 	private String smsDest = "";
 	private String mailDest = "";
 	private String replyCommand = "";
-	private BoolCommand echoCommand;
+	private BoolCommand echoCommand = BoolCommand.UNDEF;
 	
 	private String smsBody;
-	
+	private String incomingNumber;
 	
 	
 	// Checks the password with the one stored in the preferences
@@ -57,12 +63,38 @@ public class CommandSms {
 		return commands[0].substring(1);	
 	}
 	
+	public String getSmsBody() {
+		return smsBody;
+	}
+
+	public String getIncomingNumber() {
+		return incomingNumber;
+	}
 	
-	public CommandSms(Bundle b, String incomingNum, Context c) throws InvalidCommandException {
-		smsBody = b.getString(HomeAloneService.MESSAGE_BODY);
+	
+	
+	public static boolean isCommandSms(String body)
+	{
+		if(!body.startsWith("#")){	// if it doesn't start with  a # is not a valid command message
+			return false;
+		}else 
+			return true;
+	}
+	
+	public CommandSms(Bundle b, Context c) throws InvalidCommandException 
+	{
+		String body = b.getString(HomeAloneService.MESSAGE_BODY);
+		new CommandSms(b, body, c);	// TODO Controllare se va bene cosi'
+	}
+	
+	public CommandSms(Bundle b, String body, Context c) throws InvalidCommandException 
+	{	
+		incomingNumber = b.getString(HomeAloneService.NUMBER);
+		smsBody = body;
+		
 		prefs = PreferenceManager.getDefaultSharedPreferences(c);
 		
-		if(!smsBody.startsWith("#")){	// if it doesn't start with  a # is not a valid command message
+		if(!isCommandSms(smsBody)){	// if it doesn't start with  a # is not a valid command message
 			throw new InvalidCommandException("Does not start with # ");
 		}
 		
@@ -78,8 +110,63 @@ public class CommandSms {
 	}
 	
 	// Command structure: com[:value]
-	void parseCommand(String c){
+	void parseCommand(String c) throws InvalidCommandException{
 		String[] parseRes = c.split(":");
-		c = parseRes[0];
+		
+		String commandName = parseRes[0];
+		String commandValue = parseRes.length > 1? parseRes[1] : null;
+		
+		
+		if(commandName == STATUS_COMMAND){
+			if(commandValue == null)
+				throw new CommandParseException("Status expects value");
+		
+			if(commandValue == STATUS_ON){
+				status = BoolCommand.ENABLED;
+			}else if(commandValue == STATUS_OFF){
+				status = BoolCommand.DISABLED;
+			}else
+				throw new CommandParseException("Invalid status value");
+			
+			return;
+		}
+		
+		if(commandName == SMS_DEST_COMMAND){
+			if(commandValue != null){
+				smsDest = "";
+			}else{
+				smsDest = commandValue;
+			}
+			return;
+		}
+		
+		if(commandName == MAIL_DEST_COMMAND){
+			if(commandValue != null){
+				mailDest = "";
+			}else{
+				mailDest = commandValue;
+			}
+			return;
+		}
+		
+		if(commandName == REPLY_COMMAND){
+			if(commandValue != null){
+				replyCommand = "";
+			}else{
+				replyCommand = commandValue;
+			}
+			return;
+		}
+		
+		if(commandName == ECHO_STATUS_COMMAND){
+			echoCommand = BoolCommand.ENABLED;
+			return;
+		}
+		
+		throw new CommandParseException("Invalid command name " + commandName);
+	}
+
+	public BoolCommand getStatus() {
+		return status;
 	}
 }
