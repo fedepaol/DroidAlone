@@ -5,6 +5,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
+import com.fede.MessageException.InvalidCommandException;
+import com.fede.MessageException.InvalidPasswordException;
+
+
 /* Sms structure :
  * #password-e-s:on-m:fedepaol@gmail.com-sms:3286991883-r:I left my phone at home. Call me at office
  * 
@@ -18,21 +22,33 @@ import android.preference.PreferenceManager;
 
 
 
+
+
 public class CommandSms {
-	private String smsBody;
+	public enum BoolCommand {UNDEF, ENABLED, DISABLED};
 	public static final String STATUS_COMMAND = "s";
 	public static final String SMS_DEST_COMMAND = "sms";
-	public static final String MAIL_DEST_COMMechoAND = "m";
+	public static final String MAIL_DEST_COMMAND = "m";
 	public static final String REPLY_COMMAND = "r";
 	public static final String ECHO_STATUS_COMMAND = "e";
 	SharedPreferences prefs;
 	
+	/* status variables */
+	private BoolCommand status;
+	private String smsDest = "";
+	private String mailDest = "";
+	private String replyCommand = "";
+	private BoolCommand echoCommand;
+	
+	private String smsBody;
+	
+	
 	
 	// Checks the password with the one stored in the preferences
-	private void checkPassword(String pwd){
+	private void checkPassword(String pwd) throws InvalidPasswordException{
 		String prefPwd = prefs.getString("PASSWORD", "*");
 		if(pwd != prefPwd){
-			// TODO Throw exception
+			throw new InvalidPasswordException(pwd + " is not the current password");
 		}
 	}
 	
@@ -42,12 +58,12 @@ public class CommandSms {
 	}
 	
 	
-	public CommandSms(Bundle b, String incomingNum, Context c){
+	public CommandSms(Bundle b, String incomingNum, Context c) throws InvalidCommandException {
 		smsBody = b.getString(HomeAloneService.MESSAGE_BODY);
 		prefs = PreferenceManager.getDefaultSharedPreferences(c);
 		
 		if(!smsBody.startsWith("#")){	// if it doesn't start with  a # is not a valid command message
-			// TODO Throw exception
+			throw new InvalidCommandException("Does not start with # ");
 		}
 		
 		String[] commands = smsBody.split("-");
@@ -55,8 +71,8 @@ public class CommandSms {
 		String password = getPasswordFromCommands(commands);
 		checkPassword(password);
 		
-		for (int i = 0; i < commands.length; i++){
-			parseCommand(commands[i]);
+		for (String cmnd : commands){
+			parseCommand(cmnd);
 		}
 		
 	}
