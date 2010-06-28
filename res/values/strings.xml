@@ -4,4 +4,23 @@
     <string name="app_name">HomeAlone</string>
     <string name="password">Password</string>
     <string name="password_summary">Activation Password</string>
+    <string name="password_key">PASSWORD</string>
+    <string name="forward_to_mail">Forward to mail</string>
+    <string name="forward_to_mail_summary">Check this to enable mail forward</string>
+    <string name="forward_to_mail_key">ENABLE_MAIL</string>
+    <string name="mail_to_forward">Mail to forward</string>
+    <string name="mail_to_forward_summary">Address to forward the mail to</string>
+    <string name="mail_to_forward_key">MAIL_TO_FORWARD</string>
+    <string name="forward_to_sms">Forward to sms</string>
+    <string name="forward_to_sms_summary">Check this to enable sms forward</string>
+    <string name="forward_to_sms_key">ENABLE_SMS</string>
+    <string name="sms_to_forward">number to forward</string>
+    <string name="sms_to_forward_summary">Number to forward the sms to</string>
+    <string name="sms_to_forward_key">NUMBER_TO_FORWARD</string>
+    <string name="reply_enable">Enable away reply</string>
+    <string name="reply_enable_summary">Check this to enable away reply</string>
+    <string name="reply_enable_key">ENABLE_REPLY</string>
+    <string name="reply">Reply to incoming calls</string>
+    <string name="reply_summary">Reply to forward</string>
+    <string name="reply_key">REPLY</string>
 </resources>

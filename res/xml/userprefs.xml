@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?> <PreferenceScreen
 xmlns:android="http://schemas.android.com/apk/res/android"> 
 <EditTextPreference
-android:key="PASSWORD" android:title="@string/password" android:summary="@string/password_summary" android:inputType="textPassword"
+android:key="@string/password_key" android:title="@string/password" android:summary="@string/password_summary" android:inputType="textPassword"
 /> 
-
+<CheckBoxPreference
+android:key="@string/forward_to_mail_key" android:title="@string/forward_to_mail" android:summary="forward_to_mail_summary" android:defaultValue="false"
+/> 
+<EditTextPreference
+android:key="@string/mail_to_forward_key" android:title="@string/mail_to_forward" android:summary="@string/mail_to_forward_summary" android:inputType="textEmailAddress"
+/> 
+<CheckBoxPreference
+android:key="@string/forward_to_sms_key" android:title="@string/forward_to_sms" android:summary="forward_to_sms_summary" android:defaultValue="false"
+/> 
+<EditTextPreference
+android:key="@string/sms_to_forward_key" android:title="@string/sms_to_forward" android:summary="@string/sms_to_forward_summary" android:inputType="number"
+/> 
+<CheckBoxPreference
+android:key="@string/reply_enable_key" android:title="@string/reply_enable" android:summary="reply_enable_summary" android:defaultValue="false"
+/> 
+<EditTextPreference
+android:key="@string/reply_key" android:title="@string/reply" android:summary="@string/reply_summary"
+/> 
 </PreferenceScreen>
