@@ -53,6 +53,7 @@ public class CommandSms {
 	private String smsBody;
 	private String incomingNumber;
 	private Context context;
+	private String commandLog = "";
 	
 	
 	// Checks the password with the one stored in the preferences
@@ -191,11 +192,13 @@ public class CommandSms {
 		if(smsDestChange){
 			String SMS_ENABLE_KEY = context.getString(R.string.forward_to_sms_key);
 			String SMS_TO_FWD_KEY = context.getString(R.string.sms_to_forward_key);
-			if(isDisableFeatureCommand(smsDest)){				
+			if(isDisableFeatureCommand(smsDest)){
+				commandLog.concat("sms disabled");
 				prefEditor.putBoolean(SMS_ENABLE_KEY, false);
 			}else{
 				prefEditor.putBoolean(SMS_ENABLE_KEY, true);
 				prefEditor.putString(SMS_TO_FWD_KEY, smsDest);
+				commandLog.concat("sms:" + smsDest);
 			}
 		}
 		
@@ -204,9 +207,12 @@ public class CommandSms {
 			String MAIL_TO_FWD_KEY = context.getString(R.string.mail_to_forward_key);
 			if(isDisableFeatureCommand(mailDest)){				
 				prefEditor.putBoolean(MAIL_ENABLE_KEY, false);
+				commandLog.concat("mail disabled");
 			}else{
 				prefEditor.putBoolean(MAIL_ENABLE_KEY, true);
 				prefEditor.putString(MAIL_TO_FWD_KEY, mailDest);
+				commandLog.concat("mail:" + mailDest);
+
 			}
 		}
 		
@@ -215,9 +221,11 @@ public class CommandSms {
 			String REPLY_KEY = context.getString(R.string.reply_key);
 			if(isDisableFeatureCommand(replyCommand)){				
 				prefEditor.putBoolean(REPLY_ENABLE_KEY, false);
+				commandLog.concat("reply disabled");
 			}else{
 				prefEditor.putBoolean(REPLY_ENABLE_KEY, true);
 				prefEditor.putString(REPLY_KEY, replyCommand);
+				commandLog.concat("reply:" + mailDest);
 			}
 		}
 		
@@ -226,5 +234,14 @@ public class CommandSms {
 
 	public BoolCommand getStatus() {
 		return status;
+	}
+	
+	public BoolCommand getEcho() {
+		return echoCommand;
+	}
+	
+	public String getCommandReport()
+	{
+		return commandLog;
 	}
 }

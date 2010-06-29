@@ -15,7 +15,11 @@ public class HomeAloneService extends Service {
 	private ServiceState state;
 	
 	@Override public void onCreate() {
-		// TODO: Actions to perform when service is created.
+		if(HomeAloneUtils.homeAloneEnabled(this)){
+			state = new ActiveState();
+		} else {
+			state = new InactiveState();
+		}
 	}
 	
 	@Override public int onStartCommand(Intent intent, int flags, int startId) {
@@ -43,7 +47,7 @@ public class HomeAloneService extends Service {
 	public void setState(ServiceState s)
 	{
 		state = s;
-		// Todo make the change persistent
+		HomeAloneUtils.setStatus(s.getServiceState(), this);
 	}
 
 }

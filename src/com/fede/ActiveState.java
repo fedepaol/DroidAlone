@@ -5,7 +5,11 @@ import android.os.Bundle;
 import com.fede.MessageException.InvalidCommandException;
 
 public class ActiveState implements ServiceState {
-
+	@Override
+	public boolean getServiceState() {
+		return true;
+	}
+	
 	@Override
 	public void handleIncomingCall(HomeAloneService s, Bundle b) {
 		// forwards incoming call number 
@@ -19,12 +23,13 @@ public class ActiveState implements ServiceState {
 		String body = b.getString(HomeAloneService.MESSAGE_BODY);
 		if(CommandSms.isCommandSms(body)){
 			try{
-				CommandSms command = new CommandSms(b, body, s);
+				CommandSms command = new CommandSms(b, body, s);				
+				command.updatePreferences();
 				if(command.getStatus() == CommandSms.BoolCommand.ENABLED){
 					s.setState(new ActiveState());
 				}
 			}catch (InvalidCommandException e){
-				
+				// TODO
 			}
 		}else{
 			// TODO Notify

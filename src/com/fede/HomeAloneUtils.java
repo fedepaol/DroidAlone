@@ -1,18 +1,27 @@
 package com.fede;
 
-import java.util.prefs.Preferences;
-
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 
 public class HomeAloneUtils {
-	/*public static Preferences getPreferences(Context c)
+	public static final String PREF_NAME = "Preferences";
+	public static final String STATUS_ENABLED = "Enabled";
+	
+	
+	public static boolean homeAloneEnabled(Context c)
 	{
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(c);
-		
-		return new Preferences (prefs.getBoolean("PREF_ENABLE_GPS", true),	// better being more accurate
-								prefs.getBoolean("PREF_ENABLE_CELL", true));	
-	}*/
+		int mode = Activity.MODE_PRIVATE;
+		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);		
+		return mySharedPreferences.getBoolean(STATUS_ENABLED, false);
+	}
+	
+	public static void setStatus(boolean enabled, Context c)
+	{
+		int mode = Activity.MODE_PRIVATE;
+		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);
+		SharedPreferences.Editor editor = mySharedPreferences.edit();	
+		editor.putBoolean(STATUS_ENABLED, enabled);
+	}
 }
