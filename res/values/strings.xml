@@ -29,4 +29,8 @@
     <string name="gmail_user">Gmail userid</string>
     <string name="gmail_user_summary">User id of the gmail account used to forward</string>
     <string name="gmail_user_key">gmail_user</string>
+    <string name="call_from">call from</string>
+    <string name="activate">Activate</string>
+    <string name="deactivate">Disable</string>
+    <string name="options">Options</string>
 </resources>

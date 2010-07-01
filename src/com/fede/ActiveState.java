@@ -13,9 +13,11 @@ public class ActiveState implements ServiceState {
 	@Override
 	public void handleIncomingCall(HomeAloneService s, Bundle b) {
 		String number =  b.getString(HomeAloneService.NUMBER);
-		
-		EventForwarder f = new EventForwarder(String.format("call from %s %s", getCallerNameString(b, number, s), 
-																		number),
+		String msg = s.getString(R.string.call_from);
+		EventForwarder f = new EventForwarder(String.format("%s %s %s", 
+															 msg,
+															 getCallerNameString(b, number, s), 
+															 number),
 											  s);
 		
 		f.forward(); 

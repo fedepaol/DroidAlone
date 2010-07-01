@@ -19,7 +19,6 @@ public class IncomingCallReceiver extends BroadcastReceiver {
 	}
 	
 	private void notifyIncomingNumber(Context context, String number){
-		//TODO
 		Log.d(RECEIVER_TAG, "Received incoming call from :" + number);
 
 		Intent myServiceIntent = new Intent(context, HomeAloneService.class);

@@ -4,9 +4,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
+<Button android:text="@string/activate" android:id="@+id/ActivateButton" android:layout_width="fill_parent" android:layout_height="wrap_content" ></Button>
+<Button android:text="@string/deactivate" android:id="@+id/DisableButton" android:layout_width="fill_parent" android:layout_height="wrap_content" ></Button>
 </LinearLayout>
