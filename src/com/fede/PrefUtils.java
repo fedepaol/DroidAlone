@@ -56,7 +56,7 @@ public class PrefUtils {
 		return name;
 	}
 	
-	public String getReply(Context c)
+	public static String getReply(Context c)
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(c);
 		String REPLYL_ENABLE_KEY = c.getString(R.string.reply_enable_key);
