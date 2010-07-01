@@ -21,10 +21,11 @@ public class InactiveState implements ServiceState {
 	public void handleSms(HomeAloneService s, Bundle b) {
 		try{
 			CommandSms command = new CommandSms(b, s);
-			command.updatePreferences();
+			command.execute();
+			
 			if(command.getStatus() == CommandSms.BoolCommand.ENABLED){
 				s.setState(new ActiveState());
-			}			
+			}
 		}catch (InvalidCommandException e){
 			
 		}

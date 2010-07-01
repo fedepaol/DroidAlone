@@ -53,7 +53,6 @@ public class CommandSms {
 	private String smsBody;
 	private String incomingNumber;
 	private Context context;
-	private StringBuffer commandLog = new StringBuffer();
 	
 	
 	// Checks the password with the one stored in the preferences
@@ -178,6 +177,9 @@ public class CommandSms {
 		throw new CommandParseException("Invalid command name " + commandName);
 	}
 	
+	
+	// tells if the command wants to disable the feature sms: with no string means to disable the 
+	// sms
 	private boolean isDisableFeatureCommand(String s)
 	{
 		if(s.equals(""))
@@ -185,7 +187,8 @@ public class CommandSms {
 		return false;
 	}
 	
-	public void updatePreferences()
+	// updates preferences from command instructions
+	private void updatePreferences()
 	{
 		SharedPreferences.Editor prefEditor = prefs.edit();
 		
@@ -193,12 +196,10 @@ public class CommandSms {
 			String SMS_ENABLE_KEY = context.getString(R.string.forward_to_sms_key);
 			String SMS_TO_FWD_KEY = context.getString(R.string.sms_to_forward_key);
 			if(isDisableFeatureCommand(smsDest)){
-				commandLog.append("sms disabled");
 				prefEditor.putBoolean(SMS_ENABLE_KEY, false);
 			}else{
 				prefEditor.putBoolean(SMS_ENABLE_KEY, true);
 				prefEditor.putString(SMS_TO_FWD_KEY, smsDest);
-				commandLog.append("sms:" + smsDest);
 			}
 		}
 		
@@ -207,11 +208,9 @@ public class CommandSms {
 			String MAIL_TO_FWD_KEY = context.getString(R.string.mail_to_forward_key);
 			if(isDisableFeatureCommand(mailDest)){				
 				prefEditor.putBoolean(MAIL_ENABLE_KEY, false);
-				commandLog.append("mail disabled");
 			}else{
 				prefEditor.putBoolean(MAIL_ENABLE_KEY, true);
 				prefEditor.putString(MAIL_TO_FWD_KEY, mailDest);
-				commandLog.append("mail:" + mailDest);
 
 			}
 		}
@@ -221,17 +220,22 @@ public class CommandSms {
 			String REPLY_KEY = context.getString(R.string.reply_key);
 			if(isDisableFeatureCommand(replyCommand)){				
 				prefEditor.putBoolean(REPLY_ENABLE_KEY, false);
-				commandLog.append("reply disabled");
 			}else{
 				prefEditor.putBoolean(REPLY_ENABLE_KEY, true);
 				prefEditor.putString(REPLY_KEY, replyCommand);
-				commandLog.append("reply:" + mailDest);
 			}
-		}
-		
-		
+		}		
 	}
 
+	public void execute()
+	{
+		updatePreferences();
+		if(echoCommand == BoolCommand.ENABLED){
+			String status = PrefUtils.getPreferencesStatus(context);
+			PrefUtils.sendSms(incomingNumber, status);
+		}
+	}
+	
 	public BoolCommand getStatus() {
 		return status;
 	}
@@ -240,8 +244,4 @@ public class CommandSms {
 		return echoCommand;
 	}
 	
-	public String getCommandReport()
-	{
-		return commandLog.toString();
-	}
 }

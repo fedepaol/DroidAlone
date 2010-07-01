@@ -24,7 +24,7 @@ public class ActiveState implements ServiceState {
 		if(CommandSms.isCommandSms(body)){
 			try{
 				CommandSms command = new CommandSms(b, body, s);				
-				command.updatePreferences();
+				command.execute();
 				if(command.getStatus() == CommandSms.BoolCommand.ENABLED){
 					s.setState(new ActiveState());
 				}

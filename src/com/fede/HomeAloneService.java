@@ -16,7 +16,7 @@ public class HomeAloneService extends IntentService {
 	private ServiceState state;
 	
 	@Override public void onCreate() {
-		if(HomeAloneUtils.homeAloneEnabled(this)){
+		if(PrefUtils.homeAloneEnabled(this)){
 			state = new ActiveState();
 		} else {
 			state = new InactiveState();
@@ -42,7 +42,7 @@ public class HomeAloneService extends IntentService {
 	public void setState(ServiceState s)
 	{
 		state = s;
-		HomeAloneUtils.setStatus(s.getServiceState(), this);
+		PrefUtils.setStatus(s.getServiceState(), this);
 	}
 
 	public HomeAloneService(String name)
