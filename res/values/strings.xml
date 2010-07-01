@@ -23,4 +23,10 @@
     <string name="reply">Reply to incoming calls</string>
     <string name="reply_summary">Reply to forward</string>
     <string name="reply_key">REPLY</string>
+    <string name="gmail_pwd">gmail account password</string>
+    <string name="gmail_pwd_summary">Password of the account to be used to forward messages</string>
+    <string name="gmail_pwd_key">gmail_pwd</string>
+    <string name="gmail_user">Gmail userid</string>
+    <string name="gmail_user_summary">User id of the gmail account used to forward</string>
+    <string name="gmail_user_key">gmail_user</string>
 </resources>

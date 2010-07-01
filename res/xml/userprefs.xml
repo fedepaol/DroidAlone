@@ -8,6 +8,12 @@ android:key="@string/forward_to_mail_key" android:title="@string/forward_to_mail
 /> 
 <EditTextPreference
 android:key="@string/mail_to_forward_key" android:title="@string/mail_to_forward" android:summary="@string/mail_to_forward_summary" android:inputType="textEmailAddress"
+/>
+<EditTextPreference
+android:key="@string/gmail_user_key" android:title="@string/gmail_user" android:summary="@string/gmail_user_summary" android:inputType="textEmailAddress"
+/>
+<EditTextPreference
+android:key="@string/gmail_pwd_key" android:title="@string/gmail_pwd" android:summary="@string/gmail_pwd_summary" android:inputType="textPassword"
 /> 
 <CheckBoxPreference
 android:key="@string/forward_to_sms_key" android:title="@string/forward_to_sms" android:summary="forward_to_sms_summary" android:defaultValue="false"
