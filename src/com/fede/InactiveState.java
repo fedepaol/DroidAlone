@@ -19,20 +19,24 @@ public class InactiveState implements ServiceState {
 
 	@Override
 	public void handleSms(HomeAloneService s, Bundle b) {
+		String body = b.getString(HomeAloneService.MESSAGE_BODY);
+		
+		if(!CommandSms.isCommandSms(body)){
+			return;
+		}
+		
+		String number = b.getString(HomeAloneService.NUMBER);
+
 		try{
-			CommandSms command = new CommandSms(b, s);
+			CommandSms command = new CommandSms(b, body, number, s);
 			command.execute();
 			
 			if(command.getStatus() == CommandSms.BoolCommand.ENABLED){
 				s.setState(new ActiveState());
 			}
-		}catch (InvalidCommandException e){
-			
-		}
-		
-		
-		
-		
+		}catch (InvalidCommandException p){
+			PrefUtils.sendSms(number, p.getMessage());
+		}		
 	}
 
 }

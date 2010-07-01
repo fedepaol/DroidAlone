@@ -90,13 +90,13 @@ public class CommandSms {
 	
 	public CommandSms(Bundle b, Context c) throws InvalidCommandException 
 	{
-		this(b,  b.getString(HomeAloneService.MESSAGE_BODY), c);		
+		this(b,  b.getString(HomeAloneService.MESSAGE_BODY), b.getString(HomeAloneService.NUMBER), c);		
 	}
 	
-	public CommandSms(Bundle b, String body, Context c) throws InvalidCommandException 
+	public CommandSms(Bundle b, String body,String number, Context c) throws InvalidCommandException 
 	{	
 		context = c;
-		incomingNumber = b.getString(HomeAloneService.NUMBER);
+		incomingNumber = number;
 		smsBody = body;
 		
 		prefs = PreferenceManager.getDefaultSharedPreferences(c);

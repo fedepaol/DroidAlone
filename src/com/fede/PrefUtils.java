@@ -3,7 +3,10 @@ package com.fede;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.telephony.SmsManager;
 
 
@@ -31,6 +34,38 @@ public class PrefUtils {
 		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);
 		SharedPreferences.Editor editor = mySharedPreferences.edit();	
 		editor.putBoolean(STATUS_ENABLED, enabled);
+	}
+	
+	
+	// Returns contact name from number
+	public static String getNameFromNumber(String number, Context c) throws NameNotFoundException
+	{
+		String name = "";
+		String[] columns = {ContactsContract.PhoneLookup.DISPLAY_NAME};
+		
+		Uri lookupUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI,
+							number);
+		Cursor idCursor = c.getContentResolver().query(lookupUri, columns, null, null, null);
+		if (idCursor.moveToFirst()) { 
+			int nameIdx = idCursor.getColumnIndexOrThrow(ContactsContract.PhoneLookup.DISPLAY_NAME); 
+			name = idCursor.getString(nameIdx); 
+		}else{
+			throw new NameNotFoundException(number);
+		}
+		idCursor.close();
+		return name;
+	}
+	
+	public String getReply(Context c)
+	{
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(c);
+		String REPLYL_ENABLE_KEY = c.getString(R.string.reply_enable_key);
+		String REPLY_KEY = c.getString(R.string.reply_key);
+		if(prefs.getBoolean(REPLYL_ENABLE_KEY, false)){
+			return prefs.getString(REPLY_KEY, "");
+		}else{
+			return "";
+		}
 	}
 	
 	public static String getPreferencesStatus(Context c)
