@@ -12,6 +12,7 @@
             </intent-filter>
         </activity>
 		<service android:enabled="true" android:name=".HomeAloneService"/>
+		<activity android:name=".HomeAlonePreferences" android:label="Preferences"></activity>		
     </application>
     <receiver android:name=".IncomingCallReceiver"> 
     	<intent-filter><action android:name="android.telephony.TelephonyManager.ACTION_PHONE_STATE_CHANGED"/> </intent-filter>

@@ -224,7 +224,8 @@ public class CommandSms {
 				prefEditor.putBoolean(REPLY_ENABLE_KEY, true);
 				prefEditor.putString(REPLY_KEY, replyCommand);
 			}
-		}		
+		}
+		prefEditor.commit();
 	}
 
 	public void execute()

@@ -34,6 +34,7 @@ public class PrefUtils {
 		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);
 		SharedPreferences.Editor editor = mySharedPreferences.edit();	
 		editor.putBoolean(STATUS_ENABLED, enabled);
+		editor.commit();
 	}
 	
 	

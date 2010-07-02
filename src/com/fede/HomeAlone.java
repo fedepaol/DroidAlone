@@ -10,6 +10,9 @@ import android.widget.Button;
 
 public class HomeAlone extends Activity {
 	static final int MENU_OPTIONS = Menu.FIRST;
+	Button activateButton;
+	Button disableButton;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,21 +50,39 @@ public class HomeAlone extends Activity {
 		return true;
 	}
     
+    
+    private void enableValidButton()
+    {	
+    	if(PrefUtils.homeAloneEnabled(this) == false){
+    		activateButton.setClickable(true);
+    		disableButton.setClickable(false);
+    	}else{
+    		activateButton.setClickable(true);
+    		disableButton.setClickable(false);
+    	}
+    }
+    
+    
     private void setupButtons()
     {
 
 		// BUTTONS
-		Button activateButton = (Button) findViewById(R.id.ActivateButton);
+		activateButton = (Button) findViewById(R.id.ActivateButton);
+		disableButton = (Button) findViewById(R.id.DisableButton);
+		
 		activateButton.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View view){
-				//
+				PrefUtils.setStatus(true, view.getContext());
+				enableValidButton();
 			}});
 		
-		Button disableButton = (Button) findViewById(R.id.DisableButton);
+		
 		disableButton.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View view){
-				//
+				PrefUtils.setStatus(false, view.getContext());
+				enableValidButton();
 			}});
-
+		
+		enableValidButton();
     }
 }
