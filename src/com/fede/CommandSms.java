@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import com.fede.MessageException.CommandParseException;
 import com.fede.MessageException.InvalidCommandException;
 import com.fede.MessageException.InvalidPasswordException;
+import com.fede.Utilities.PrefUtils;
 
 
 /* Sms structure :

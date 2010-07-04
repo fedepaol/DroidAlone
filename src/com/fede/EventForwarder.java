@@ -1,5 +1,7 @@
 package com.fede;
 
+import com.fede.Utilities.PrefUtils;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;

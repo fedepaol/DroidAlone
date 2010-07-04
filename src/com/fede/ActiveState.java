@@ -3,6 +3,7 @@ package com.fede;
 import android.os.Bundle;
 
 import com.fede.MessageException.InvalidCommandException;
+import com.fede.Utilities.PrefUtils;
 
 public class ActiveState implements ServiceState {
 	@Override
