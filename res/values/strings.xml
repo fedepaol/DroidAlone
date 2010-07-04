@@ -20,6 +20,7 @@
     <string name="reply_enable">Enable away reply</string>
     <string name="reply_enable_summary">Check this to enable away reply</string>
     <string name="reply_enable_key">ENABLE_REPLY</string>
+    <string name="reply_category">Reply message</string>
     <string name="reply">Reply to incoming calls</string>
     <string name="reply_summary">Reply to forward</string>
     <string name="reply_key">REPLY</string>
@@ -33,4 +34,8 @@
     <string name="activate">Activate</string>
     <string name="deactivate">Disable</string>
     <string name="options">Options</string>
+    <string name="forwarding_options">Forwarding options</string>
+    <string name="forwarding_options_summary">Forwarding incoming events options</string>
+    <string name="gmail_account_options">Gmail account</string>
+    <string name="gmail_account_screen_summary">Gmail account user and pwd</string>
 </resources>

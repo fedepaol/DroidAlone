@@ -1,21 +1,21 @@
 package com.fede;
 
 import android.app.IntentService;
-import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
 
 public class HomeAloneService extends IntentService {
-	static final String EVENT_TYPE = "Event type";
-	static final String RECEIVED_CALL = "Received Call";	
-	static final String NUMBER = "Number";
+	public static final String EVENT_TYPE = "Event type";
+	public static final String RECEIVED_CALL = "Received Call";	
+	public static final String NUMBER = "Number";
 	
-	static final String RECEIVED_SMS = "Received Sms";
-	static final String MESSAGE_BODY = "Message body";
+	public static final String RECEIVED_SMS = "Received Sms";
+	public static final String MESSAGE_BODY = "Message body";
 	private ServiceState state;
 	
 	@Override public void onCreate() {
+		super.onCreate();
 		if(PrefUtils.homeAloneEnabled(this)){
 			state = new ActiveState();
 		} else {
@@ -23,11 +23,10 @@ public class HomeAloneService extends IntentService {
 		}
 	}
 	
-	@Override public int onStartCommand(Intent intent, int flags, int startId) {
-		
-						
-		return Service.START_NOT_STICKY;
-	}
+	
+	public HomeAloneService() {
+        super("HomeAloneService");
+    } 
 	
 	
 	
@@ -45,21 +44,17 @@ public class HomeAloneService extends IntentService {
 		PrefUtils.setStatus(s.getServiceState(), this);
 	}
 
-	public HomeAloneService(String name)
-	{
-		super(name);
-	}
 	
 	
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		Bundle extras = intent.getExtras();            
 		String type = extras.getString(EVENT_TYPE);
-		if(type == RECEIVED_SMS){
+		if(type.equals(RECEIVED_SMS)){
 			state.handleSms(this, extras);
 		}
 		
-		if(type == RECEIVED_CALL){
+		if(type.equals(RECEIVED_CALL)){
 			state.handleIncomingCall(this, extras);
 		}
 		
