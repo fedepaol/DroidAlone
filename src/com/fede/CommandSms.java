@@ -55,6 +55,7 @@ public class CommandSms {
 	private Context context;
 	
 	
+	
 	// Checks the password with the one stored in the preferences
 	private void checkPassword(String pwd) throws InvalidPasswordException{
 		String PASSWORD_KEY = context.getString(R.string.password_key);
@@ -100,9 +101,9 @@ public class CommandSms {
 		smsBody = body;
 		
 		prefs = PreferenceManager.getDefaultSharedPreferences(c);
-		
+
 		if(!isCommandSms(smsBody)){	// if it doesn't start with  a # is not a valid command message
-			throw new InvalidCommandException("Does not start with " + BEGIN_STRING);
+			throw new InvalidCommandException(context.getString(R.string.doesnt_start_with) + " " + BEGIN_STRING);
 		}
 		
 		String[] commands = smsBody.split("-");
@@ -127,14 +128,14 @@ public class CommandSms {
 		
 		if(commandName.equals(STATUS_COMMAND)){
 			if(commandValue == null)
-				throw new CommandParseException("Status expects value");
+				throw new CommandParseException(context.getString(R.string.status_expect_value));
 		
 			if(commandValue.equals(STATUS_ON)){
 				status = BoolCommand.ENABLED;
 			}else if(commandValue.equals(STATUS_OFF)){
 				status = BoolCommand.DISABLED;
 			}else
-				throw new CommandParseException("Invalid status value");
+				throw new CommandParseException(context.getString(R.string.invalid_status_value) + ":" + commandValue);
 			
 			return;
 		}
@@ -144,7 +145,10 @@ public class CommandSms {
 			if(commandValue != null){
 				smsDest = "";
 			}else{
-				smsDest = commandValue;
+				if(PrefUtils.isPhoneNumber(commandValue))
+					smsDest = commandValue;
+				else
+					throw new CommandParseException(commandValue + " " + context.getString(R.string.not_valid_number_message));
 			}
 			return;
 		}
@@ -154,7 +158,10 @@ public class CommandSms {
 			if(commandValue != null){
 				mailDest = "";
 			}else{
-				mailDest = commandValue;
+				if(PrefUtils.isMail(commandValue))
+					mailDest = commandValue;
+				else
+					throw new CommandParseException(commandValue + " " + context.getString(R.string.not_valid_mail_message));
 			}
 			return;
 		}

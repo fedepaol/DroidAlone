@@ -38,4 +38,15 @@
     <string name="forwarding_options_summary">Forwarding incoming events options</string>
     <string name="gmail_account_options">Gmail account</string>
     <string name="gmail_account_screen_summary">Gmail account user and pwd</string>
+    <string name="not_valid_number_message">is not a valid phone number</string>
+    <string name="not_valid_mail_message">is not a email address</string>
+    <string name="status_expect_value">Status expects value</string>
+    <string name="invalid_status_value">Invalid status value</string>
+    <string name="doesnt_start_with">Does not start with</string>
+    <string name="empty_reply_message">Reply is empty</string>
+    <string name="ok_name">Ok</string>
+    <string name="error_name">Error</string>
+    
+    
+    
 </resources>
