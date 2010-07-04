@@ -77,7 +77,21 @@ public class HomeAlonePreferences extends PreferenceActivity implements OnShared
 		String MAIL_ENABLE_KEY = getString(R.string.forward_to_mail_key);	
 		if(key.equals(MAIL_ENABLE_KEY)){
 			String mailAddress = prefs.getString(MAIL_TO_FWD_KEY, "");
-			if(!PrefUtils.isMail(mailAddress)){
+			
+			String MAIL_USER_KEY = getString(R.string.gmail_user_key);
+			String MAIL_PWD_KEY = getString(R.string.gmail_pwd_key);
+			String mailUser = prefs.getString(MAIL_USER_KEY, "");
+			String mailPassword = prefs.getString(MAIL_PWD_KEY, "");
+			
+			if(mailUser.length() == 0){
+				PrefUtils.showErrorDialog(getString(R.string.invalid_mail_user), this);
+				prefEditor.putBoolean(MAIL_ENABLE_KEY, false);
+				prefEditor.commit();	
+			}else if(mailPassword.length() == 0){
+				PrefUtils.showErrorDialog(getString(R.string.invalid_mail_pwd), this);
+				prefEditor.putBoolean(MAIL_ENABLE_KEY, false);
+				prefEditor.commit();
+			}if(!PrefUtils.isMail(mailAddress)){
 				PrefUtils.showErrorDialog(getString(R.string.not_valid_mail_message), this);
 				prefEditor.putBoolean(MAIL_ENABLE_KEY, false);
 				prefEditor.commit();

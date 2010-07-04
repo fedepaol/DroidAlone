@@ -145,4 +145,18 @@ public class PrefUtils {
     	ad.show();
     	return;    
 	}
+	
+	public static boolean validMailUserPwd(Context c, SharedPreferences prefs)
+	{
+		String MAIL_USER_KEY = c.getString(R.string.gmail_user_key);
+		String MAIL_PWD_KEY = c.getString(R.string.gmail_pwd_key);
+		String mailUser = prefs.getString(MAIL_USER_KEY, "");
+		String mailPassword = prefs.getString(MAIL_PWD_KEY, "");
+		
+		if(mailUser.length() == 0){
+			return false;	
+		}else if(mailPassword.length() == 0){
+			return false;
+		}
+	}
 }

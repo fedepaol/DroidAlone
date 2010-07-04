@@ -46,7 +46,6 @@
     <string name="empty_reply_message">Reply is empty</string>
     <string name="ok_name">Ok</string>
     <string name="error_name">Error</string>
-    
-    
-    
+    <string name="invalid_mail_user">Empty email user</string>
+    <string name="invalid_mail_pwd">Empty email password</string>
 </resources>

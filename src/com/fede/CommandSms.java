@@ -158,10 +158,15 @@ public class CommandSms {
 			if(commandValue != null){
 				mailDest = "";
 			}else{
-				if(PrefUtils.isMail(commandValue))
-					mailDest = commandValue;
-				else
+				if(!PrefUtils.isMail(commandValue)){
 					throw new CommandParseException(commandValue + " " + context.getString(R.string.not_valid_mail_message));
+				}
+				if(!PrefUtils.validMailUserPwd(context, prefs)){
+					throw new CommandParseException(context.getString(R.string.invalid_mail_user));
+				}
+		
+				mailDest = commandValue;						
+				
 			}
 			return;
 		}
