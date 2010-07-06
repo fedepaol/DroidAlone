@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import com.fede.MessageException.CommandParseException;
 import com.fede.MessageException.InvalidCommandException;
 import com.fede.MessageException.InvalidPasswordException;
+import com.fede.Utilities.GeneralUtils;
 import com.fede.Utilities.PrefUtils;
 
 
@@ -146,7 +147,7 @@ public class CommandSms {
 			if(commandValue != null){
 				smsDest = "";
 			}else{
-				if(PrefUtils.isPhoneNumber(commandValue))
+				if(GeneralUtils.isPhoneNumber(commandValue))
 					smsDest = commandValue;
 				else
 					throw new CommandParseException(commandValue + " " + context.getString(R.string.not_valid_number_message));
@@ -159,13 +160,16 @@ public class CommandSms {
 			if(commandValue != null){
 				mailDest = "";
 			}else{
-				if(!PrefUtils.isMail(commandValue)){
+				if(!GeneralUtils.isMail(commandValue)){
 					throw new CommandParseException(commandValue + " " + context.getString(R.string.not_valid_mail_message));
 				}
 				if(!PrefUtils.validMailUserPwd(context, prefs)){
 					throw new CommandParseException(context.getString(R.string.invalid_mail_user));
 				}
 		
+				if(!GeneralUtils.isNetworkAvailable(context)){
+					throw new CommandParseException(context.getString(R.string.network_not_available));
+				}
 				mailDest = commandValue;						
 				
 			}
@@ -246,7 +250,7 @@ public class CommandSms {
 		updatePreferences();
 		if(echoCommand == BoolCommand.ENABLED){
 			String status = PrefUtils.getPreferencesStatus(context);
-			PrefUtils.sendSms(incomingNumber, status);
+			GeneralUtils.sendSms(incomingNumber, status);
 		}
 	}
 	

@@ -48,4 +48,6 @@
     <string name="error_name">Error</string>
     <string name="invalid_mail_user">Empty email user</string>
     <string name="invalid_mail_pwd">Empty email password</string>
+    <string name="network_not_available">Network not available</string>
+    
 </resources>

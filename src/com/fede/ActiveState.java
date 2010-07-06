@@ -3,6 +3,7 @@ package com.fede;
 import android.os.Bundle;
 
 import com.fede.MessageException.InvalidCommandException;
+import com.fede.Utilities.GeneralUtils;
 import com.fede.Utilities.PrefUtils;
 
 public class ActiveState implements ServiceState {
@@ -16,20 +17,19 @@ public class ActiveState implements ServiceState {
 	{
 		String reply = PrefUtils.getReply(s);
 		if(!reply.equals("")){
-			PrefUtils.sendSms(number, reply);
+			GeneralUtils.sendSms(number, reply);
 		}	
 	}
 	
 	
 	// Tells caller name from number
 	private String getCallerNameString(Bundle b, String number, HomeAloneService s){
-		String callerName = "";
 		try{
-			 callerName = PrefUtils.getNameFromNumber(number, s);
+			 return GeneralUtils.getNameFromNumber(number, s);
 	
 		}catch (NameNotFoundException e){
+			return "";
 		}
-		return callerName;
 	}
 	
 	
@@ -64,11 +64,11 @@ public class ActiveState implements ServiceState {
 		try{
 			CommandSms command = new CommandSms(b, body, number, s);				
 			command.execute();
-			if(command.getStatus() == CommandSms.BoolCommand.ENABLED){
-				s.setState(new ActiveState());
+			if(command.getStatus() == CommandSms.BoolCommand.DISABLED){
+				s.setState(new InactiveState());
 			}
 		}catch (InvalidCommandException e){
-			PrefUtils.sendSms(number, e.getMessage());
+			GeneralUtils.sendSms(number, e.getMessage());
 		}
 	}
 	

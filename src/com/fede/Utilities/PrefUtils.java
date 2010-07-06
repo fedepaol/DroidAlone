@@ -6,13 +6,14 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 
+import com.fede.GMailSender;
 import com.fede.R;
+import com.fede.TestStubInterface;
 
 
 public class PrefUtils {
 	public static final String PREF_NAME = "Preferences";
 	public static final String STATUS_ENABLED = "Enabled";
-	
 	
 	public static boolean homeAloneEnabled(Context c)
 	{
@@ -21,11 +22,8 @@ public class PrefUtils {
 		return mySharedPreferences.getBoolean(STATUS_ENABLED, false);
 	}
 	
-	public static void sendSms(String number, String message)
-	{
-		SmsManager smsManager = SmsManager.getDefault();
-		smsManager.sendTextMessage(number, null, message, null, null);
-	}
+
+	
 	
 	public static void setStatus(boolean enabled, Context c)
 	{
@@ -82,6 +80,22 @@ public class PrefUtils {
 
 		return b.toString();
 	}
+	
+	 public static boolean validMailUserPwd(Context c, SharedPreferences prefs)
+	{
+		String MAIL_USER_KEY = c.getString(R.string.gmail_user_key);
+		String MAIL_PWD_KEY = c.getString(R.string.gmail_pwd_key);
+		String mailUser = prefs.getString(MAIL_USER_KEY, "");
+		String mailPassword = prefs.getString(MAIL_PWD_KEY, "");
+		        
+		if(mailUser.length() == 0){
+			return false;   
+		}else if(mailPassword.length() == 0){
+			return false;
+		}
+		return true;
+	}
+
 	
 	
 	

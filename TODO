@@ -2,11 +2,8 @@ Log message to display
 Test / Profiling
 Icon
 Controllare che si possano fare tutte quelle seghe mentre il telefono è ringing
-Reply message
 Notifications
 
-Controlli di consistenza:
-	Se si abilita il forwarding via mail:
-		 controllare che ci sia la rete disponibile
-	
+Flush di tutte le chiamate perse
+
 Comando per ottenere la posizione

@@ -14,6 +14,7 @@ public class HomeAloneService extends IntentService {
 	
 	public static final String RECEIVED_SMS = "Received Sms";
 	public static final String MESSAGE_BODY = "Message body";
+	public static final String HOMEALONE_EVENT_PROCESSED = "com.fede.action.EVENTPROCESSED";
 	private ServiceState state;
 	
 	@Override public void onCreate() {
@@ -59,7 +60,9 @@ public class HomeAloneService extends IntentService {
 		if(type.equals(RECEIVED_CALL)){
 			state.handleIncomingCall(this, extras);
 		}
-		
+		// TODO Rimuovere se non si fanno i test?
+		Intent i = new Intent(HOMEALONE_EVENT_PROCESSED);
+		sendBroadcast(i);
 	}
 
 }

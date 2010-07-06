@@ -1,10 +1,11 @@
 package com.fede;
 
-import com.fede.Utilities.PrefUtils;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import com.fede.Utilities.GeneralUtils;
+import com.fede.Utilities.PrefUtils;
 
 // Forwards the string to a certain destination
 public class EventForwarder {
@@ -24,29 +25,14 @@ public class EventForwarder {
 		String SMS_TO_FWD_KEY = c.getString(R.string.sms_to_forward_key);
 		
 		if(prefs.getBoolean(SMS_ENABLE_KEY, false) == true){
-			PrefUtils.sendSms(prefs.getString(SMS_TO_FWD_KEY, ""), 
+			GeneralUtils.sendSms(prefs.getString(SMS_TO_FWD_KEY, ""), 
 					toForward);
 		}
 		
 		String MAIL_ENABLE_KEY = c.getString(R.string.forward_to_mail_key);
-		String MAIL_TO_FWD_KEY = c.getString(R.string.mail_to_forward_key);
-
+		
 		if(prefs.getBoolean(MAIL_ENABLE_KEY, false) == true){
-			
-			String USER_KEY = c.getString(R.string.gmail_user_key);
-			String PWD_KEY = c.getString(R.string.gmail_pwd_key);
-			GMailSender sender = new GMailSender(prefs.getString(USER_KEY, ""), 
-									 prefs.getString(PWD_KEY, ""));
-			
-			try{
-				sender.sendMail("HOMEALONE", 
-					  		 toForward, 
-					  		 "HomeAloneSoftware", 
-					  		 prefs.getString(MAIL_TO_FWD_KEY, ""));
-				
-			}catch (Exception e){
-				// TODO Logging
-			}
+			GeneralUtils.sendMail(c, toForward);
 		}
 	}
 

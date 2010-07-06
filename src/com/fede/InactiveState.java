@@ -3,7 +3,7 @@ package com.fede;
 import android.os.Bundle;
 
 import com.fede.MessageException.InvalidCommandException;
-import com.fede.Utilities.PrefUtils;
+import com.fede.Utilities.GeneralUtils;
 
 public class InactiveState implements ServiceState {
 	@Override
@@ -36,7 +36,8 @@ public class InactiveState implements ServiceState {
 				s.setState(new ActiveState());
 			}
 		}catch (InvalidCommandException p){
-			PrefUtils.sendSms(number, p.getMessage());
+			// in case of failure the user must be notified anyway
+			GeneralUtils.sendSms(number, p.getMessage());
 		}		
 	}
 
