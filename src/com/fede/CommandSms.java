@@ -145,12 +145,12 @@ public class CommandSms {
 		if(commandName.equals(SMS_DEST_COMMAND)){
 			smsDestChange = true;
 			if(commandValue != null){
-				smsDest = "";
-			}else{
 				if(GeneralUtils.isPhoneNumber(commandValue))
 					smsDest = commandValue;
 				else
-					throw new CommandParseException(commandValue + " " + context.getString(R.string.not_valid_number_message));
+					throw new CommandParseException(commandValue + " " + context.getString(R.string.not_valid_number_message));				
+			}else{
+				smsDest = "";
 			}
 			return;
 		}
@@ -158,8 +158,6 @@ public class CommandSms {
 		if(commandName.equals(MAIL_DEST_COMMAND)){
 			mailDestChange = true;
 			if(commandValue != null){
-				mailDest = "";
-			}else{
 				if(!GeneralUtils.isMail(commandValue)){
 					throw new CommandParseException(commandValue + " " + context.getString(R.string.not_valid_mail_message));
 				}
@@ -171,7 +169,8 @@ public class CommandSms {
 					throw new CommandParseException(context.getString(R.string.network_not_available));
 				}
 				mailDest = commandValue;						
-				
+			}else{
+				mailDest = "";								
 			}
 			return;
 		}
