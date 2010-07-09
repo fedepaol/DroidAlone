@@ -178,9 +178,9 @@ public class CommandSms {
 		if(commandName.equals(REPLY_COMMAND)){
 			replyCommandChange = true;
 			if(commandValue != null){
-				replyCommand = "";
-			}else{
 				replyCommand = commandValue;
+			}else{
+				replyCommand = "";
 			}
 			return;
 		}
