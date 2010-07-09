@@ -11,6 +11,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".EventListActivity"
+                  android:label="@string/events">
+        </activity>
+        
 		<service android:enabled="true" android:name=".HomeAloneService"/>
 		<activity android:name=".HomeAlonePreferences" android:label="Preferences"></activity>		
 	    <receiver android:name=".IncomingCallReceiver"> 

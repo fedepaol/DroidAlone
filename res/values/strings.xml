@@ -50,4 +50,6 @@
     <string name="invalid_mail_pwd">Empty email password</string>
     <string name="network_not_available">Network not available</string>
     <string name="home_alone_event">Home alone event</string>
+    <string name="events">Received events</string>
+    <string name="delete_all">Delete all</string>
 </resources>

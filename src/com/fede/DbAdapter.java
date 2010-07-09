@@ -1,14 +1,7 @@
 package com.fede;
 
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Calendar;
 import java.util.Date;
-
-import org.xmlpull.v1.XmlSerializer;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -17,9 +10,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
-import android.os.Environment;
 import android.util.Log;
-import android.util.Xml;
 
 public class DbAdapter {
   private static final String DATABASE_NAME = "homeAloneDb.db";
@@ -78,6 +69,11 @@ public class DbAdapter {
   	    return db.insert(EVENT_TABLE, null, contentValues);
   }
   
+  public long addEvent(String event)
+  {
+	Date d = new Date();
+	return addEvent(event, d);
+  }
   
 
   public boolean removeEvent(Long _rowIndex) {
@@ -91,10 +87,11 @@ public class DbAdapter {
    
   
   public Cursor getAllEvents () {
+	String orderBy = "order by " + EVENT_TIME_KEY + "Desc";
     return db.query(EVENT_TABLE, new String[] {ROW_ID, 
     											  EVENT_DESCRIPTION_KEY, 
     											  EVENT_TIME_KEY}, 
-                    null, null, null, null, null);
+                    null, null, null, null, orderBy);
   }
 
 

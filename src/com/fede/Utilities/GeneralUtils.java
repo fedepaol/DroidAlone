@@ -20,6 +20,7 @@ import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.telephony.SmsManager;
 
+import com.fede.EventListActivity;
 import com.fede.GMailSender;
 import com.fede.NameNotFoundException;
 import com.fede.R;
@@ -152,7 +153,7 @@ public class GeneralUtils {
 		// Title for the expanded status
 		String expandedTitle = c.getString(R.string.home_alone_event);
 		// Intent to launch an activity when the extended text is clicked
-		Intent intent = new Intent(this, MyActivity.class);
+		Intent intent = new Intent(c, EventListActivity.class);
 		PendingIntent launchIntent = PendingIntent.getActivity(c, 0, intent, 0);
 		notification.setLatestEventInfo(c,
 		                                expandedTitle,

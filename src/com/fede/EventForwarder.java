@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.fede.Utilities.GeneralUtils;
-import com.fede.Utilities.PrefUtils;
 
 // Forwards the string to a certain destination
 public class EventForwarder {

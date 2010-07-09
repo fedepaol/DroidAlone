@@ -4,11 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.telephony.SmsManager;
 
-import com.fede.GMailSender;
 import com.fede.R;
-import com.fede.TestStubInterface;
 
 
 public class PrefUtils {

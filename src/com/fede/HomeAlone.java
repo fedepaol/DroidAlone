@@ -12,8 +12,8 @@ import android.widget.Button;
 
 public class HomeAlone extends Activity {
 	static final int MENU_OPTIONS = Menu.FIRST;
-	Button activateButton;
-	Button disableButton;
+	Button mActivateButton;
+	Button mDisableButton;
 	
     /** Called when the activity is first created. */
     @Override
@@ -56,11 +56,11 @@ public class HomeAlone extends Activity {
     private void enableValidButton()
     {	
     	if(PrefUtils.homeAloneEnabled(this) == false){
-    		activateButton.setClickable(true);
-    		disableButton.setClickable(false);
+    		mActivateButton.setClickable(true);
+    		mDisableButton.setClickable(false);
     	}else{
-    		activateButton.setClickable(true);
-    		disableButton.setClickable(false);
+    		mActivateButton.setClickable(true);
+    		mDisableButton.setClickable(false);
     	}
     }
     
@@ -69,17 +69,17 @@ public class HomeAlone extends Activity {
     {
 
 		// BUTTONS
-		activateButton = (Button) findViewById(R.id.ActivateButton);
-		disableButton = (Button) findViewById(R.id.DisableButton);
+		mActivateButton = (Button) findViewById(R.id.ActivateButton);
+		mDisableButton = (Button) findViewById(R.id.DisableButton);
 		
-		activateButton.setOnClickListener(new View.OnClickListener(){
+		mActivateButton.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View view){
 				PrefUtils.setStatus(true, view.getContext());
 				enableValidButton();
 			}});
 		
 		
-		disableButton.setOnClickListener(new View.OnClickListener(){
+		mDisableButton.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View view){
 				PrefUtils.setStatus(false, view.getContext());
 				enableValidButton();
