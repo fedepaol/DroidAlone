@@ -153,7 +153,7 @@ public class GeneralUtils {
 		String expandedTitle = c.getString(R.string.home_alone_event);
 		// Intent to launch an activity when the extended text is clicked
 		Intent intent = new Intent(this, MyActivity.class);
-		PendingIntent launchIntent = PendingIntent.getActivity(context, 0, intent, 0);
+		PendingIntent launchIntent = PendingIntent.getActivity(c, 0, intent, 0);
 		notification.setLatestEventInfo(c,
 		                                expandedTitle,
 		                                expandedText,
