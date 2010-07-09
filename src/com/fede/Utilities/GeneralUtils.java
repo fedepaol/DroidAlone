@@ -4,8 +4,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
@@ -98,7 +102,7 @@ public class GeneralUtils {
 		return name;
 	}
 	
-		
+	// Tells if is a valid phone number	
 	static public boolean isPhoneNumber(String number){
 		// TODO Singleton is more efficent
 		Pattern phoneNumPattern = Pattern.compile("\\+?[0-9]+"); // Begins (or not) with a plus and then the number
@@ -109,6 +113,7 @@ public class GeneralUtils {
 	    	return false;
 	}
 	
+	// Tells if is a valid email address
 	static public boolean isMail(String number){
 		Pattern pattern = Pattern.compile(".+@.+\\.[a-z]+");
 	    Matcher matcher = pattern.matcher(number);
@@ -131,6 +136,32 @@ public class GeneralUtils {
 	    						} });
     	ad.show();
     	return;    
+	}
+	
+	public static void notifyEvent(String event, String fullDescEvent, Context c){
+		String svcName = Context.NOTIFICATION_SERVICE;
+		NotificationManager notificationManager;
+		notificationManager = (NotificationManager)c.getSystemService(svcName);
+		// TODO set a valid icon
+		int icon = R.drawable.icon;
+		long when = System.currentTimeMillis();
+		Notification notification = new Notification(icon, event, when);
+		notification.number++;
+		// Text to display in the extended status window
+		String expandedText = fullDescEvent;
+		// Title for the expanded status
+		String expandedTitle = c.getString(R.string.home_alone_event);
+		// Intent to launch an activity when the extended text is clicked
+		Intent intent = new Intent(this, MyActivity.class);
+		PendingIntent launchIntent = PendingIntent.getActivity(context, 0, intent, 0);
+		notification.setLatestEventInfo(c,
+		                                expandedTitle,
+		                                expandedText,
+		                                launchIntent);
+		int notificationRef = 1;
+		notificationManager.notify(notificationRef, notification);
+		
+
 	}
 	
 }
