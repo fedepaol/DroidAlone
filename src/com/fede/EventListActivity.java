@@ -1,13 +1,21 @@
 package com.fede;
 
+import java.util.Date;
+
 import android.app.ListActivity;
+import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 public class EventListActivity extends ListActivity {
 
@@ -34,7 +42,6 @@ public class EventListActivity extends ListActivity {
 	protected void onResume() {
 		super.onResume();
 //TODO
-		mDbHelper.open();		
 	}
     
 	@Override
@@ -73,17 +80,77 @@ public class EventListActivity extends ListActivity {
     private void fillData(){
     	Cursor eventCursor = mDbHelper.getAllEvents();
     	startManagingCursor(eventCursor);
-    	// Create an array to specify the fields we want to display in the list (only TITLE)
-        String[] from = new String[]{DbAdapter.EVENT_TIME_KEY,
-        							 DbAdapter.SHORT_DESC_KEY};
-        
-        // and an array of the fields we want to bind those fields to (in this case just text1)
-        int[] to = new int[]{R.id.event_elem_time, 
-        					 R.id.event_elem_desc};
-        
         // Now create a simple cursor adapter and set it to display
-        SimpleCursorAdapter events = 
-        	    new SimpleCursorAdapter(this, R.layout.event_list_elem, eventCursor, from, to);
+        EventListAdapter events = 
+        	    new EventListAdapter(this);
+        
         setListAdapter(events);
     }
+    
+    
+    /* package */ class EventListAdapter extends CursorAdapter {
+		private java.text.DateFormat mDateFormat;
+		private java.text.DateFormat mTimeFormat;
+
+        Context mContext;
+        private LayoutInflater mInflater;
+
+        public EventListAdapter(Context context) {
+            super(context, null, true);
+            mContext = context;
+            mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            Resources resources = context.getResources();
+            mDateFormat = android.text.format.DateFormat.getDateFormat(context);    // short date
+            mTimeFormat = android.text.format.DateFormat.getTimeFormat(context);    // 12/24 time
+        }
+
+    
+        @Override
+        protected synchronized void onContentChanged() {
+        	super.onContentChanged(); 
+        }
+
+        private boolean isDateToday(Date date) {
+            Date today = new Date();
+            if (date.getYear() == today.getYear() &&
+                    date.getMonth() == today.getMonth() &&
+                    date.getDate() == today.getDate()) {
+                return true;
+            }
+            return false;
+        }
+        
+
+        @Override
+        public void bindView(View view, Context context, Cursor cursor) {
+            // Reset the view (in case it was recycled) and prepare for binding
+            EventListElem itemView = (EventListElem) view;
+            
+            TextView dateView = (TextView) view.findViewById(R.id.event_elem_time);
+            long timestamp = cursor.getLong(DbAdapter.EVENT_TIME_COLUMN);
+            Date date = new Date(timestamp);
+            String text = "";
+            if (isDateToday(date)) {
+                text = mTimeFormat.format(date);
+            } else {
+                text = mDateFormat.format(date);
+            }
+            dateView.setText(text);
+            
+            TextView eventDescView = (TextView) view.findViewById(R.id.event_elem_desc);
+            String desc = cursor.getString(DbAdapter.SHORT_DESC_COLUMN);
+            
+            // TODO Accorciare
+            eventDescView.setText(desc);
+
+        }
+
+        @Override
+        public View newView(Context context, Cursor cursor, ViewGroup parent) {
+            return mInflater.inflate(R.layout.event_list_elem, parent, false);
+        }
+
+    }
+    
 }

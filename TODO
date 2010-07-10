@@ -1,14 +1,13 @@
-Piazzare gli event (decorator??)
-Ricezione sms di comando
-Forward di eventi - nel forwarder??
-
-Controllo se arriva avento di attivazoine che sia settato / settabile almeno un forward
+Contatori delle notifiche
+Eventi errori
+Controllo lunghezze che non facciano casino
 Rendering della data dell'evento
+Aggiustare la gui
 OnClick dialogo con i dettagli
 Test / Profiling
 Icon
 Controllare che si possano fare tutte quelle seghe mentre il telefono è ringing
 
+Enhancements:
 Flush di tutte le chiamate perse
-
 Comando per ottenere la posizione

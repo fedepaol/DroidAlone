@@ -247,10 +247,18 @@ public class CommandSms {
 	public void execute()
 	{
 		updatePreferences();
+		String status = PrefUtils.getPreferencesStatus(context);
+
 		if(echoCommand == BoolCommand.ENABLED){
-			String status = PrefUtils.getPreferencesStatus(context);
 			GeneralUtils.sendSms(incomingNumber, status);
-		}
+		}	
+		notifyCommandExecution(status, echoCommand);
+	}
+	
+	private void notifyCommandExecution(String status, BoolCommand echoCommand){
+		String shortDesc = context.getString(R.string.command_executed) + " " + incomingNumber;
+		String fullDesc = context.getString(R.string.incoming_sms) + " " + smsBody;
+		GeneralUtils.notifyEvent(shortDesc, fullDesc, context);
 	}
 	
 	public BoolCommand getStatus() {

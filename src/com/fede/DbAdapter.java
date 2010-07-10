@@ -15,15 +15,15 @@ import android.util.Log;
 public class DbAdapter {
   private static final String DATABASE_NAME = "homeAloneDb.db";
   
-  private static final int DATABASE_VERSION = 1;
+  private static final int DATABASE_VERSION = 4;
   
   //Events
   	private static final String EVENT_TABLE = "Events";
-  	public static final String EVENT_DESCRIPTION_KEY = "Description";
+  	public static final String EVENT_DESCRIPTION_KEY = "Desc";
 	public static final int EVENT_DESCRIPTION_COLUMN = 1;
 	public static final String EVENT_TIME_KEY = "Time";
 	public static final int EVENT_TIME_COLUMN = 2;
-	public static final String SHORT_DESC_KEY = "Short description";
+	public static final String SHORT_DESC_KEY = "ShortDesc";
 	public static final int SHORT_DESC_COLUMN = 3;
 		
 	
@@ -31,13 +31,17 @@ public class DbAdapter {
 	
 	
   
-  // SQL Statement to create a new database.
+
+  
+  //private static final String CREATE_INDEX_RANGE_END = "create unique index idx_end_range on " + 
+  //RANGE_TABLE + " (" + END_RANGE_KEY + ")";
+  
   private static final String DATABASE_EVENT_CREATE = "create table " + 
   EVENT_TABLE + " (" + ROW_ID + 
     " integer primary key autoincrement, " +
     EVENT_DESCRIPTION_KEY + " string, " + 
     EVENT_TIME_KEY + " integer, " +
-    SHORT_DESC_KEY + " string;";
+    SHORT_DESC_KEY + " string);";
   
     			
     			
@@ -92,7 +96,7 @@ public class DbAdapter {
    
   
   public Cursor getAllEvents () {
-	String orderBy = "order by " + EVENT_TIME_KEY + "Desc";
+	String orderBy = EVENT_TIME_KEY + " desc";
     return db.query(EVENT_TABLE, new String[] {ROW_ID, 
     											  EVENT_DESCRIPTION_KEY, 
     											  EVENT_TIME_KEY,

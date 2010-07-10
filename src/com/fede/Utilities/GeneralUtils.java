@@ -52,23 +52,23 @@ public class GeneralUtils {
 			return;
 		}
 		
-		String MAIL_TO_FWD_KEY = c.getString(R.string.mail_to_forward_key);	
-		String USER_KEY = c.getString(R.string.gmail_user_key);
-		String PWD_KEY = c.getString(R.string.gmail_pwd_key);
-		
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(c);
+		String mailDest = PrefUtils.getStringPreference(prefs, R.string.mail_to_forward_key, c);
+		String mailUser = PrefUtils.getStringPreference(prefs, R.string.gmail_user_key, c);
+		String mailPwd = PrefUtils.getStringPreference(prefs, R.string.gmail_pwd_key, c);
 
-		GMailSender sender = new GMailSender(prefs.getString(USER_KEY, ""), 
-								 prefs.getString(PWD_KEY, ""));
+		GMailSender sender = new GMailSender(mailUser, mailPwd);
 		
 		try{
 			sender.sendMail("HOMEALONE", 
 				  		 body, 
 				  		 "HomeAloneSoftware", 
-				  		 prefs.getString(MAIL_TO_FWD_KEY, ""));
+				  		 mailDest);
 			
 		}catch (Exception e){
-			// TODO Logging
+			String shortDesc = c.getString(R.string.failed_to_send_email_to) + " " + mailDest ;
+			String fullDesc = c.getString(R.string.email_body_not_sent) + " " + body ;
+			notifyEvent(fullDesc, shortDesc, c);
 		}
 	}
 
