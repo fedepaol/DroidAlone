@@ -18,11 +18,13 @@ public class DbAdapter {
   private static final int DATABASE_VERSION = 1;
   
   //Events
-  	private static final String EVENT_TABLE = "PictureRange";
+  	private static final String EVENT_TABLE = "Events";
   	public static final String EVENT_DESCRIPTION_KEY = "Description";
 	public static final int EVENT_DESCRIPTION_COLUMN = 1;
 	public static final String EVENT_TIME_KEY = "Time";
 	public static final int EVENT_TIME_COLUMN = 2;
+	public static final String SHORT_DESC_KEY = "Short description";
+	public static final int SHORT_DESC_COLUMN = 3;
 		
 	
 	public static final String ROW_ID = "_id";
@@ -33,8 +35,9 @@ public class DbAdapter {
   private static final String DATABASE_EVENT_CREATE = "create table " + 
   EVENT_TABLE + " (" + ROW_ID + 
     " integer primary key autoincrement, " +
-    EVENT_DESCRIPTION_KEY + " number, " + 
-    EVENT_TIME_KEY + " integer;";
+    EVENT_DESCRIPTION_KEY + " string, " + 
+    EVENT_TIME_KEY + " integer, " +
+    SHORT_DESC_KEY + " string;";
   
     			
     			
@@ -62,17 +65,19 @@ public class DbAdapter {
 
   // POSITION
   
-  public long addEvent(String event, Date date)
+  public long addEvent(String event, String shortDesc, Date date)
   {
 	    ContentValues contentValues = new ContentValues();
-  	    contentValues.put(EVENT_DESCRIPTION_KEY, date.getTime()); 	    
+	    contentValues.put(EVENT_DESCRIPTION_KEY, event);
+  	    contentValues.put(EVENT_TIME_KEY, date.getTime());
+  	    contentValues.put(SHORT_DESC_KEY, shortDesc);
   	    return db.insert(EVENT_TABLE, null, contentValues);
   }
   
-  public long addEvent(String event)
+  public long addEvent(String event, String shortDesc)
   {
 	Date d = new Date();
-	return addEvent(event, d);
+	return addEvent(event, shortDesc, d);
   }
   
 
@@ -90,7 +95,8 @@ public class DbAdapter {
 	String orderBy = "order by " + EVENT_TIME_KEY + "Desc";
     return db.query(EVENT_TABLE, new String[] {ROW_ID, 
     											  EVENT_DESCRIPTION_KEY, 
-    											  EVENT_TIME_KEY}, 
+    											  EVENT_TIME_KEY,
+    											  SHORT_DESC_KEY}, 
                     null, null, null, null, orderBy);
   }
 
@@ -101,7 +107,8 @@ public class DbAdapter {
     
     Cursor res = db.query(EVENT_TABLE, new String[] {ROW_ID, 
     		EVENT_DESCRIPTION_KEY, 
-    		EVENT_TIME_KEY}, ROW_ID + " = " + _rowIndex, 
+    		EVENT_TIME_KEY,
+    		SHORT_DESC_KEY}, ROW_ID + " = " + _rowIndex, 
     		null, null, null, null);
     
     if(res != null){
