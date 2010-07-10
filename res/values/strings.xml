@@ -52,4 +52,5 @@
     <string name="home_alone_event">Home alone event</string>
     <string name="events">Received events</string>
     <string name="delete_all">Delete all</string>
+    <string name="forwarding_not_enabled">Must enable at least one forwarding type</string>
 </resources>

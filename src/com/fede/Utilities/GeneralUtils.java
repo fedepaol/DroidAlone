@@ -20,6 +20,7 @@ import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.telephony.SmsManager;
 
+import com.fede.DbAdapter;
 import com.fede.EventListActivity;
 import com.fede.GMailSender;
 import com.fede.NameNotFoundException;
@@ -139,20 +140,22 @@ public class GeneralUtils {
     	return;    
 	}
 	
-	public static void notifyEvent(String event, String fullDescEvent, Context c){
+	public static void notifyEvent(String event, String fullDescEvent, Context c, DbAdapter dbHelper){
 		String svcName = Context.NOTIFICATION_SERVICE;
 		NotificationManager notificationManager;
 		notificationManager = (NotificationManager)c.getSystemService(svcName);
+		
+		
 		// TODO set a valid icon
 		int icon = R.drawable.icon;
 		long when = System.currentTimeMillis();
 		Notification notification = new Notification(icon, event, when);
 		notification.number++;
-		// Text to display in the extended status window
+		
 		String expandedText = fullDescEvent;
-		// Title for the expanded status
 		String expandedTitle = c.getString(R.string.home_alone_event);
-		// Intent to launch an activity when the extended text is clicked
+		
+		// Intent to launch an activity when the extended text is clicked		
 		Intent intent = new Intent(c, EventListActivity.class);
 		PendingIntent launchIntent = PendingIntent.getActivity(c, 0, intent, 0);
 		notification.setLatestEventInfo(c,
@@ -162,6 +165,14 @@ public class GeneralUtils {
 		int notificationRef = 1;
 		notificationManager.notify(notificationRef, notification);
 		
+		if(dbHelper == null){
+			dbHelper = new DbAdapter(c);
+			dbHelper.open();
+			dbHelper.addEvent(fullDescEvent);
+			dbHelper.close();
+		}else{
+			dbHelper.addEvent(fullDescEvent);
+		}
 
 	}
 	
