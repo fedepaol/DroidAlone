@@ -75,7 +75,7 @@ public class EventListActivity extends ListActivity {
     	startManagingCursor(eventCursor);
     	// Create an array to specify the fields we want to display in the list (only TITLE)
         String[] from = new String[]{DbAdapter.EVENT_TIME_KEY,
-        							 DbAdapter.EVENT_DESCRIPTION_KEY};
+        							 DbAdapter.SHORT_DESC_KEY};
         
         // and an array of the fields we want to bind those fields to (in this case just text1)
         int[] to = new int[]{R.id.event_elem_time, 

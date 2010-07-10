@@ -12,6 +12,9 @@ import android.widget.Button;
 
 public class HomeAlone extends Activity {
 	static final int MENU_OPTIONS = Menu.FIRST;
+	static final int MENU_EVENTS = Menu.FIRST + 1;
+	
+	
 	Button mActivateButton;
 	Button mDisableButton;
 	
@@ -35,6 +38,14 @@ public class HomeAlone extends Activity {
 		
 		menu.add(groupId, menuItemId, menuItemOrder, menuItemText).setIcon(android.R.drawable.ic_menu_preferences);
 		
+
+		groupId = 0;
+		menuItemId = MENU_EVENTS;
+		menuItemOrder = Menu.NONE;	 
+		menuItemText = R.string.event_list;
+		
+		menu.add(groupId, menuItemId, menuItemOrder, menuItemText).setIcon(android.R.drawable.ic_menu_preferences);
+
 		return true;
 	}
     
@@ -47,6 +58,11 @@ public class HomeAlone extends Activity {
 				Intent i = new Intent(this, HomeAlonePreferences.class); 
 				startActivity(i);
 			}
+			case MENU_EVENTS:{
+				Intent i = new Intent(this, EventListActivity.class); 
+				startActivity(i);
+			}
+			
 		}
 	
 		return true;

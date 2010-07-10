@@ -165,15 +165,15 @@ public class GeneralUtils {
 		int notificationRef = 1;
 		notificationManager.notify(notificationRef, notification);
 		
-		if(dbHelper == null){
-			dbHelper = new DbAdapter(c);
-			dbHelper.open();
-			dbHelper.addEvent(fullDescEvent);
-			dbHelper.close();
-		}else{
-			dbHelper.addEvent(fullDescEvent);
-		}
+		dbHelper.addEvent(fullDescEvent, event);
+
 
 	}
-	
+
+	public static void notifyEvent(String event, String fullDescEvent, Context c){
+		DbAdapter dbHelper = new DbAdapter(c);
+		dbHelper.open();
+		notifyEvent(event, fullDescEvent, c, dbHelper);
+		dbHelper.close();
+	}
 }
