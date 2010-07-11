@@ -2,9 +2,13 @@ package com.fede;
 
 import java.util.Date;
 
+import fede.geotagger.R;
+
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
-import android.content.res.Resources;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,11 +18,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class EventListActivity extends ListActivity {
 
+	
+	private java.text.DateFormat mDateFormat;
+	private java.text.DateFormat mTimeFormat;
+
+
+	
+	
 	protected DbAdapter mDbHelper;
 	private static final int MENU_DELETE = Menu.FIRST;
 	
@@ -29,6 +39,9 @@ public class EventListActivity extends ListActivity {
         setContentView(R.layout.event_list);
         mDbHelper = new DbAdapter(this);
         mDbHelper.open();
+        mDateFormat = android.text.format.DateFormat.getDateFormat(this);    // short date
+        mTimeFormat = android.text.format.DateFormat.getTimeFormat(this);    // 12/24 time
+
         fillData();
     }
     
@@ -71,12 +84,37 @@ public class EventListActivity extends ListActivity {
 		return true;
 	}
 	
-	
+	public void showDialog(String message, String title)
+	{
+    	String button1String = getString(R.string.ok_name); 
+    	AlertDialog.Builder ad = new AlertDialog.Builder(this); 
+    	ad.setTitle(title); 
+    	ad.setMessage(message); 
+    	ad.setPositiveButton(button1String,
+    						 new OnClickListener() { 
+	    						public void onClick(DialogInterface dialog, int arg1) {
+	    							// do nothing
+	    						} });
+    	ad.show();
+    	return;    
+	}	
+	   
+	    
+		
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-	// Per ora vuoto TODO
+		Cursor c = mDbHelper.getEvent(id);
+		c.moveToFirst();
+		String fullStatus = c.getString(DbAdapter.EVENT_DESCRIPTION_COLUMN);
+		String shortStatus = c.getString(DbAdapter.SHORT_DESC_COLUMN);
+		Long time = c.getLong(DbAdapter.EVENT_TIME_COLUMN);
+		String timeString = mTimeFormat.format(time);
+		String dateString = mDateFormat.format(time);
+		
+		String message = String.format("%s\n%s\n%s", dateString, timeString, fullStatus);
+		showDialog(message, shortStatus);
 	}
-    	
+	
     private void fillData(){
     	Cursor eventCursor = mDbHelper.getAllEvents();
     	startManagingCursor(eventCursor);
@@ -90,8 +128,6 @@ public class EventListActivity extends ListActivity {
  
     
     /* package */ class EventListAdapter extends CursorAdapter {
-		private java.text.DateFormat mDateFormat;
-		private java.text.DateFormat mTimeFormat;
 
         Context mContext;
         private LayoutInflater mInflater;
@@ -101,8 +137,6 @@ public class EventListActivity extends ListActivity {
             mContext = context;
             mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            mDateFormat = android.text.format.DateFormat.getDateFormat(context);    // short date
-            mTimeFormat = android.text.format.DateFormat.getTimeFormat(context);    // 12/24 time
         }
 
     

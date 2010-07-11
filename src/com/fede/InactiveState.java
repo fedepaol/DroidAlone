@@ -28,7 +28,7 @@ public class InactiveState implements ServiceState {
 		boolean enabled = (PrefUtils.getBoolPreference(prefs, R.string.forward_to_mail_key, s) ||
 				PrefUtils.getBoolPreference(prefs, R.string.forward_to_sms_key, s));
 		if(!enabled){
-			throw new ForwardingDisabledException(s.getString(R.string.forwarding_not_enabled));
+			throw new ForwardingDisabledException(s.getString(R.string.forwarding_not_enabled), s);
 		}
 		return enabled;
 	}

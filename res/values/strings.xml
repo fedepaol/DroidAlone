@@ -22,6 +22,7 @@
     <string name="reply_enable_key">ENABLE_REPLY</string>
     <string name="reply_category">Reply message</string>
     <string name="reply">Reply to incoming calls</string>
+    <string name="reply_name">reply</string>
     <string name="reply_summary">Reply to forward</string>
     <string name="reply_key">REPLY</string>
     <string name="gmail_pwd">gmail account password</string>
@@ -61,5 +62,7 @@
     <string name="incoming_sms">Incoming sms</string>
     <string name="failed_to_send_email_to">Failed to send mail to</string>
     <string name="email_body_not_sent">Mail not sent was:</string>
-    
+    <string name="notify_error">Error</string>
+    <string name="to">to</string>
+    <string name="reply_notified">Automatic reply sent</string>
 </resources>

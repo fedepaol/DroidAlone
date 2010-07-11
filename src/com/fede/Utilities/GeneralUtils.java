@@ -46,6 +46,7 @@ public class GeneralUtils {
 		smsManager.sendTextMessage(number, null, message, null, null);
 	}
 	
+	
 	public static void sendMail(Context c, String body){
 		if(mTest != null){	// TODO Test only
 			mTest.sendMail(body);

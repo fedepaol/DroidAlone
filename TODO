@@ -1,11 +1,13 @@
 Aggiustare i messaggi delle notifiche che fanno cacare
+Aggiustare tutti i cazzo di + e mettere formattazione string corretta
 Contatori delle notifiche
-Eventi errori
 Controllo lunghezze che non facciano casino
 Aggiustare la gui
 OnClick dialogo con i dettagli
 Test / Profiling
-Icon
+- Testare Eventi errori / anche le reply
+
+Icon: applicazione, notifiche
 Controllare che si possano fare tutte quelle seghe mentre il telefono è ringing
 
 Enhancements:

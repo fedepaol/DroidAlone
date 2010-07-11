@@ -13,10 +13,17 @@ public class ActiveState implements ServiceState {
 	}
 	
 	
+	private void notifyReply(HomeAloneService s, String number, String reply){
+		String message = s.getString(R.string.reply_name) + " " + reply + s.getString(R.string.notified)
+		+ s.getString(R.string.to) + " " + number;
+		GeneralUtils.notifyEvent(s.getString(R.string.reply_notified), message, s);
+	}
+	
 	public void sendReply(HomeAloneService s, String number)
 	{
 		String reply = PrefUtils.getReply(s);
 		if(!reply.equals("")){
+			notifyReply(s, number, reply);
 			GeneralUtils.sendSms(number, reply);
 		}	
 	}
