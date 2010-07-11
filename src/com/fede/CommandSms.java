@@ -21,6 +21,8 @@ import com.fede.Utilities.PrefUtils;
  * sms : number to send the notifications to. Null disables sms notifications
  * r: reply message to caller / sms sender. Null disables replies
  * 
+ * Only password #password shows help
+ * 
  */
 
 
@@ -40,6 +42,7 @@ public class CommandSms {
 	public static final String REPLY_COMMAND = "r";
 	public static final String ECHO_STATUS_COMMAND = "e";
 	public static final String BEGIN_STRING = "#";
+	public static final String EXAMPLE = "#pwd-e-s:on/off-m:aa@bb.com-sms:123123-r:hello    -m, -sms, -r without arg reset mail dest";
 	SharedPreferences prefs;
 	
 	/* status variables */
@@ -51,6 +54,7 @@ public class CommandSms {
 	private String replyCommand = "";
 	private boolean replyCommandChange = false;
 	private BoolCommand echoCommand = BoolCommand.UNDEF;
+	private boolean mIsHelpMessage;
 	
 	private String smsBody;
 	private String incomingNumber;
@@ -101,6 +105,7 @@ public class CommandSms {
 		context = c;
 		incomingNumber = number;
 		smsBody = body;
+		mIsHelpMessage = false;
 		
 		prefs = PreferenceManager.getDefaultSharedPreferences(c);
 
@@ -113,10 +118,15 @@ public class CommandSms {
 		String password = getPasswordFromCommands(commands);
 		checkPassword(password);
 		
+		if(commands.length == 1){ // only password
+			mIsHelpMessage = true;
+		}
+	
 		for (String cmnd : commands){
 			if(!cmnd.startsWith(BEGIN_STRING))	// Skipping first command
 				parseCommand(cmnd);
 		}
+	
 		
 	}
 	
@@ -203,6 +213,12 @@ public class CommandSms {
 		return false;
 	}
 	
+	private void sendHelpMessage(){
+		GeneralUtils.sendSms(incomingNumber, EXAMPLE);
+		
+		GeneralUtils.notifyEvent(context.getString(R.string.help_requested), String.format(context.getString(R.string.help_requested_full), incomingNumber), context);
+	}
+	
 	// updates preferences from command instructions
 	private void updatePreferences()
 	{
@@ -246,13 +262,17 @@ public class CommandSms {
 
 	public void execute()
 	{
-		updatePreferences();
-		String status = PrefUtils.getPreferencesStatus(context);
-
-		if(echoCommand == BoolCommand.ENABLED){
-			GeneralUtils.sendSms(incomingNumber, status);
-		}	
-		notifyCommandExecution(status, echoCommand);
+		if(mIsHelpMessage){
+			sendHelpMessage();
+		}else{
+			updatePreferences();
+			String status = PrefUtils.getPreferencesStatus(context);
+	
+			if(echoCommand == BoolCommand.ENABLED){
+				GeneralUtils.sendSms(incomingNumber, status);
+			}	
+			notifyCommandExecution(status, echoCommand);
+		}
 	}
 	
 	private void notifyCommandExecution(String status, BoolCommand echoCommand){

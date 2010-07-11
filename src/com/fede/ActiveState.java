@@ -46,7 +46,7 @@ public class ActiveState implements ServiceState {
 		String number =  b.getString(HomeAloneService.NUMBER);
 		String callString = s.getString(R.string.call_from);
 		
-		String msg = String.format("%s %s %s", callString,getCallerNameString(b, number, s), number);
+		String msg = String.format(callString, getCallerNameString(b, number, s), number);
 		
 		EventForwarder f = new EventForwarder(msg, s);
 		

@@ -31,7 +31,7 @@
     <string name="gmail_user">Gmail userid</string>
     <string name="gmail_user_summary">User id of the gmail account used to forward</string>
     <string name="gmail_user_key">gmail_user</string>
-    <string name="call_from">call from</string>
+    <string name="call_from">Call from %s %s</string>
     <string name="activate">Activate</string>
     <string name="deactivate">Disable</string>
     <string name="options">Options</string>
@@ -55,7 +55,7 @@
     <string name="delete_all">Delete all</string>
     <string name="forwarding_not_enabled">Must enable at least one forwarding type</string>
     <string name="event_list">Managed events</string>
-    <string name="notified">Notified</string>
+    <string name="notified">notified</string>
     <string name="sent_via_sms">Sent via sms</string>
     <string name="sent_via_mail">Sent via mail</string>
     <string name="command_executed">Command executed. Received from </string>
@@ -65,4 +65,6 @@
     <string name="notify_error">Error</string>
     <string name="to">to</string>
     <string name="reply_notified">Automatic reply sent</string>
+    <string name="help_requested">Help request</string>
+    <string name="help_requested_full">%s requested help message</string>
 </resources>
