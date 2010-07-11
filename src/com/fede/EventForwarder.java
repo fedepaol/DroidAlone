@@ -34,18 +34,18 @@ public class EventForwarder {
 			forwardedToMail = true;
 		}
 		
-		String shortDesc = toForward + c.getString(R.string.notified);
+		String shortDesc = String.format("%s %s", toForward, c.getString(R.string.notified));
 		String forwardedToSmsDesc = "";
 		String forwardedToMailDesc = ""; 
 	
 		if(forwardedToSms){
-			forwardedToSmsDesc = c.getString(R.string.sent_via_sms) + " " + PrefUtils.getStringPreference(prefs, R.string.sms_to_forward_key, c);
+			forwardedToSmsDesc = String.format("%s %s", c.getString(R.string.sent_via_sms), PrefUtils.getStringPreference(prefs, R.string.sms_to_forward_key, c));
 		}
 		
 		if(forwardedToMail){
-			forwardedToMailDesc = c.getString(R.string.sent_via_mail) + " " + PrefUtils.getStringPreference(prefs, R.string.mail_to_forward_key, c);
+			forwardedToMailDesc = String.format("%s %s", c.getString(R.string.sent_via_mail), PrefUtils.getStringPreference(prefs, R.string.mail_to_forward_key, c)); 
 		}
-		String fullDesc = shortDesc + " " + forwardedToSmsDesc + " " + forwardedToMailDesc;
+		String fullDesc = String.format("%s %s %s", toForward, forwardedToSmsDesc, forwardedToMailDesc);
 		
 		GeneralUtils.notifyEvent(shortDesc, fullDesc, c);
 	}

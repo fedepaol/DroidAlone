@@ -2,8 +2,6 @@ package com.fede;
 
 import java.util.Date;
 
-import fede.geotagger.R;
-
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
@@ -82,7 +80,7 @@ public class EventListActivity extends ListActivity {
 		}
 	
 		return true;
-	}
+	} 
 	
 	public void showDialog(String message, String title)
 	{
