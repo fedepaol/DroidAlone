@@ -4,6 +4,7 @@ import com.fede.Utilities.PrefUtils;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,13 +18,14 @@ public class HomeAlone extends Activity {
 	
 	Button mActivateButton;
 	Button mDisableButton;
+	IncomingCallReceiver mReceiver;
 	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        
+
         setupButtons();
     }
     
@@ -57,10 +59,12 @@ public class HomeAlone extends Activity {
 			case MENU_OPTIONS:{
 				Intent i = new Intent(this, HomeAlonePreferences.class); 
 				startActivity(i);
+				break;
 			}
 			case MENU_EVENTS:{
 				Intent i = new Intent(this, EventListActivity.class); 
 				startActivity(i);
+				break;
 			}
 			
 		}

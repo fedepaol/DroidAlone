@@ -176,4 +176,8 @@ public class GeneralUtils {
 		notifyEvent(event, fullDescEvent, c, dbHelper);
 		dbHelper.close();
 	}
+	
+	/*public static void getMissedCalls(Context c){
+		Cursor cursor = c.getContentResolver().query(android.provider.CallLog.Calls.CONTENT_URI
+	}*/
 }

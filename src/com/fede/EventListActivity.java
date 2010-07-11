@@ -82,11 +82,27 @@ public class EventListActivity extends ListActivity {
     	startManagingCursor(eventCursor);
         // Now create a simple cursor adapter and set it to display
         EventListAdapter events = 
-        	    new EventListAdapter(this);
+        	    new EventListAdapter(this, eventCursor);
         
         setListAdapter(events);
     }
     
+    private void oldfillData(){
+    	Cursor eventCursor = mDbHelper.getAllEvents();
+    	startManagingCursor(eventCursor);
+    	// Create an array to specify the fields we want to display in the list (only TITLE)
+        String[] from = new String[]{DbAdapter.EVENT_TIME_KEY,
+        							DbAdapter.SHORT_DESC_KEY};
+        
+        // and an array of the fields we want to bind those fields to (in this case just text1)
+        int[] to = new int[]{R.id.event_elem_time, 
+        					 R.id.event_elem_desc};
+        
+        // Now create a simple cursor adapter and set it to display
+        SimpleCursorAdapter positions = 
+        	    new SimpleCursorAdapter(this, R.layout.event_list_elem, eventCursor, from, to);
+        setListAdapter(positions);
+    }
     
     /* package */ class EventListAdapter extends CursorAdapter {
 		private java.text.DateFormat mDateFormat;
@@ -95,8 +111,8 @@ public class EventListActivity extends ListActivity {
         Context mContext;
         private LayoutInflater mInflater;
 
-        public EventListAdapter(Context context) {
-            super(context, null, true);
+        public EventListAdapter(Context context, Cursor c) {
+            super(context, c, true);
             mContext = context;
             mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -125,7 +141,6 @@ public class EventListActivity extends ListActivity {
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
             // Reset the view (in case it was recycled) and prepare for binding
-            EventListElem itemView = (EventListElem) view;
             
             TextView dateView = (TextView) view.findViewById(R.id.event_elem_time);
             long timestamp = cursor.getLong(DbAdapter.EVENT_TIME_COLUMN);
