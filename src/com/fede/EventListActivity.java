@@ -87,22 +87,7 @@ public class EventListActivity extends ListActivity {
         setListAdapter(events);
     }
     
-    private void oldfillData(){
-    	Cursor eventCursor = mDbHelper.getAllEvents();
-    	startManagingCursor(eventCursor);
-    	// Create an array to specify the fields we want to display in the list (only TITLE)
-        String[] from = new String[]{DbAdapter.EVENT_TIME_KEY,
-        							DbAdapter.SHORT_DESC_KEY};
-        
-        // and an array of the fields we want to bind those fields to (in this case just text1)
-        int[] to = new int[]{R.id.event_elem_time, 
-        					 R.id.event_elem_desc};
-        
-        // Now create a simple cursor adapter and set it to display
-        SimpleCursorAdapter positions = 
-        	    new SimpleCursorAdapter(this, R.layout.event_list_elem, eventCursor, from, to);
-        setListAdapter(positions);
-    }
+ 
     
     /* package */ class EventListAdapter extends CursorAdapter {
 		private java.text.DateFormat mDateFormat;
@@ -116,7 +101,6 @@ public class EventListActivity extends ListActivity {
             mContext = context;
             mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            Resources resources = context.getResources();
             mDateFormat = android.text.format.DateFormat.getDateFormat(context);    // short date
             mTimeFormat = android.text.format.DateFormat.getTimeFormat(context);    // 12/24 time
         }
@@ -156,7 +140,7 @@ public class EventListActivity extends ListActivity {
             TextView eventDescView = (TextView) view.findViewById(R.id.event_elem_desc);
             String desc = cursor.getString(DbAdapter.SHORT_DESC_COLUMN);
             
-            // TODO Accorciare
+            // TODO Accorciare se troppo lungo
             eventDescView.setText(desc);
 
         }

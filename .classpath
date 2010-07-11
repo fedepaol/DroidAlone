@@ -3,8 +3,8 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="lib" path="/Users/fede/Dropbox/homealone/externallibs/activation.jar"/>
-	<classpathentry kind="lib" path="/Users/fede/Dropbox/homealone/externallibs/additionnal.jar"/>
-	<classpathentry kind="lib" path="/Users/fede/Dropbox/homealone/externallibs/mail.jar"/>
+	<classpathentry kind="lib" path="externallibs/activation.jar"/>
+	<classpathentry kind="lib" path="externallibs/additionnal.jar"/>
+	<classpathentry kind="lib" path="externallibs/mail.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

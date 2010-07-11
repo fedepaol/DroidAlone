@@ -64,7 +64,7 @@ public class CommandSms {
 		String prefPwd = prefs.getString(PASSWORD_KEY, "*");
 		
 		if(!pwd.equals(prefPwd)){
-			throw new InvalidPasswordException(pwd + " is not the current password");
+			throw new InvalidPasswordException(pwd + " is not the current password", context);
 		}
 	}
 	
@@ -105,7 +105,7 @@ public class CommandSms {
 		prefs = PreferenceManager.getDefaultSharedPreferences(c);
 
 		if(!isCommandSms(smsBody)){	// if it doesn't start with  a # is not a valid command message
-			throw new InvalidCommandException(context.getString(R.string.doesnt_start_with) + " " + BEGIN_STRING);
+			throw new InvalidCommandException(context.getString(R.string.doesnt_start_with) + " " + BEGIN_STRING, context);
 		}
 		
 		String[] commands = smsBody.split("-");
@@ -130,14 +130,14 @@ public class CommandSms {
 		
 		if(commandName.equals(STATUS_COMMAND)){
 			if(commandValue == null)
-				throw new CommandParseException(context.getString(R.string.status_expect_value));
+				throw new CommandParseException(context.getString(R.string.status_expect_value), context);
 		
 			if(commandValue.equals(STATUS_ON)){
 				status = BoolCommand.ENABLED;
 			}else if(commandValue.equals(STATUS_OFF)){
 				status = BoolCommand.DISABLED;
 			}else
-				throw new CommandParseException(context.getString(R.string.invalid_status_value) + ":" + commandValue);
+				throw new CommandParseException(context.getString(R.string.invalid_status_value) + ":" + commandValue, context);
 			
 			return;
 		}
@@ -148,7 +148,7 @@ public class CommandSms {
 				if(GeneralUtils.isPhoneNumber(commandValue))
 					smsDest = commandValue;
 				else
-					throw new CommandParseException(commandValue + " " + context.getString(R.string.not_valid_number_message));				
+					throw new CommandParseException(commandValue + " " + context.getString(R.string.not_valid_number_message), context);				
 			}else{
 				smsDest = "";
 			}
@@ -159,14 +159,14 @@ public class CommandSms {
 			mailDestChange = true;
 			if(commandValue != null){
 				if(!GeneralUtils.isMail(commandValue)){
-					throw new CommandParseException(commandValue + " " + context.getString(R.string.not_valid_mail_message));
+					throw new CommandParseException(commandValue + " " + context.getString(R.string.not_valid_mail_message), context);
 				}
 				if(!PrefUtils.validMailUserPwd(context, prefs)){
-					throw new CommandParseException(context.getString(R.string.invalid_mail_user));
+					throw new CommandParseException(context.getString(R.string.invalid_mail_user), context);
 				}
 		
 				if(!GeneralUtils.isNetworkAvailable(context)){
-					throw new CommandParseException(context.getString(R.string.network_not_available));
+					throw new CommandParseException(context.getString(R.string.network_not_available), context);
 				}
 				mailDest = commandValue;						
 			}else{
@@ -190,7 +190,7 @@ public class CommandSms {
 			return;
 		}
 		
-		throw new CommandParseException("Invalid command name " + commandName);
+		throw new CommandParseException("Invalid command name " + commandName, context);
 	}
 	
 	

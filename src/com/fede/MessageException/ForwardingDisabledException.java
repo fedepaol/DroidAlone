@@ -1,9 +1,11 @@
 package com.fede.MessageException;
 
+import android.content.Context;
+
 public class ForwardingDisabledException extends InvalidCommandException {
-	public ForwardingDisabledException(String r)
+	public ForwardingDisabledException(String r, Context c)
 	{
-		super(r);
+		super(r, c);
 	}
 }
 
