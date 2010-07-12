@@ -29,6 +29,7 @@ import com.fede.TestStubInterface;
 
 
 public class GeneralUtils {
+	public static final String EVENT_LIST_INTENT = "ShowEventList";
 	static TestStubInterface mTest = null;
 	
 	public static void setStubInterface(TestStubInterface test)
@@ -158,6 +159,7 @@ public class GeneralUtils {
 		
 		// Intent to launch an activity when the extended text is clicked		
 		Intent intent = new Intent(c, EventListActivity.class);
+		intent.putExtra(EVENT_LIST_INTENT, true);
 		PendingIntent launchIntent = PendingIntent.getActivity(c, 0, intent, 0);
 		notification.setLatestEventInfo(c,
 		                                expandedTitle,

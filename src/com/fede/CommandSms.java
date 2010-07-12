@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 
 import com.fede.MessageException.CommandParseException;
+import com.fede.MessageException.ForwardingDisabledException;
 import com.fede.MessageException.InvalidCommandException;
 import com.fede.MessageException.InvalidPasswordException;
 import com.fede.Utilities.GeneralUtils;
@@ -260,7 +261,7 @@ public class CommandSms {
 		prefEditor.commit();
 	}
 
-	public void execute()
+	public void execute() throws InvalidCommandException
 	{
 		if(mIsHelpMessage){
 			sendHelpMessage();
@@ -272,6 +273,10 @@ public class CommandSms {
 				GeneralUtils.sendSms(incomingNumber, status);
 			}	
 			notifyCommandExecution(status, echoCommand);
+			
+			if(getStatus() == BoolCommand.ENABLED && !PrefUtils.checkForwardingEnabled(context)){
+				throw new ForwardingDisabledException(context.getString(R.string.forwarding_not_enabled), context);
+			}
 		}
 	}
 	

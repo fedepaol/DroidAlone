@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.fede.R;
+import com.fede.MessageException.ForwardingDisabledException;
 
 
 public class PrefUtils {
@@ -99,5 +100,13 @@ public class PrefUtils {
 	public static boolean getBoolPreference(SharedPreferences prefs, int resId, Context c){
 		String key = c.getString(resId);
 		return prefs.getBoolean(key, false);
+	}
+
+	public static boolean checkForwardingEnabled(Context s) {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(s);
+
+		return (PrefUtils.getBoolPreference(prefs, R.string.forward_to_mail_key, s) ||
+				PrefUtils.getBoolPreference(prefs, R.string.forward_to_sms_key, s));
+		
 	}
 }

@@ -6,13 +6,18 @@
     <application android:icon="@drawable/icon" android:label="@string/app_name">
         <activity android:name=".HomeAlone"
                   android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
         </activity>
         <activity android:name=".EventListActivity"
                   android:label="@string/events">
+        </activity>
+        
+        <activity android:name=".MainTabActivity" android:label="@string/app_name"
+          android:theme="@android:style/Theme.NoTitleBar">
+          <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         
 		<service android:enabled="true" android:name=".HomeAloneService"/>

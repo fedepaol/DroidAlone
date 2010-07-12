@@ -1,20 +1,18 @@
 package com.fede;
 
-import com.fede.Utilities.PrefUtils;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.fede.Utilities.GeneralUtils;
+import com.fede.Utilities.PrefUtils;
+
 public class HomeAlone extends Activity {
-	static final int MENU_OPTIONS = Menu.FIRST;
-	static final int MENU_EVENTS = Menu.FIRST + 1;
-	
+	static final int MENU_OPTIONS = Menu.FIRST;	
 	
 	Button mActivateButton;
 	Button mDisableButton;
@@ -40,14 +38,6 @@ public class HomeAlone extends Activity {
 		
 		menu.add(groupId, menuItemId, menuItemOrder, menuItemText).setIcon(android.R.drawable.ic_menu_preferences);
 		
-
-		groupId = 0;
-		menuItemId = MENU_EVENTS;
-		menuItemOrder = Menu.NONE;	 
-		menuItemText = R.string.event_list;
-		
-		menu.add(groupId, menuItemId, menuItemOrder, menuItemText).setIcon(android.R.drawable.ic_menu_preferences);
-
 		return true;
 	}
     
@@ -58,11 +48,6 @@ public class HomeAlone extends Activity {
 		switch(item.getItemId()){
 			case MENU_OPTIONS:{
 				Intent i = new Intent(this, HomeAlonePreferences.class); 
-				startActivity(i);
-				break;
-			}
-			case MENU_EVENTS:{
-				Intent i = new Intent(this, EventListActivity.class); 
 				startActivity(i);
 				break;
 			}
@@ -94,8 +79,13 @@ public class HomeAlone extends Activity {
 		
 		mActivateButton.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View view){
-				PrefUtils.setStatus(true, view.getContext());
-				enableValidButton();
+				if(PrefUtils.checkForwardingEnabled(view.getContext())){	
+					PrefUtils.setStatus(true, view.getContext());
+					enableValidButton();
+				}else{
+					GeneralUtils.showErrorDialog(view.getContext().getString(R.string.forwarding_not_enabled), view.getContext());
+				}
+				
 			}});
 		
 		

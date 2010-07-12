@@ -1,17 +1,20 @@
-Controllo da attivazione bottone
-Mandare help se non ci sono comandi
+Bug: controllo dello stato iniziale se viene settato da activity
 Contatori delle notifiche
 Controllo lunghezze che non facciano casino
 Aggiustare la gui
+
 OnClick dialogo con i dettagli - Magari è carino metterci un'activity ben formattata
+
 Test / Profiling
 - Testare Eventi errori / anche le reply
 
-Icon: applicazione, notifiche
+Icon: applicazione, notifiche, tabs
+COLORI
 Controllare che si possano fare tutte quelle seghe mentre il telefono è ringing
 
 Enhancements:
 Flush di tutte le chiamate perse
 Comando per ottenere la posizione
+Comando per farsi mandare il numero di telefono
 
 

@@ -1,5 +1,6 @@
 package com.fede;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -22,16 +23,7 @@ public class InactiveState implements ServiceState {
 
 	}
 
-	private boolean checkForwardingEnabled(HomeAloneService s) throws ForwardingDisabledException {
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(s);
-
-		boolean enabled = (PrefUtils.getBoolPreference(prefs, R.string.forward_to_mail_key, s) ||
-				PrefUtils.getBoolPreference(prefs, R.string.forward_to_sms_key, s));
-		if(!enabled){
-			throw new ForwardingDisabledException(s.getString(R.string.forwarding_not_enabled), s);
-		}
-		return enabled;
-	}
+	
 	
 	@Override
 	public void handleSms(HomeAloneService s, Bundle b) {
@@ -47,7 +39,11 @@ public class InactiveState implements ServiceState {
 			CommandSms command = new CommandSms(b, body, number, s);
 			command.execute();
 			
-			if(command.getStatus() == CommandSms.BoolCommand.ENABLED && checkForwardingEnabled(s)){
+			if(command.getStatus() == CommandSms.BoolCommand.ENABLED){
+				if (!PrefUtils.checkForwardingEnabled(s)){
+					throw new ForwardingDisabledException(s.getString(R.string.forwarding_not_enabled), s);
+				}
+				
 				s.setState(new ActiveState());
 			}
 		}catch (InvalidCommandException p){

@@ -5,14 +5,6 @@
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
     >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/events"
-    android:textSize="30dip"
-    android:gravity="center_horizontal"
-    />
-    <View        android:layout_height="2dip" android:layout_width="fill_parent" android:background="#FF909090"/>
 <ListView android:id="@android:id/list" 
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
