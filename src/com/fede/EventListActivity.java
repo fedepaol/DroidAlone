@@ -4,8 +4,11 @@ import java.util.Date;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -20,12 +23,13 @@ import android.widget.TextView;
 
 public class EventListActivity extends ListActivity {
 
-	
+	private Cursor mEventCursor;
 	private java.text.DateFormat mDateFormat;
 	private java.text.DateFormat mTimeFormat;
-
-
+	private BroadcastReceiver mBroadcastRecv;
 	
+	private IntentFilter mFilter;
+
 	
 	protected DbAdapter mDbHelper;
 	private static final int MENU_DELETE = Menu.FIRST;
@@ -34,25 +38,38 @@ public class EventListActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.event_list);
         mDbHelper = new DbAdapter(this);
         mDbHelper.open();
+        mEventCursor = mDbHelper.getAllEvents();
+
         mDateFormat = android.text.format.DateFormat.getDateFormat(this);    // short date
         mTimeFormat = android.text.format.DateFormat.getTimeFormat(this);    // 12/24 time
-
+        mFilter = new IntentFilter(HomeAloneService.HOMEALONE_EVENT_PROCESSED);
+        
         fillData();
+        
+        mBroadcastRecv = new BroadcastReceiver(){
+    		@Override
+    		public void onReceive(Context context, Intent intent) {	
+    			mEventCursor.requery();
+    		}
+    	};
+        
     }
     
 	@Override
 	protected void onPause() {		
 		super.onPause();
-//TODO
-		}
+		unregisterReceiver(mBroadcastRecv);
+	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-//TODO
+		registerReceiver(mBroadcastRecv, mFilter);
+		mEventCursor.requery();
 	}
     
 	@Override
@@ -76,6 +93,7 @@ public class EventListActivity extends ListActivity {
 		switch(item.getItemId()){
 			case MENU_DELETE:{
 				mDbHelper.removeAllEvents();
+				mEventCursor.requery();
 			}
 		}
 	
@@ -114,13 +132,11 @@ public class EventListActivity extends ListActivity {
 	}
 	
     private void fillData(){
-    	Cursor eventCursor = mDbHelper.getAllEvents();
-    	startManagingCursor(eventCursor);
+    	startManagingCursor(mEventCursor);
         // Now create a simple cursor adapter and set it to display
-        EventListAdapter events = 
-        	    new EventListAdapter(this, eventCursor);
-        
-        setListAdapter(events);
+    	EventListAdapter mEventsAdapter = 
+        	    new EventListAdapter(this, mEventCursor);
+        setListAdapter(mEventsAdapter);
     }
     
  

@@ -21,8 +21,9 @@ import android.provider.ContactsContract;
 import android.telephony.SmsManager;
 
 import com.fede.DbAdapter;
-import com.fede.EventListActivity;
 import com.fede.GMailSender;
+import com.fede.HomeAloneService;
+import com.fede.MainTabActivity;
 import com.fede.NameNotFoundException;
 import com.fede.R;
 import com.fede.TestStubInterface;
@@ -48,7 +49,7 @@ public class GeneralUtils {
 	}
 	
 	
-	public static void sendMail(Context c, String body){
+	public static void sendMail(Context c, String body) throws Exception{
 		if(mTest != null){	// TODO Test only
 			mTest.sendMail(body);
 			return;
@@ -71,6 +72,7 @@ public class GeneralUtils {
 			String shortDesc = c.getString(R.string.failed_to_send_email_to) + " " + mailDest ;
 			String fullDesc = c.getString(R.string.email_body_not_sent) + " " + body ;
 			notifyEvent(fullDesc, shortDesc, c);
+			throw e;
 		}
 	}
 
@@ -152,13 +154,13 @@ public class GeneralUtils {
 		int icon = R.drawable.icon;
 		long when = System.currentTimeMillis();
 		Notification notification = new Notification(icon, event, when);
-		notification.number++;
+		notification.number = -1;
 		
 		String expandedText = fullDescEvent;
 		String expandedTitle = c.getString(R.string.home_alone_event);
 		
 		// Intent to launch an activity when the extended text is clicked		
-		Intent intent = new Intent(c, EventListActivity.class);
+		Intent intent = new Intent(c, MainTabActivity.class);
 		intent.putExtra(EVENT_LIST_INTENT, true);
 		PendingIntent launchIntent = PendingIntent.getActivity(c, 0, intent, 0);
 		notification.setLatestEventInfo(c,
@@ -178,6 +180,9 @@ public class GeneralUtils {
 		dbHelper.open();
 		notifyEvent(event, fullDescEvent, c, dbHelper);
 		dbHelper.close();
+		
+		Intent i = new Intent(HomeAloneService.HOMEALONE_EVENT_PROCESSED);
+		c.sendBroadcast(i);
 	}
 	
 	/*public static void getMissedCalls(Context c){

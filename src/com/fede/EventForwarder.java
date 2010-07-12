@@ -30,11 +30,15 @@ public class EventForwarder {
 		
 	
 		if(PrefUtils.getBoolPreference(prefs, R.string.forward_to_mail_key, c) == true){
-			GeneralUtils.sendMail(c, toForward);
-			forwardedToMail = true;
+			try{
+				GeneralUtils.sendMail(c, toForward);
+				forwardedToMail = true;
+			}catch (Exception e){
+				;	// I made the beer with it
+			}
 		}
 		
-		String shortDesc = String.format("%s %s", toForward, c.getString(R.string.notified));
+		String shortDesc = String.format("%s", toForward);
 		String forwardedToSmsDesc = "";
 		String forwardedToMailDesc = ""; 
 	

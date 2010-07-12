@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+	android:gravity="center_vertical"
     >
-<Button android:text="@string/activate" android:id="@+id/ActivateButton" android:layout_width="fill_parent" android:layout_height="wrap_content" ></Button>
-<Button android:text="@string/deactivate" android:id="@+id/DisableButton" android:layout_width="fill_parent" android:layout_height="wrap_content" ></Button>
+<Button android:id="@+id/ActivateButton" android:layout_width="fill_parent" android:layout_height="wrap_content"
+ ></Button>
 </LinearLayout>

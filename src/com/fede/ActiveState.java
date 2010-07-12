@@ -58,7 +58,7 @@ public class ActiveState implements ServiceState {
 
 	private void handleSmsToNotify(HomeAloneService s, Bundle b, String body){
 		String number =  b.getString(HomeAloneService.NUMBER);
-		String msg = String.format("%s%s:%s", getCallerNameString(b, number, s),number, body);
+		String msg = String.format("Sms %s %s:%s", getCallerNameString(b, number, s),number, body);
 		EventForwarder f = new EventForwarder(msg, s);
 		f.forward();
 		sendReply(s, number);

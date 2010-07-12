@@ -2,9 +2,12 @@ package com.fede.Utilities;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.fede.HomeAlone;
+import com.fede.HomeAloneService;
 import com.fede.R;
 import com.fede.MessageException.ForwardingDisabledException;
 
@@ -30,6 +33,8 @@ public class PrefUtils {
 		SharedPreferences.Editor editor = mySharedPreferences.edit();	
 		editor.putBoolean(STATUS_ENABLED, enabled);
 		editor.commit();
+		Intent i = new Intent(HomeAlone.STATE_CHANGED);
+		c.sendBroadcast(i);
 	}
 	
 	public static String getReply(Context c)
