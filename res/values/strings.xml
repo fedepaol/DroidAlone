@@ -70,6 +70,4 @@
     <string name="help_requested_full">%s requested help message</string>
     <string name="no_name_found">No valid number found for %s</string>
     <string name="number_for_contact">Number for %s: %s</string>
-    
-    
 </resources>

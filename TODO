@@ -1,12 +1,11 @@
+Aggiungere orario di ricezione negli eventi da forwardare
 Test: Comando per farsi mandare il numero di telefono
 Controllo lunghezze che non facciano casino: provare a fare sendsms di un messaggio troppo lungo
 Aggiustare la gui
 
-OnClick dialogo con i dettagli - Magari è carino metterci un'activity ben formattata
-
 Test / Profiling
 
-Icon: applicazione, notifiche, tabs
+Icon: applicazione, notifiche
 COLORI
 Controllare che si possano fare tutte quelle seghe mentre il telefono è ringing
 

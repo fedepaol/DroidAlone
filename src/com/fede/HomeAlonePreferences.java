@@ -1,8 +1,10 @@
 package com.fede;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.DialogInterface.OnClickListener;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
@@ -42,17 +44,19 @@ public class HomeAlonePreferences extends PreferenceActivity implements OnShared
 	
 	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) { 
 		SharedPreferences.Editor prefEditor = prefs.edit();
-	
+		OnClickListener l = new OnClickListener() { 
+			public void onClick(DialogInterface dialog, int arg1) {
+				reload();
+			} };
 
 		String SMS_TO_FWD_KEY = getString(R.string.sms_to_forward_key);
 		if(key.equals(SMS_TO_FWD_KEY)){
 			String smsNumber = prefs.getString(SMS_TO_FWD_KEY, "");
 			if(smsNumber.length() > 0){
 				if(!GeneralUtils.isPhoneNumber(smsNumber)){
-					GeneralUtils.showErrorDialog(getString(R.string.not_valid_number_message), this);
+					GeneralUtils.showErrorDialog(getString(R.string.not_valid_number_message), this, l);
 					prefEditor.putString(SMS_TO_FWD_KEY, "");
 					prefEditor.commit();
-					reload();
 				}
 			}
 			return;
@@ -62,10 +66,9 @@ public class HomeAlonePreferences extends PreferenceActivity implements OnShared
 			
 			String smsNumber = prefs.getString(SMS_TO_FWD_KEY, "");			
 			if(!GeneralUtils.isPhoneNumber(smsNumber)){
-				GeneralUtils.showErrorDialog(getString(R.string.not_valid_number_message), this);
+				GeneralUtils.showErrorDialog(getString(R.string.not_valid_number_message), this, l);
 				prefEditor.putBoolean(SMS_ENABLE_KEY, false);
 				prefEditor.commit();
-				reload();			
 			}
 			return;
 		}
@@ -79,10 +82,9 @@ public class HomeAlonePreferences extends PreferenceActivity implements OnShared
 			String mailAddress = prefs.getString(MAIL_TO_FWD_KEY, "");
 			if(mailAddress.length() > 0){
 				if(!GeneralUtils.isMail(mailAddress)){
-					GeneralUtils.showErrorDialog(getString(R.string.not_valid_mail_message), this);
+					GeneralUtils.showErrorDialog(getString(R.string.not_valid_mail_message), this, l);
 					prefEditor.putString(MAIL_TO_FWD_KEY, "");
 					prefEditor.commit();
-					reload();
 				}
 			}
 			return;
@@ -98,20 +100,17 @@ public class HomeAlonePreferences extends PreferenceActivity implements OnShared
 			String mailPassword = prefs.getString(MAIL_PWD_KEY, "");
 			
 			if(mailUser.length() == 0){
-				GeneralUtils.showErrorDialog(getString(R.string.invalid_mail_user), this);
+				GeneralUtils.showErrorDialog(getString(R.string.invalid_mail_user), this, l);
 				prefEditor.putBoolean(MAIL_ENABLE_KEY, false);
 				prefEditor.commit();
-				reload();
 			}else if(mailPassword.length() == 0){
-				GeneralUtils.showErrorDialog(getString(R.string.invalid_mail_pwd), this);
+				GeneralUtils.showErrorDialog(getString(R.string.invalid_mail_pwd), this, l);
 				prefEditor.putBoolean(MAIL_ENABLE_KEY, false);
 				prefEditor.commit();
-				reload();
 			}else if(!GeneralUtils.isMail(mailAddress)){
-				GeneralUtils.showErrorDialog(getString(R.string.not_valid_mail_message), this);
+				GeneralUtils.showErrorDialog(getString(R.string.not_valid_mail_message), this, l);
 				prefEditor.putBoolean(MAIL_ENABLE_KEY, false);
 				prefEditor.commit();
-				reload();
 			}else if(!GeneralUtils.isNetworkAvailable(this)){
 				GeneralUtils.showErrorDialog(getString(R.string.network_not_available), this);
 				startActivity(new
@@ -127,10 +126,9 @@ public class HomeAlonePreferences extends PreferenceActivity implements OnShared
 			String REPLY_KEY = getString(R.string.reply_key);
 			String reply = prefs.getString(REPLY_KEY, "");
 			if(reply.length() == 0){
-				GeneralUtils.showErrorDialog(getString(R.string.empty_reply_message), this);
+				GeneralUtils.showErrorDialog(getString(R.string.empty_reply_message), this, l);
 				prefEditor.putBoolean(REPLY_ENABLE_KEY, false);
 				prefEditor.commit();
-				reload();
 				}
 			return;
 		}

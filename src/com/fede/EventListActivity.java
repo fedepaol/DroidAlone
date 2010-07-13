@@ -81,7 +81,7 @@ public class EventListActivity extends ListActivity {
 		int menuItemOrder = Menu.NONE;	 
 		int menuItemText = R.string.delete_all;
 		
-		menu.add(groupId, menuItemId, menuItemOrder, menuItemText).setIcon(android.R.drawable.ic_menu_preferences);
+		menu.add(groupId, menuItemId, menuItemOrder, menuItemText).setIcon(android.R.drawable.ic_menu_delete);
 		
 		return true;
 	}

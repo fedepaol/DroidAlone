@@ -25,6 +25,7 @@ import com.fede.GMailSender;
 import com.fede.HomeAloneService;
 import com.fede.MainTabActivity;
 import com.fede.NameNotFoundException;
+import com.fede.OkDialogInterface;
 import com.fede.R;
 import com.fede.TestStubInterface;
 
@@ -131,27 +132,37 @@ public class GeneralUtils {
 	
 	public static void showErrorDialog(String errorString, Context context)
 	{
+		showErrorDialog(errorString, context,
+											new OnClickListener() { 
+												public void onClick(DialogInterface dialog, int arg1) {
+													// do nothing
+												} });
+			
+			
+    	return;    
+	}
+	
+	
+	public static void showErrorDialog(String errorString, Context context, OnClickListener l)
+	{
     	String button1String = context.getString(R.string.ok_name); 
     	AlertDialog.Builder ad = new AlertDialog.Builder(context); 
     	ad.setTitle(context.getString(R.string.error_name)); 
     	ad.setMessage(errorString); 
-    	ad.setPositiveButton(button1String,
-    						 new OnClickListener() { 
-	    						public void onClick(DialogInterface dialog, int arg1) {
-	    							// do nothing
-	    						} });
+    	
+    	OkDialogInterface j;
+    	ad.setPositiveButton(button1String,l);
     	ad.show();
     	return;    
 	}
 	
 	public static void notifyEvent(String event, String fullDescEvent, Context c, DbAdapter dbHelper){
 		String svcName = Context.NOTIFICATION_SERVICE;
-		NotificationManager notificationManager;
-		notificationManager = (NotificationManager)c.getSystemService(svcName);
+		NotificationManager notificationManager = (NotificationManager)c.getSystemService(svcName);
 		
 		
 		// TODO set a valid icon
-		int icon = R.drawable.icon;
+		int icon = android.R.drawable.stat_notify_chat;
 		long when = System.currentTimeMillis();
 		Notification notification = new Notification(icon, event, when);
 		notification.number = -1;
@@ -173,6 +184,12 @@ public class GeneralUtils {
 		dbHelper.addEvent(fullDescEvent, event);
 
 
+	}
+	
+	public static void removeNotifications(Context c){
+		String svcName = Context.NOTIFICATION_SERVICE;
+		NotificationManager notificationManager = (NotificationManager)c.getSystemService(svcName);
+		notificationManager.cancel(1);
 	}
 
 	public static void notifyEvent(String event, String fullDescEvent, Context c){
