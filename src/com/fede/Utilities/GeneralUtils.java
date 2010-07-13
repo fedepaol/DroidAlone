@@ -184,6 +184,48 @@ public class GeneralUtils {
 		Intent i = new Intent(HomeAloneService.HOMEALONE_EVENT_PROCESSED);
 		c.sendBroadcast(i);
 	}
+
+	
+	public static String[] getContactNumbers(String contact, Context c) throws NameNotFoundException{
+	// Find a contact using a partial name match
+		Uri lookupUri =
+		Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_FILTER_URI, contact);
+		Cursor idCursor = c.getContentResolver().query(lookupUri, null, null, null,
+		                                              null);
+		String id = null;
+		if (idCursor.moveToFirst()) {	// I try with the first record
+			int idIdx = idCursor.getColumnIndexOrThrow(ContactsContract.Contacts._ID);
+			id = idCursor.getString(idIdx);
+		}
+		idCursor.close();
+		if (id != null) {
+		   // Return all the contact details of type PHONE for the contact we found
+			String where = ContactsContract.Data.CONTACT_ID + " = " + id + " AND " +
+									ContactsContract.Data.MIMETYPE + " = '" +
+									ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE +"'";
+			
+			Cursor dataCursor = c.getContentResolver().query(ContactsContract.Data.CONTENT_URI, null, where, null, null);
+		   // Use the convenience properties to get the index of the columns
+			int nameIdx = dataCursor.getColumnIndexOrThrow(ContactsContract.Data.DISPLAY_NAME);
+			int phoneIdx = dataCursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER);
+		
+			String[] result = new String[dataCursor.getCount()];
+		
+			if (dataCursor.moveToFirst())
+				do {
+					// Extract the name.
+					String name = dataCursor.getString(nameIdx);
+					// Extract the phone number.
+					String number = dataCursor.getString(phoneIdx);
+					result[dataCursor.getPosition()] = name + " (" + number + ")";
+				} while(dataCursor.moveToNext());
+			dataCursor.close();
+			return result;
+		}
+		throw new NameNotFoundException("");
+	
+	}
+	
 	
 	/*public static void getMissedCalls(Context c){
 		Cursor cursor = c.getContentResolver().query(android.provider.CallLog.Calls.CONTENT_URI
