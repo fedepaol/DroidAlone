@@ -9,6 +9,8 @@
          android:id="@+id/event_elem_time" 
          android:layout_width="wrap_content"
 	     android:layout_height="wrap_content"
+	     android:background="@color/date_bckgrnd_color"
+	     android:textColor="@color/date_text_color"
 	     />
         <TextView
          android:id="@+id/event_elem_desc" 
@@ -17,6 +19,8 @@
          android:paddingLeft="6dip"
          android:ellipsize="end"
          android:scrollHorizontally="true"
+          android:background="@color/event_back_color"
+	     android:textColor="@color/event_text_color"
       />
     </TableRow>
 </TableLayout>

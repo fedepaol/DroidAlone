@@ -1,4 +1,5 @@
-Controllo lunghezze che non facciano casino
+Test: Comando per farsi mandare il numero di telefono
+Controllo lunghezze che non facciano casino: provare a fare sendsms di un messaggio troppo lungo
 Aggiustare la gui
 
 OnClick dialogo con i dettagli - Magari è carino metterci un'activity ben formattata
@@ -12,6 +13,5 @@ Controllare che si possano fare tutte quelle seghe mentre il telefono è ringing
 Enhancements:
 Flush di tutte le chiamate perse
 Comando per ottenere la posizione
-Comando per farsi mandare il numero di telefono
 
 
