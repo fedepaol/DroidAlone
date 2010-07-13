@@ -66,5 +66,10 @@
     <string name="to">to</string>
     <string name="reply_notified">Automatic reply sent</string>
     <string name="help_requested">Help request</string>
+    <string name="get_number_invalid_name">Get number must provide a name to look for</string>
     <string name="help_requested_full">%s requested help message</string>
+    <string name="no_name_found">No valid number found for %s</string>
+    <string name="number_for_contact">Number for %s: %s</string>
+    
+    
 </resources>

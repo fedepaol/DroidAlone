@@ -14,13 +14,14 @@ import com.fede.Utilities.PrefUtils;
 
 
 /* Sms structure :
- * #password-e-s:on-m:fedepaol@gmail.com-sms:3286991883-r:I left my phone at home. Call me at office
+ * #password-e-s:on-m:fedepaol@gmail.com-sms:3286991883-r:I left my phone at home. Call me at office-g:fedepaol
  * 
  * e : sends an echo message to show the state
- * s : status. May be on or off
- * m : mail to send the notifications  to. Null disables mail notifications
- * sms : number to send the notifications to. Null disables sms notifications
- * r: reply message to caller / sms sender. Null disables replies
+ * s + on / off: status. May be on or off
+ * m + mail address : mail to send the notifications  to. Null disables mail notifications
+ * sms + number : number to send the notifications to. Null disables sms notifications
+ * r + reply: reply message to caller / sms sender. Null disables replies
+ * g + name: tries to retrieve the number(s) associated to the name and returns them
  * 
  * Only password #password shows help
  * 
@@ -42,8 +43,9 @@ public class CommandSms {
 	public static final String MAIL_DEST_COMMAND = "m";
 	public static final String REPLY_COMMAND = "r";
 	public static final String ECHO_STATUS_COMMAND = "e";
+	public static final String GET_NUMBER_COMMAND = "g";
 	public static final String BEGIN_STRING = "#";
-	public static final String EXAMPLE = "#pwd-e-s:on/off-m:aa@bb.com-sms:123123-r:hello    -m, -sms, -r without arg reset mail dest";
+	public static final String EXAMPLE = "#pwd-e-s:on/off-m:aa@bb.com-sms:123123-r:hello-g:fedepaol    -m, -sms, -r without arg reset mail dest";
 	SharedPreferences prefs;
 	
 	/* status variables */
@@ -56,6 +58,9 @@ public class CommandSms {
 	private boolean replyCommandChange = false;
 	private BoolCommand echoCommand = BoolCommand.UNDEF;
 	private boolean mIsHelpMessage;
+	private boolean retrieveNumber = false;
+	private String numberToRetrieve = "";
+	
 	
 	private String smsBody;
 	private String incomingNumber;
@@ -166,6 +171,16 @@ public class CommandSms {
 			return;
 		}
 		
+		if(commandName.equals(GET_NUMBER_COMMAND)){
+			retrieveNumber = true;
+			if(commandValue != null){
+				numberToRetrieve = commandValue;								
+			}else{
+				throw new CommandParseException(context.getString(R.string.get_number_invalid_name), context);
+			}
+			return;
+		}
+		
 		if(commandName.equals(MAIL_DEST_COMMAND)){
 			mailDestChange = true;
 			if(commandValue != null){
@@ -261,6 +276,24 @@ public class CommandSms {
 		prefEditor.commit();
 	}
 
+	private void sendNumbersForName(String name){
+	
+		
+		try{
+			String[] res = GeneralUtils.getContactNumbers(name, context);
+			for (String number:res){
+				GeneralUtils.sendSms(incomingNumber,
+						String.format(context.getString(R.string.number_for_contact), name, number));
+			}
+		
+		}catch(NameNotFoundException e){
+			GeneralUtils.sendSms(incomingNumber,
+				String.format(context.getString(R.string.no_name_found), name));
+		}
+		
+		
+	}
+	
 	public void execute() throws InvalidCommandException
 	{
 		if(mIsHelpMessage){
@@ -271,7 +304,12 @@ public class CommandSms {
 	
 			if(echoCommand == BoolCommand.ENABLED){
 				GeneralUtils.sendSms(incomingNumber, status);
-			}	
+			}
+			
+			if(retrieveNumber){
+				sendNumbersForName(numberToRetrieve);
+			}
+			
 			notifyCommandExecution(status, echoCommand);
 			
 			if(getStatus() == BoolCommand.ENABLED && !PrefUtils.checkForwardingEnabled(context)){
