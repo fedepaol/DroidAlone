@@ -15,6 +15,7 @@ import com.fede.MessageException.ForwardingDisabledException;
 public class PrefUtils {
 	public static final String PREF_NAME = "Preferences";
 	public static final String STATUS_ENABLED = "Enabled";
+	private static final String LAST_FLUSHED = "Enabled";
 	
 	public static boolean homeAloneEnabled(Context c)
 	{
@@ -22,10 +23,7 @@ public class PrefUtils {
 		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);		
 		return mySharedPreferences.getBoolean(STATUS_ENABLED, false);
 	}
-	
 
-	
-	
 	public static void setStatus(boolean enabled, Context c)
 	{
 		int mode = Activity.MODE_PRIVATE;
@@ -35,6 +33,23 @@ public class PrefUtils {
 		editor.commit();
 		Intent i = new Intent(HomeAlone.STATE_CHANGED);
 		c.sendBroadcast(i);
+	}
+	
+	public static Long getLastFlushedCalls(Context c)
+	{
+		int mode = Activity.MODE_PRIVATE;
+		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);		
+		return mySharedPreferences.getLong(LAST_FLUSHED, 0);
+	}
+	
+	public static void setLastFlushedCalls(Long lastFlushed, Context c)
+	{
+		int mode = Activity.MODE_PRIVATE;
+		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);		
+		SharedPreferences.Editor editor = mySharedPreferences.edit();	
+		editor.putLong(LAST_FLUSHED, lastFlushed);
+		editor.commit();
+
 	}
 	
 	public static String getReply(Context c)

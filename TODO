@@ -1,3 +1,6 @@
+Testare last flushed: orario generico, orario dopo una flushata
+Testare invio mail attivazione
+Testare fallimento invio mail attivazione
 Flush chiamate: ricordarsi ultime flushate con time. Notificare orario anche su messaggi di flush
 
 Controllo lunghezze che non facciano casino: provare a fare sendsms di un messaggio troppo lungo

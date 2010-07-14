@@ -19,6 +19,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.provider.CallLog;
 import android.provider.ContactsContract;
 import android.telephony.SmsManager;
 
@@ -246,18 +247,37 @@ public class GeneralUtils {
 	}
 	
 	
-	public static void getMissedCalls(Context context){
+	public static String[] getMissedCalls(Context context){
+		Long lastFlushed = PrefUtils.getLastFlushedCalls(context);
+		java.text.DateFormat timeForm = android.text.format.DateFormat.getTimeFormat(context);
 		Calendar c1 = Calendar.getInstance();
-		c1.setTime(new Date());
-		c1.add(Calendar.HOUR, -3);
+		if(lastFlushed == 0){
+			c1.setTime(new Date());
+			c1.add(Calendar.HOUR, -24);
+			lastFlushed = c1.getTimeInMillis();
+		}
 		
 		
 		Cursor c = context.getContentResolver().query(android.provider.CallLog.Calls.CONTENT_URI,
 				null, null, null, android.provider.CallLog.Calls.DATE + " DESC");
 		String where = android.provider.CallLog.Calls.TYPE + " = " + android.provider.CallLog.Calls.MISSED_TYPE +
-					" and " + android.provider.CallLog.Calls.DATE + " > " +  c1.getTimeInMillis();
+					" and " + android.provider.CallLog.Calls.DATE + " > " +  lastFlushed;
 		
-		// TODO restituire valori
+		int nameIdx = c.getColumnIndexOrThrow(CallLog.Calls.CACHED_NAME);
+		int numbIdx = c.getColumnIndexOrThrow(CallLog.Calls.NUMBER);
+		int dateIdx = c.getColumnIndexOrThrow(CallLog.Calls.DATE);
+		
+	
+		String[] result = new String[c.getCount()];
+	
+		if (c.moveToFirst())
+			do {
+				String name = c.getString(nameIdx);
+				String number = c.getString(numbIdx);
+				String when = timeForm.format(c.getLong(numbIdx));
+				result[c.getPosition()] = String.format(context.getString(R.string.flushed_calls), name, number, when);
+			} while(c.moveToNext());
 		c.close();
-	}
+		return result;
+		}
 }
