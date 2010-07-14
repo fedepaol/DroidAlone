@@ -246,15 +246,22 @@ public class GeneralUtils {
 	
 	}
 	
+	private static Long get24HoursAgoTime(){
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.HOUR, -24);	 
+		return cal.getTimeInMillis();
+	}
 	
 	public static String[] getMissedCalls(Context context){
 		Long lastFlushed = PrefUtils.getLastFlushedCalls(context);
 		java.text.DateFormat timeForm = android.text.format.DateFormat.getTimeFormat(context);
-		Calendar c1 = Calendar.getInstance();
-		if(lastFlushed == 0){
-			c1.setTime(new Date());
-			c1.add(Calendar.HOUR, -24);
-			lastFlushed = c1.getTimeInMillis();
+		
+		Long yesterday = get24HoursAgoTime();
+		
+		
+		if(lastFlushed == 0 || lastFlushed < yesterday){
+			lastFlushed = yesterday;	// not later than 24 hours ago
 		}
 		
 		

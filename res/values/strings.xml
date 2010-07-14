@@ -73,5 +73,7 @@
     <string name="mail_activated_message">Home alone: activated from %s</string>
     <string name="failed_to_send_activ_mail">Failed to send activation mail</string>
     <string name="flushed_calls">Call %s number %s time %s</string>
+    <string name="already_enabled_error">Status already on</string>
+    <string name="already_disabled_error">Status already off</string>
 
 </resources>

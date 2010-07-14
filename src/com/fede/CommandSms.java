@@ -149,8 +149,12 @@ public class CommandSms {
 				throw new CommandParseException(context.getString(R.string.status_expect_value), context);
 		
 			if(commandValue.equals(STATUS_ON)){
+				if(PrefUtils.homeAloneEnabled(context))
+					throw new CommandParseException(context.getString(R.string.already_enabled_error), context);
 				status = BoolCommand.ENABLED;
 			}else if(commandValue.equals(STATUS_OFF)){
+				if(!PrefUtils.homeAloneEnabled(context))
+					throw new CommandParseException(context.getString(R.string.already_disabled_error), context);
 				status = BoolCommand.DISABLED;
 			}else
 				throw new CommandParseException(context.getString(R.string.invalid_status_value) + ":" + commandValue, context);
@@ -294,6 +298,36 @@ public class CommandSms {
 		
 	}
 	
+	private void sendActivationMail(Context c, String number) throws InvalidCommandException{
+		try{
+			GeneralUtils.sendMail(c, String.format(c.getString(R.string.mail_activated_message), number));
+		}catch (Exception e){
+			throw new InvalidCommandException(c.getString(R.string.failed_to_send_activ_mail), c);
+		}
+	}
+	
+	
+	private void flushMissedCalls(){
+		String[] missedCalls = GeneralUtils.getMissedCalls(context); 
+		for(String missed : missedCalls){
+			EventForwarder f = new EventForwarder(missed, context);
+			f.forward();
+		}
+	}
+	
+	// Action to be performed if the command enables homealone
+	private void execEnableActions() throws InvalidCommandException{
+		if(!PrefUtils.checkForwardingEnabled(context)){
+			throw new ForwardingDisabledException(context.getString(R.string.forwarding_not_enabled), context);
+		}
+		
+		if(PrefUtils.mailForwardingEnabled(context)){
+			sendActivationMail(context, incomingNumber);
+		}
+		
+		flushMissedCalls();
+	}
+	
 	public void execute() throws InvalidCommandException
 	{
 		if(mIsHelpMessage){
@@ -312,8 +346,8 @@ public class CommandSms {
 			
 			notifyCommandExecution(status, echoCommand);
 			
-			if(getStatus() == BoolCommand.ENABLED && !PrefUtils.checkForwardingEnabled(context)){
-				throw new ForwardingDisabledException(context.getString(R.string.forwarding_not_enabled), context);
+			if(getStatus() == BoolCommand.ENABLED){
+				execEnableActions();
 			}
 		}
 	}
