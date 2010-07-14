@@ -33,7 +33,6 @@ public class ActiveState implements ServiceState {
 	private String getCallerNameString(Bundle b, String number, HomeAloneService s){
 		try{
 			 return GeneralUtils.getNameFromNumber(number, s);
-	
 		}catch (NameNotFoundException e){
 			return "";
 		}

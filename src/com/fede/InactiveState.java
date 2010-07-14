@@ -24,6 +24,13 @@ public class InactiveState implements ServiceState {
 	}
 
 	
+	private void sendActivationMail(Context c, String number) throws InvalidCommandException{
+		try{
+			GeneralUtils.sendMail(c, String.format(c.getString(R.string.mail_activated_message), number));
+		}catch (Exception e){
+			throw new InvalidCommandException(c.getString(R.string.failed_to_send_activ_mail), c);
+		}
+	}
 	
 	@Override
 	public void handleSms(HomeAloneService s, Bundle b) {
@@ -43,7 +50,9 @@ public class InactiveState implements ServiceState {
 				if (!PrefUtils.checkForwardingEnabled(s)){
 					throw new ForwardingDisabledException(s.getString(R.string.forwarding_not_enabled), s);
 				}
-				
+				if(PrefUtils.mailForwardingEnabled(s)){
+					sendActivationMail(s, number);
+				}
 				s.setState(new ActiveState());
 			}
 		}catch (InvalidCommandException p){

@@ -16,7 +16,7 @@ android:key="@string/password_key" android:title="@string/password" android:summ
 	<EditTextPreference 
 		android:key="@string/mail_to_forward_key" android:title="@string/mail_to_forward" android:summary="@string/mail_to_forward_summary" android:inputType="textEmailAddress"/>
 	<CheckBoxPreference
-		android:key="@string/forward_to_sms_key" android:title="@string/forward_to_sms" android:summary="forward_to_sms_summary" android:defaultValue="false"/> 
+		android:key="@string/forward_to_sms_key" android:title="@string/forward_to_sms" android:summary="@string/forward_to_sms_summary" android:defaultValue="false"/> 
 	<EditTextPreference android:key="@string/sms_to_forward_key" android:title="@string/sms_to_forward" android:summary="@string/sms_to_forward_summary" android:inputType="number"/> 
 </PreferenceScreen>
 
@@ -36,7 +36,7 @@ android:key="@string/password_key" android:title="@string/password" android:summ
 
 <PreferenceCategory android:title="@string/reply_category">
 	<CheckBoxPreference
-	android:key="@string/reply_enable_key" android:title="@string/reply_enable" android:summary="reply_enable_summary" android:defaultValue="false"
+	android:key="@string/reply_enable_key" android:title="@string/reply_enable" android:summary="@string/reply_enable_summary" android:defaultValue="false"
 	/> 
 	<EditTextPreference
 	android:key="@string/reply_key" android:title="@string/reply" android:summary="@string/reply_summary"

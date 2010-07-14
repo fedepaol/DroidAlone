@@ -114,4 +114,11 @@ public class PrefUtils {
 				PrefUtils.getBoolPreference(prefs, R.string.forward_to_sms_key, s));
 		
 	}
+	
+	public static boolean mailForwardingEnabled(Context s) {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(s);
+
+		return (PrefUtils.getBoolPreference(prefs, R.string.forward_to_mail_key, s));
+		
+	}
 }

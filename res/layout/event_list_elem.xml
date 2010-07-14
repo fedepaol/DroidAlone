@@ -2,16 +2,17 @@
 <TableLayout android:id="@+id/PositionElemTable" 
              android:layout_width="fill_parent" 
              android:layout_height="fill_parent" 
+	     android:background="@color/event_back_color"
              xmlns:android="http://schemas.android.com/apk/res/android">
-<TableRow android:paddingTop = "10dip"
-	     android:paddingBottom = "10dip"
+<TableRow 
 	     android:layout_height="fill_parent">
         <TextView
          android:id="@+id/event_elem_time" 
          android:layout_width="fill_parent"
 	     android:layout_height="fill_parent"
-	     android:background="@color/date_bckgrnd_color"
 	     android:textColor="@color/date_text_color"
+	     android:paddingTop = "10dip"
+	     android:paddingBottom = "10dip"
 	     />
         <TextView
          android:id="@+id/event_elem_desc" 
@@ -22,6 +23,8 @@
          android:scrollHorizontally="true"
           android:background="@color/event_back_color"
 	     android:textColor="@color/event_text_color"
+	     android:paddingTop = "10dip"
+	     android:paddingBottom = "10dip"
       />
     </TableRow>
 </TableLayout>

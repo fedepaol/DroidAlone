@@ -1,5 +1,7 @@
 package com.fede.Utilities;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -244,7 +246,18 @@ public class GeneralUtils {
 	}
 	
 	
-	/*public static void getMissedCalls(Context c){
-		Cursor cursor = c.getContentResolver().query(android.provider.CallLog.Calls.CONTENT_URI
-	}*/
+	public static void getMissedCalls(Context context){
+		Calendar c1 = Calendar.getInstance();
+		c1.setTime(new Date());
+		c1.add(Calendar.HOUR, -3);
+		
+		
+		Cursor c = context.getContentResolver().query(android.provider.CallLog.Calls.CONTENT_URI,
+				null, null, null, android.provider.CallLog.Calls.DATE + " DESC");
+		String where = android.provider.CallLog.Calls.TYPE + " = " + android.provider.CallLog.Calls.MISSED_TYPE +
+					" and " + android.provider.CallLog.Calls.DATE + " > " +  c1.getTimeInMillis();
+		
+		// TODO restituire valori
+		c.close();
+	}
 }

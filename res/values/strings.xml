@@ -70,4 +70,7 @@
     <string name="help_requested_full">%s requested help message</string>
     <string name="no_name_found">No valid number found for %s</string>
     <string name="number_for_contact">Number for %s: %s</string>
+    <string name="mail_activated_message">Home alone: activated from %s</string>
+    <string name="failed_to_send_activ_mail">Failed to send activation mail</string>
+
 </resources>
