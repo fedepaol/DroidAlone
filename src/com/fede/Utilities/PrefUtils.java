@@ -15,7 +15,7 @@ import com.fede.MessageException.ForwardingDisabledException;
 public class PrefUtils {
 	public static final String PREF_NAME = "Preferences";
 	public static final String STATUS_ENABLED = "Enabled";
-	private static final String LAST_FLUSHED = "Enabled";
+	private static final String LAST_FLUSHED = "LastFlushed";
 	
 	public static boolean homeAloneEnabled(Context c)
 	{

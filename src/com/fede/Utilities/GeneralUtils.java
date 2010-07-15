@@ -280,11 +280,16 @@ public class GeneralUtils {
 		if (c.moveToFirst())
 			do {
 				String name = c.getString(nameIdx);
+				name = (name != null)? name : "";
 				String number = c.getString(numbIdx);
-				String when = timeForm.format(c.getLong(numbIdx));
+				String when = timeForm.format(c.getLong(dateIdx));
 				result[c.getPosition()] = String.format(context.getString(R.string.flushed_calls), name, number, when);
 			} while(c.moveToNext());
 		c.close();
+		
+		Date now = new Date();
+		PrefUtils.setLastFlushedCalls(now.getTime(), context);
 		return result;
+
 		}
 }
