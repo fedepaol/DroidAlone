@@ -65,6 +65,8 @@ public class HomeAloneService extends IntentService {
 		// TODO Rimuovere se non si fanno i test?
 		Intent i = new Intent(HOMEALONE_TEST_EVENT_PROCESSED);
 		sendBroadcast(i);
+		
 	}
+	
 
 }

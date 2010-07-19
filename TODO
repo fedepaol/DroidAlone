@@ -1,5 +1,14 @@
+/* parcheggiare posizione 
+Test posizione, soprattutto i fallimenti
+Test posizione attaccato al telefono vero */
+
+
+
+Testare Last flushed: settare il time a quando si sposta lo stato a off
+Rimettere il wait con timeout
+Controllo permission mainfest
 check yesterday / last flushed
-Vedere se si risparmia qualcosa concatenando. Guardare String[]
+Vedere se si risparmia qualcosa concatenando. Guardare String[] e lista indirizzi
 Testare last flushed: orario generico, orario dopo una flushata
 Testare fallimento invio mail attivazione
 
@@ -11,8 +20,7 @@ Test / Profiling
 Icon: applicazione, notifiche
 COLORI
 Controllare che si possano fare tutte quelle seghe mentre il telefono è ringing
+Si dovrebbe poter fare. Serve solo di controllare con squillo prolungato
 
-Enhancements:
-Comando per ottenere la posizione
 
 

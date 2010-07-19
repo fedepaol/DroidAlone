@@ -1,5 +1,7 @@
 package com.fede.Utilities;
 
+import java.util.Date;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -31,6 +33,10 @@ public class PrefUtils {
 		SharedPreferences.Editor editor = mySharedPreferences.edit();	
 		editor.putBoolean(STATUS_ENABLED, enabled);
 		editor.commit();
+		if(!enabled){
+			setLastFlushedCalls(c);
+		}
+		
 		Intent i = new Intent(HomeAlone.STATE_CHANGED);
 		c.sendBroadcast(i);
 	}
@@ -48,6 +54,17 @@ public class PrefUtils {
 		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);		
 		SharedPreferences.Editor editor = mySharedPreferences.edit();	
 		editor.putLong(LAST_FLUSHED, lastFlushed);
+		editor.commit();
+
+	}
+
+	public static void setLastFlushedCalls(Context c)
+	{
+		int mode = Activity.MODE_PRIVATE;
+		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);		
+		SharedPreferences.Editor editor = mySharedPreferences.edit();
+		Date now = new Date();
+		editor.putLong(LAST_FLUSHED, now.getTime());
 		editor.commit();
 
 	}

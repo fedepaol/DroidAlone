@@ -75,5 +75,6 @@
     <string name="flushed_calls">Missed from %s %s time %s</string>
     <string name="already_enabled_error">Status already on</string>
     <string name="already_disabled_error">Status already off</string>
+    <string name="location_not_found">Unable to find location</string>
 
 </resources>

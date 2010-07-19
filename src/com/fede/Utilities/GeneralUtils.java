@@ -287,8 +287,8 @@ public class GeneralUtils {
 			} while(c.moveToNext());
 		c.close();
 		
-		Date now = new Date();
-		PrefUtils.setLastFlushedCalls(now.getTime(), context);
+		
+		PrefUtils.setLastFlushedCalls( context);
 		return result;
 
 		}
