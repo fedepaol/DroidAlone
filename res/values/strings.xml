@@ -76,5 +76,7 @@
     <string name="already_enabled_error">Status already on</string>
     <string name="already_disabled_error">Status already off</string>
     <string name="location_not_found">Unable to find location</string>
+    <string name="inactive_state">Disabled</string>
+    <string name="active_state">Enabled</string>
 
 </resources>
