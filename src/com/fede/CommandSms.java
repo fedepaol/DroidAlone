@@ -17,7 +17,7 @@ import com.fede.Utilities.PrefUtils;
 
 
 /* Sms structure :
- * #password-e-s:on-m:fedepaol@gmail.com-sms:3286991883-r:I left my phone at home. Call me at office-g:fedepaol-position
+ * #password-e-s:on-m:fedepaol@gmail.com-sms:3286991883-r:I left my phone at home. Call me at office-g:fedepaol
  * 
  * e : sends an echo message to show the state
  * s + on / off: status. May be on or off
@@ -25,8 +25,6 @@ import com.fede.Utilities.PrefUtils;
  * sms + number : number to send the notifications to. Null disables sms notifications
  * r + reply: reply message to caller / sms sender. Null disables replies
  * g + name: tries to retrieve the number(s) associated to the name and returns them
- * pos: tries to get the current position of the phone using cell location, and forwards them using ways specified in
- * options
  * 
  * Only password #password shows help
  * 

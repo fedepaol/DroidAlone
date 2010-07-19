@@ -1,7 +1,6 @@
 <resources>
-<color name="gps_notready_color">#6F00</color>
-<color name="gps_ready_color">#60F0</color>
-<color name="gps_almost_ready_color">#7FF0</color>
+<color name="status_disabled_color">#6F00</color>
+<color name="status_enabled_color">#60F0</color>
 <color name="date_bckgrnd_color">#70DB93</color>
 <color name="date_text_color">#00FFFF</color>
 <color name="event_back_color">#595959</color>

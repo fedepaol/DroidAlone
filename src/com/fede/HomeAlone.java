@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.fede.Utilities.GeneralUtils;
 import com.fede.Utilities.PrefUtils;
@@ -19,9 +20,10 @@ public class HomeAlone extends Activity {
 	public static final String STATE_CHANGED = "GlobalStateChanged";
 	private BroadcastReceiver 	mBroadcastRecv;
 	private IntentFilter 		mFilter;
-	
-	Button 						mActivateButton;
+	private Button 				mActivateButton;
+	private TextView			mStatusText;
 	IncomingCallReceiver 		mReceiver;
+	
 	
     /** Called when the activity is first created. */
     @Override
@@ -89,8 +91,12 @@ public class HomeAlone extends Activity {
     {	
     	if(PrefUtils.homeAloneEnabled(this) == false){
     		mActivateButton.setText(R.string.activate);
+    		mStatusText.setText(R.string.inactive_state);
+    		mStatusText.setText(R.color.status_disabled_color);
     	}else{
     		mActivateButton.setText(R.string.deactivate);
+    		mStatusText.setText(R.string.active_state);
+    		mStatusText.setBackgroundColor(R.color.status_enabled_color);
     	}
     }
     
