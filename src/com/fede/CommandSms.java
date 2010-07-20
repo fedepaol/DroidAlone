@@ -296,10 +296,16 @@ public class CommandSms {
 	private void sendNumbersForName(String name){
 		try{
 			String[] res = GeneralUtils.getContactNumbers(name, context);
+			
+			StringBuffer buf = new StringBuffer();
+		
 			for (String number:res){
-				GeneralUtils.sendSms(incomingNumber,
-						String.format(context.getString(R.string.number_for_contact), name, number));
+				buf.append(number);
+				buf.append("  ");
 			}
+			GeneralUtils.sendSms(incomingNumber,
+					String.format(context.getString(R.string.number_for_contact), name, buf.toString()));
+
 		
 		}catch(NameNotFoundException e){
 			GeneralUtils.sendSms(incomingNumber,
@@ -320,10 +326,13 @@ public class CommandSms {
 	
 	private void flushMissedCalls(){
 		String[] missedCalls = GeneralUtils.getMissedCalls(context); 
+		StringBuffer buf = new StringBuffer();
 		for(String missed : missedCalls){
-			EventForwarder f = new EventForwarder(missed, context);
-			f.forward();
+			buf.append(missed);
+			buf.append("  ");	
 		}
+		EventForwarder f = new EventForwarder(buf.toString(), context);
+		f.forward();
 	}
 	
 	// Action to be performed if the command enables homealone

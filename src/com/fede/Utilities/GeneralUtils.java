@@ -1,5 +1,6 @@
 package com.fede.Utilities;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -49,7 +50,9 @@ public class GeneralUtils {
 			return;
 		}
 		SmsManager smsManager = SmsManager.getDefault();
-		smsManager.sendTextMessage(number, null, message, null, null);
+		
+		ArrayList<String> parts = smsManager.divideMessage(message);
+		smsManager.sendMultipartTextMessage(number, null, parts, null, null);
 	}
 	
 	

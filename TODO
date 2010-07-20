@@ -4,15 +4,14 @@ Rimettere il wait con timeout
 Test posizione attaccato al telefono vero */
 
 
-Errori opzioni piu' descrittivi
-
 Maiuscole / Minuscole 
 
-Vedere se si risparmia qualcosa concatenando. Guardare String[] e lista indirizzi
 
 Testare fallimento invio mail attivazione
+Ritestare invio sms
+Testare flush missed calls
+Testare get numbers 
 
-Controllo lunghezze che non facciano casino: provare a fare sendsms di un messaggio troppo lungo
 Aggiustare la gui
 
 Test / Profiling
