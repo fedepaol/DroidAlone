@@ -1,11 +1,10 @@
 /* parcheggiare posizione 
 Test posizione, soprattutto i fallimenti
+Rimettere il wait con timeout
 Test posizione attaccato al telefono vero */
 
 
-
 Testare Last flushed: settare il time a quando si sposta lo stato a off
-Rimettere il wait con timeout
 Controllo permission mainfest
 check yesterday / last flushed
 Vedere se si risparmia qualcosa concatenando. Guardare String[] e lista indirizzi

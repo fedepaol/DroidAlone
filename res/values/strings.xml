@@ -55,7 +55,7 @@
     <string name="delete_all">Delete all</string>
     <string name="forwarding_not_enabled">At least one forwarding type must be enabled</string>
     <string name="event_list">Managed events</string>
-    <string name="notified">notified</string>
+    <string name="reply_notified_to">Reply %s notified to %s</string>
     <string name="sent_via_sms">Sent via sms</string>
     <string name="sent_via_mail">Sent via mail</string>
     <string name="command_executed">Command executed. Received from </string>
@@ -78,5 +78,4 @@
     <string name="location_not_found">Unable to find location</string>
     <string name="inactive_state">Disabled</string>
     <string name="active_state">Enabled</string>
-
 </resources>

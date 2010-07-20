@@ -14,8 +14,7 @@ public class ActiveState implements ServiceState {
 	
 	
 	private void notifyReply(HomeAloneService s, String number, String reply){
-		String message = s.getString(R.string.reply_name) + " " + reply + s.getString(R.string.notified)
-		+ s.getString(R.string.to) + " " + number;
+		String message = String.format(s.getString(R.string.reply_notified_to), reply, number);
 		GeneralUtils.notifyEvent(s.getString(R.string.reply_notified), message, s);
 	}
 	

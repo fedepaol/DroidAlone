@@ -92,7 +92,7 @@ public class HomeAlone extends Activity {
     	if(PrefUtils.homeAloneEnabled(this) == false){
     		mActivateButton.setText(R.string.activate);
     		mStatusText.setText(R.string.inactive_state);
-    		mStatusText.setText(R.color.status_disabled_color);
+    		mStatusText.setBackgroundColor(R.color.status_disabled_color);
     	}else{
     		mActivateButton.setText(R.string.deactivate);
     		mStatusText.setText(R.string.active_state);
@@ -106,6 +106,7 @@ public class HomeAlone extends Activity {
 
 		// BUTTONS
 		mActivateButton = (Button) findViewById(R.id.ActivateButton);
+		mStatusText = (TextView) findViewById(R.id.StatusTextView);
 		
 		mActivateButton.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View view){

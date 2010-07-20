@@ -12,7 +12,7 @@ android:key="@string/password_key" android:title="@string/password" android:summ
 				android:key="SecondPrefScreen"
                 android:summary="@string/forwarding_options_summary">
 	<CheckBoxPreference
-		android:key="@string/forward_to_mail_key" android:title="@string/forward_to_mail" android:summary="forward_to_mail_summary" android:defaultValue="false"/> 
+		android:key="@string/forward_to_mail_key" android:title="@string/forward_to_mail" android:summary="@string/forward_to_mail_summary" android:defaultValue="false"/> 
 	<EditTextPreference 
 		android:key="@string/mail_to_forward_key" android:title="@string/mail_to_forward" android:summary="@string/mail_to_forward_summary" android:inputType="textEmailAddress"/>
 	<CheckBoxPreference

@@ -264,11 +264,13 @@ public class GeneralUtils {
 			lastFlushed = yesterday;	// not later than 24 hours ago
 		}
 		
+		String where = android.provider.CallLog.Calls.TYPE + " = " + android.provider.CallLog.Calls.MISSED_TYPE +
+		" and " + android.provider.CallLog.Calls.DATE + " > " +  lastFlushed;
+		
 		
 		Cursor c = context.getContentResolver().query(android.provider.CallLog.Calls.CONTENT_URI,
-				null, null, null, android.provider.CallLog.Calls.DATE + " DESC");
-		String where = android.provider.CallLog.Calls.TYPE + " = " + android.provider.CallLog.Calls.MISSED_TYPE +
-					" and " + android.provider.CallLog.Calls.DATE + " > " +  lastFlushed;
+				null, where, null, android.provider.CallLog.Calls.DATE + " DESC");
+		
 		
 		int nameIdx = c.getColumnIndexOrThrow(CallLog.Calls.CACHED_NAME);
 		int numbIdx = c.getColumnIndexOrThrow(CallLog.Calls.NUMBER);
@@ -281,7 +283,7 @@ public class GeneralUtils {
 			do {
 				String name = c.getString(nameIdx);
 				name = (name != null)? name : "";
-				String number = c.getString(numbIdx);
+				String number = c.getString(numbIdx);				
 				String when = timeForm.format(c.getLong(dateIdx));
 				result[c.getPosition()] = String.format(context.getString(R.string.flushed_calls), name, number, when);
 			} while(c.moveToNext());
