@@ -43,6 +43,10 @@ public class HomeAlone extends Activity {
     			setButtonCaption();
     		}
     	};
+    	
+    	if(PrefUtils.showWizard(this)){
+    		launchWizard();
+    	}
     }
     
     
@@ -79,6 +83,11 @@ public class HomeAlone extends Activity {
 		return true;
 	}
     
+    private void launchWizard(){	// Will this throw a magician?
+    	Intent i = new Intent(this, StartWizard.class); 
+		startActivity(i);
+    }
+    
     @Override
 	public boolean onOptionsItemSelected(MenuItem item) 
 	{
@@ -90,8 +99,7 @@ public class HomeAlone extends Activity {
 				break;
 			}
 			case MENU_WIZARD:{
-				Intent i = new Intent(this, StartWizard.class); 
-				startActivity(i);
+				launchWizard();
 				break;
 			}
 		}

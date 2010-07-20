@@ -47,8 +47,11 @@
     <string name="empty_reply_message">Reply is empty</string>
     <string name="ok_name">Ok</string>
     <string name="error_name">Error</string>
-    <string name="invalid_mail_user">Empty email user</string>
-    <string name="invalid_mail_pwd">Empty email password</string>
+    <string name="not_valid_number_message_full">%s is not a valid phone number, please correct it</string>
+    <string name="not_valid_mail_message_full">%s is not a email address, please correct it</string>
+    <string name="invalid_mail_user_full">Empty email user or password, please fill them in gmail account section</string>
+    <string name="invalid_mail_user">Email user not set, can\'t enable mail forwarding</string>
+    <string name="invalid_mail_pwd">Email password not set, can\'t enable mail forwarding</string>
     <string name="network_not_available">Network not available</string>
     <string name="home_alone_event">Home alone event</string>
     <string name="events">Received events</string>
@@ -68,10 +71,10 @@
     <string name="cancel">Cancel</string>
     <string name="tutorial_title">Home Alone Wizard</string>
     <string name="wizard_mail_title">Mail forwarding settings</string>
-    <string name="wizard_mail_intro">You can be notified of incoming calls and sms by email. You must provide your gmail account and password and a target mail address</string>
+    <string name="wizard_mail_intro">You must provide your gmail account and password along with target mail address to be notified by mail. Leave the fields empty to disable this feature</string>
     <string name="wizard_sms_reply_title">Sms settings</string>
-    <string name="wizard_sms_reply_intro">You can be notified of incoming calls and sms by sms. You need to provide an sms number. If you want to send an automatic reply
-  	to callers you need to fill the reply field</string>
+    <string name="wizard_sms_reply_intro">You must provide a target sms number to be notified via sms. If you want to send an automatic reply
+  	to callers fill the reply field. Leave the fields empty to disable this feature</string>
 
     <string name="finish">Finish</string>
     <string name="wizard">Wizard</string>
@@ -97,7 +100,7 @@
     <string name="inactive_state">Disabled</string>
     <string name="active_state">Enabled</string>
     <string name="please_set_password">Please set password</string>
-    <string name="intro">Welcome to homealone. This wizard will guide you in the application setup. \nHit cancel if you want to
-     go to the application. You can relaunch this wizard pressing menu button</string>
+    <string name="intro">Welcome to homealone. This wizard will guide you through the setup of the application. \nHit cancel if you want to
+     go to the application. You can relaunch this wizard pressing menu button from main view. You can set single options from menu.</string>
      
 </resources>

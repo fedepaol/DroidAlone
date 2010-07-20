@@ -16,6 +16,22 @@ public class PrefUtils {
 	public static final String PREF_NAME = "Preferences";
 	public static final String STATUS_ENABLED = "Enabled";
 	private static final String LAST_FLUSHED = "LastFlushed";
+	private static final String PREFERENCE_WIZARD_SHOWN = "mustShowWizard";
+	
+	
+	public static boolean showWizard(Context c)
+	{
+		int mode = Activity.MODE_PRIVATE;
+		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);		
+		boolean res = mySharedPreferences.getBoolean(PREFERENCE_WIZARD_SHOWN, true);
+		
+		if(res){
+			SharedPreferences.Editor editor = mySharedPreferences.edit();
+			editor.putBoolean(PREFERENCE_WIZARD_SHOWN, false);
+			editor.commit();
+		}
+		return res;
+	}
 	
 	public static boolean homeAloneEnabled(Context c)
 	{

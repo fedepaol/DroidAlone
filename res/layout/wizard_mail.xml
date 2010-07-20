@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+	android:background="@color/event_back_color"
+    >
+	<TextView
+	android:gravity="center_horizontal"
+	android:textColor="@color/tutorial_title_color" 
+	android:text="@string/wizard_mail_title"
+	android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="20dip"></TextView>
+
+    
+	<TextView
+	android:paddingTop="10dip" 
+	android:text="@string/wizard_mail_intro"
+	android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="16dip"></TextView>
+	<View        android:layout_height="15dip" android:layout_width="fill_parent" android:background="@color/event_back_color"/>
+
+<TextView android:textSize="20dip" android:text="@string/gmail_user" android:id="@+id/TextView01" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<EditText  android:id="@+id/Wizard_gmail_user" android:layout_width="fill_parent" android:layout_height="wrap_content" ></EditText>
+
+<TextView android:textSize="20dip" android:text="@string/gmail_pwd" android:id="@+id/TextView02" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<EditText  android:id="@+id/Wizard_gmail_pwd" android:layout_width="fill_parent" android:layout_height="wrap_content"  android:inputType="textPassword" ></EditText>
+
+<TextView android:textSize="20dip" android:text="@string/mail_to_forward" android:id="@+id/TextView03" android:layout_width="wrap_content" android:layout_height="wrap_content" android:inputType="textEmailAddress"></TextView>
+<EditText  android:id="@+id/Wizard_mail_target" android:layout_width="fill_parent" android:layout_height="wrap_content" ></EditText>
+
+	
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent" android:gravity="bottom">
+
+
+<Button android:id="@+id/MailBackButton" android:text="@string/back" android:layout_weight="2" android:layout_width="fill_parent" android:layout_height="wrap_content"
+	 ></Button>
+
+	 
+	<Button  android:id="@+id/MailNextButton" android:text="@string/next" android:layout_width="fill_parent" android:layout_weight="1" android:layout_height="wrap_content"	 ></Button>
+
+</LinearLayout>
+</LinearLayout>

@@ -66,7 +66,7 @@ public class HomeAlonePreferences extends PreferenceActivity implements OnShared
 			
 			String smsNumber = prefs.getString(SMS_TO_FWD_KEY, "");			
 			if(!GeneralUtils.isPhoneNumber(smsNumber)){
-				GeneralUtils.showErrorDialog(getString(R.string.not_valid_number_message), this, l);
+				GeneralUtils.showErrorDialog(String.format(getString(R.string.not_valid_number_message_full), smsNumber), this, l);
 				prefEditor.putBoolean(SMS_ENABLE_KEY, false);
 				prefEditor.commit();
 			}
@@ -82,7 +82,7 @@ public class HomeAlonePreferences extends PreferenceActivity implements OnShared
 			String mailAddress = prefs.getString(MAIL_TO_FWD_KEY, "");
 			if(mailAddress.length() > 0){
 				if(!GeneralUtils.isMail(mailAddress)){
-					GeneralUtils.showErrorDialog(getString(R.string.not_valid_mail_message), this, l);
+					GeneralUtils.showErrorDialog(String.format(getString(R.string.not_valid_mail_message_full), mailAddress), this, l);
 					prefEditor.putString(MAIL_TO_FWD_KEY, "");
 					prefEditor.commit();
 				}
@@ -100,15 +100,15 @@ public class HomeAlonePreferences extends PreferenceActivity implements OnShared
 			String mailPassword = prefs.getString(MAIL_PWD_KEY, "");
 			
 			if(mailUser.length() == 0){
-				GeneralUtils.showErrorDialog(getString(R.string.invalid_mail_user), this, l);
+				GeneralUtils.showErrorDialog(getString(R.string.invalid_mail_user_full), this, l);
 				prefEditor.putBoolean(MAIL_ENABLE_KEY, false);
 				prefEditor.commit();
 			}else if(mailPassword.length() == 0){
-				GeneralUtils.showErrorDialog(getString(R.string.invalid_mail_pwd), this, l);
+				GeneralUtils.showErrorDialog(getString(R.string.invalid_mail_user_full), this, l);
 				prefEditor.putBoolean(MAIL_ENABLE_KEY, false);
 				prefEditor.commit();
 			}else if(!GeneralUtils.isMail(mailAddress)){
-				GeneralUtils.showErrorDialog(getString(R.string.not_valid_mail_message), this, l);
+				GeneralUtils.showErrorDialog(String.format(getString(R.string.not_valid_mail_message_full), mailAddress), this, l);
 				prefEditor.putBoolean(MAIL_ENABLE_KEY, false);
 				prefEditor.commit();
 			}else if(!GeneralUtils.isNetworkAvailable(this)){
