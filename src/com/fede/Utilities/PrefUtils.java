@@ -9,9 +9,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.fede.HomeAlone;
-import com.fede.HomeAloneService;
 import com.fede.R;
-import com.fede.MessageException.ForwardingDisabledException;
 
 
 public class PrefUtils {
@@ -134,6 +132,15 @@ public class PrefUtils {
 		return prefs.getString(key, "");
 	}
 	
+	public static void setStringPreference(SharedPreferences.Editor editor, int resId, String value, Context c){
+		String key = c.getString(resId);
+		editor.putString(key, value);
+	}
+	
+	public static void setBoolPreference(SharedPreferences.Editor editor, int resId, Boolean value, Context c){
+		String key = c.getString(resId);
+		editor.putBoolean(key, value);
+	}
 	public static boolean getBoolPreference(SharedPreferences prefs, int resId, Context c){
 		String key = c.getString(resId);
 		return prefs.getBoolean(key, false);

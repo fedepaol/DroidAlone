@@ -159,6 +159,18 @@ public class GeneralUtils {
     	return;    
 	}
 	
+	public static void showConfirmDialog(String errorString, Context context, OnClickListener l)
+	{
+    	AlertDialog.Builder ad = new AlertDialog.Builder(context); 
+    	 
+    	ad.setMessage(errorString); 
+    	
+    	ad.setPositiveButton(R.string.ok_name,l);
+    	ad.setNegativeButton(R.string.cancel, null);
+    	ad.show();
+    	return;    
+	}
+	
 	public static void notifyEvent(String event, String fullDescEvent, Context c, DbAdapter dbHelper){
 		String svcName = Context.NOTIFICATION_SERVICE;
 		NotificationManager notificationManager = (NotificationManager)c.getSystemService(svcName);

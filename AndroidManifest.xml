@@ -8,6 +8,18 @@
                   android:label="@string/app_name">
             
         </activity>
+        <activity android:name=".wizard.MailWizard"
+                  android:label="@string/app_name">
+            
+        </activity>
+        <activity android:name=".wizard.SmsWizard"
+                  android:label="@string/app_name">
+            
+        </activity>
+        <activity android:name=".wizard.StartWizard"
+                  android:label="@string/app_name">
+            
+        </activity>
         <activity android:name=".EventListActivity"
                   android:label="@string/events">
         </activity>

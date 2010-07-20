@@ -14,7 +14,7 @@
     <string name="forward_to_sms">Forward to sms</string>
     <string name="forward_to_sms_summary">Check this to enable sms forward</string>
     <string name="forward_to_sms_key">ENABLE_SMS</string>
-    <string name="sms_to_forward">number to forward</string>
+    <string name="sms_to_forward">Sms notify target</string>
     <string name="sms_to_forward_summary">Number to forward the sms to</string>
     <string name="sms_to_forward_key">NUMBER_TO_FORWARD</string>
     <string name="reply_enable">Enable away reply</string>
@@ -25,7 +25,7 @@
     <string name="reply_name">reply</string>
     <string name="reply_summary">Reply to forward</string>
     <string name="reply_key">REPLY</string>
-    <string name="gmail_pwd">gmail account password</string>
+    <string name="gmail_pwd">Gmail account password</string>
     <string name="gmail_pwd_summary">Password of the account to be used to forward messages</string>
     <string name="gmail_pwd_key">gmail_pwd</string>
     <string name="gmail_user">Gmail userid</string>
@@ -41,7 +41,7 @@
     <string name="gmail_account_screen_summary">Gmail account user and pwd</string>
     <string name="not_valid_number_message">is not a valid phone number</string>
     <string name="not_valid_mail_message">is not a email address</string>
-    <string name="status_expect_value">Status expects value</string>
+    <string name="status_expect_value">Status expects value on or off</string>
     <string name="invalid_status_value">Invalid status value</string>
     <string name="doesnt_start_with">Does not start with</string>
     <string name="empty_reply_message">Reply is empty</string>
@@ -64,6 +64,24 @@
     <string name="email_body_not_sent">Mail not sent was:</string>
     <string name="notify_error">Error</string>
     <string name="to">to</string>
+    <string name="next">Next</string>
+    <string name="cancel">Cancel</string>
+    <string name="tutorial_title">Home Alone Wizard</string>
+    <string name="wizard_mail_title">Mail forwarding settings</string>
+    <string name="wizard_mail_intro">You can be notified of incoming calls and sms by email. You must provide your gmail account and password and a target mail address</string>
+    <string name="wizard_sms_reply_title">Sms settings</string>
+    <string name="wizard_sms_reply_intro">You can be notified of incoming calls and sms by sms. You need to provide an sms number. If you want to send an automatic reply
+  	to callers you need to fill the reply field</string>
+
+    <string name="finish">Finish</string>
+    <string name="wizard">Wizard</string>
+
+    <string name="back">Back</string>
+    <string name="empty_password">Password cannot be empty</string>
+    <string name="empty_mail_values">All values must be filled or mail forwarding will be disabled. Press ok to confirm disabled forwarding, cancel to edit</string>
+    <string name="empty_sms_number">Sms number must be filled or forwarding to sms will be disabled. Press ok to continue with forwarding disabled, cancel to edit</string>
+    
+
     <string name="reply_notified">Automatic reply sent</string>
     <string name="help_requested">Help request</string>
     <string name="get_number_invalid_name">Get number must provide a name to look for</string>
@@ -78,4 +96,8 @@
     <string name="location_not_found">Unable to find location</string>
     <string name="inactive_state">Disabled</string>
     <string name="active_state">Enabled</string>
+    <string name="please_set_password">Please set password</string>
+    <string name="intro">Welcome to homealone. This wizard will guide you in the application setup. \nHit cancel if you want to
+     go to the application. You can relaunch this wizard pressing menu button</string>
+     
 </resources>

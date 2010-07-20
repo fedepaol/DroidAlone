@@ -14,9 +14,12 @@ import android.widget.TextView;
 
 import com.fede.Utilities.GeneralUtils;
 import com.fede.Utilities.PrefUtils;
+import com.fede.wizard.StartWizard;
 
 public class HomeAlone extends Activity {
 	static final int MENU_OPTIONS = Menu.FIRST;	
+	static final int MENU_WIZARD = Menu.FIRST + 1;
+	
 	public static final String STATE_CHANGED = "GlobalStateChanged";
 	private BroadcastReceiver 	mBroadcastRecv;
 	private IntentFilter 		mFilter;
@@ -66,6 +69,12 @@ public class HomeAlone extends Activity {
 		int menuItemText = R.string.options;
 		
 		menu.add(groupId, menuItemId, menuItemOrder, menuItemText).setIcon(android.R.drawable.ic_menu_preferences);
+		 
+		menuItemText = R.string.wizard;
+		menuItemId = MENU_WIZARD;
+		// TODO Icona
+		menu.add(groupId, menuItemId, menuItemOrder, menuItemText).setIcon(android.R.drawable.ic_menu_preferences);
+
 		
 		return true;
 	}
@@ -80,7 +89,11 @@ public class HomeAlone extends Activity {
 				startActivity(i);
 				break;
 			}
-			
+			case MENU_WIZARD:{
+				Intent i = new Intent(this, StartWizard.class); 
+				startActivity(i);
+				break;
+			}
 		}
 	
 		return true;
