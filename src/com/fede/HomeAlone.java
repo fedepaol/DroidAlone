@@ -92,11 +92,11 @@ public class HomeAlone extends Activity {
     	if(PrefUtils.homeAloneEnabled(this) == false){
     		mActivateButton.setText(R.string.activate);
     		mStatusText.setText(R.string.inactive_state);
-    		mStatusText.setBackgroundColor(R.color.status_disabled_color);
+    		mStatusText.setBackgroundColor(getResources().getColor(R.color.status_disabled_color));
     	}else{
     		mActivateButton.setText(R.string.deactivate);
     		mStatusText.setText(R.string.active_state);
-    		mStatusText.setBackgroundColor(R.color.status_enabled_color);
+    		mStatusText.setBackgroundColor(getResources().getColor(R.color.status_enabled_color));
     	}
     }
     

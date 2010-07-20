@@ -4,11 +4,9 @@ Rimettere il wait con timeout
 Test posizione attaccato al telefono vero */
 
 
-Testare Last flushed: settare il time a quando si sposta lo stato a off
 Controllo permission mainfest
-check yesterday / last flushed
 Vedere se si risparmia qualcosa concatenando. Guardare String[] e lista indirizzi
-Testare last flushed: orario generico, orario dopo una flushata
+
 Testare fallimento invio mail attivazione
 
 Controllo lunghezze che non facciano casino: provare a fare sendsms di un messaggio troppo lungo
