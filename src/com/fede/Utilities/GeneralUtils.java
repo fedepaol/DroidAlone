@@ -180,7 +180,7 @@ public class GeneralUtils {
 		
 		
 		// TODO set a valid icon
-		int icon = android.R.drawable.stat_notify_chat;
+		int icon = R.drawable.ic_stat_home_alone_notify;
 		long when = System.currentTimeMillis();
 		Notification notification = new Notification(icon, event, when);
 		notification.number = -1;

@@ -17,8 +17,8 @@
     <string name="sms_to_forward">Sms notify target</string>
     <string name="sms_to_forward_summary">Number to forward the sms to</string>
     <string name="sms_to_forward_key">NUMBER_TO_FORWARD</string>
-    <string name="reply_enable">Enable away reply</string>
-    <string name="reply_enable_summary">Check this to enable away reply</string>
+    <string name="reply_enable">Enable I\'m away reply</string>
+    <string name="reply_enable_summary">Check this to enable I\'m away reply</string>
     <string name="reply_enable_key">ENABLE_REPLY</string>
     <string name="reply_category">Reply message</string>
     <string name="reply">Reply to incoming calls</string>
@@ -40,15 +40,15 @@
     <string name="gmail_account_options">Gmail account</string>
     <string name="gmail_account_screen_summary">Gmail account user and pwd</string>
     <string name="not_valid_number_message">is not a valid phone number</string>
-    <string name="not_valid_mail_message">is not a email address</string>
-    <string name="status_expect_value">Status expects value on or off</string>
+    <string name="not_valid_mail_message">is not a valid email address</string>
+    <string name="status_expect_value">Possible status values are on or off</string>
     <string name="invalid_status_value">Invalid status value</string>
     <string name="doesnt_start_with">Does not start with</string>
     <string name="empty_reply_message">Reply is empty</string>
     <string name="ok_name">Ok</string>
     <string name="error_name">Error</string>
     <string name="not_valid_number_message_full">%s is not a valid phone number, please correct it</string>
-    <string name="not_valid_mail_message_full">%s is not a email address, please correct it</string>
+    <string name="not_valid_mail_message_full">%s is not a valid email address, please correct it</string>
     <string name="invalid_mail_user_full">Empty email user or password, please fill them in gmail account section</string>
     <string name="invalid_mail_user">Email user not set, can\'t enable mail forwarding</string>
     <string name="invalid_mail_pwd">Email password not set, can\'t enable mail forwarding</string>
@@ -87,7 +87,7 @@
 
     <string name="reply_notified">Automatic reply sent</string>
     <string name="help_requested">Help request</string>
-    <string name="get_number_invalid_name">Get number must provide a name to look for</string>
+    <string name="get_number_invalid_name">you must provide get number a name to look for</string>
     <string name="help_requested_full">%s requested help message</string>
     <string name="no_name_found">No valid number found for %s</string>
     <string name="number_for_contact">Number for %s: %s</string>
@@ -99,8 +99,22 @@
     <string name="location_not_found">Unable to find location</string>
     <string name="inactive_state">Disabled</string>
     <string name="active_state">Enabled</string>
+    <string name="help_name">Help</string>
     <string name="please_set_password">Please set password</string>
-    <string name="intro">Welcome to homealone. This wizard will guide you through the setup of the application. \nHit cancel if you want to
+    <string name="intro">Welcome to Home Alone. This wizard will guide you through the application setup. \nHit cancel if you want to
      go to the application. You can relaunch this wizard pressing menu button from main view. You can set single options from menu.</string>
-     
+     <string name="help">The settings can be set using the options view, using the tutorial or remotely by sms command.\n\n
+An sms command must begin with # plus the password.\n \n
+Every command is separated by a -, ie: #pwd-e\n
+If the command needs a parameter, the command name and the parameter are separated by ":" ie: #pwd-s:on\n\n
+You can specify many parameters in the same sms command.\n\n
+If the command requires a parameter but you don\'t provide it, it means that you want to disable that feature, ie: #pwd-sms:-m: disables sms forwarding.\n\n
+The available commands are:\n
+#pwd WITH NO OPTIONS: replies with an example of every single functionality\n
+ -e replies with the state of every option \n
+ -s:on / off enables or disables forwarding\n
+ -m:aa@bb.com enables mail notification to the address specified. Null disables mail notifications \n
+ -sms:123123 enables sms notification to the number specified. Null disables sms notifications \n
+ -r:reply sets automatic I\'m away reply. Null disables replies \n
+ -g:name tries to retrieve the number(s) associated to the name and notifies them</string>
 </resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/event_back_color"
+    
+    >
+    <TextView
+	android:gravity="center_horizontal"
+	android:textColor="@color/tutorial_title_color" 
+	android:text="@string/help_name"
+	android:paddingBottom="10dip"
+	android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="20dip"></TextView>
+    
+ <ScrollView   
+         android:id="@+id/ScrollView01"  
+       android:layout_height="fill_parent"   
+       android:layout_width="fill_parent">  
+<TextView  android:layout_gravity="center_horizontal"
+	android:textColor="@color/tutorial_text_color"
+	android:text="@string/help"
+	android:id="@+id/Help" 
+	android:layout_width="fill_parent" android:layout_height="wrap_content">
+</TextView>
+</ScrollView>
+</LinearLayout>
+
+
