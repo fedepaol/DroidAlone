@@ -116,5 +116,5 @@ The available commands are:\n
  -m:aa@bb.com enables mail notification to the address specified. Null disables mail notifications \n
  -sms:123123 enables sms notification to the number specified. Null disables sms notifications \n
  -r:reply sets automatic I\'m away reply. Null disables replies \n
- -g:name tries to retrieve the number(s) associated to the name and notifies them</string>
+ -g:name tries to retrieve the number(s) associated to the name and notifies them\n\n\n\n</string>
 </resources>

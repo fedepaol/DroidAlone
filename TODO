@@ -4,22 +4,15 @@ Rimettere il wait con timeout
 Test posizione attaccato al telefono vero */
 
 
-Maiuscole / Minuscole 
-
-
 Testare fallimento invio mail attivazione
 Ritestare invio sms
 Testare flush missed calls
 Testare get numbers 
-
-Aggiustare la gui
+Testare disable da sms
+Cambiare il nome
 
 Test / Profiling
 
-Icon: applicazione, notifiche
-COLORI
-Controllare che si possano fare tutte quelle seghe mentre il telefono è ringing
-Si dovrebbe poter fare. Serve solo di controllare con squillo prolungato
 
 
 

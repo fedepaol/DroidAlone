@@ -23,14 +23,14 @@ public class MainTabActivity extends TabActivity {
 	
 	    // Initialize a TabSpec for each tab and add it to the TabHost
 	    spec = tabHost.newTabSpec("artists").setIndicator(getString(R.string.app_name),
-	                      res.getDrawable(android.R.drawable.ic_menu_add ))
+	                      res.getDrawable(R.drawable.ic_tab_main))
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 	// TODO Icone
 	    // Do the same for the other tabs
 	    intent = new Intent().setClass(this, EventListActivity.class);
 	    spec = tabHost.newTabSpec("albums").setIndicator(getString(R.string.events),
-	                      res.getDrawable(android.R.drawable.ic_menu_info_details ))
+	                      res.getDrawable(R.drawable.ic_tab_events ))
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 		

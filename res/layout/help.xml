@@ -21,7 +21,8 @@
 	android:textColor="@color/tutorial_text_color"
 	android:text="@string/help"
 	android:id="@+id/Help" 
-	android:layout_width="fill_parent" android:layout_height="wrap_content">
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:paddingBottom="5dip">
 </TextView>
 </ScrollView>
 </LinearLayout>

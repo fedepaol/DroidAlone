@@ -78,12 +78,12 @@ public class HomeAlone extends Activity {
 		menuItemText = R.string.wizard;
 		menuItemId = MENU_WIZARD;
 		// TODO Icona
-		menu.add(groupId, menuItemId, menuItemOrder, menuItemText).setIcon(android.R.drawable.ic_menu_preferences);
+		menu.add(groupId, menuItemId, menuItemOrder, menuItemText).setIcon(android.R.drawable.ic_menu_manage );
 		
 		menuItemText = R.string.help_name;
 		menuItemId = MENU_HELP;
 		// TODO Icona
-		menu.add(groupId, menuItemId, menuItemOrder, menuItemText).setIcon(android.R.drawable.ic_menu_preferences);
+		menu.add(groupId, menuItemId, menuItemOrder, menuItemText).setIcon(android.R.drawable.ic_menu_help );
 
 		
 		return true;
