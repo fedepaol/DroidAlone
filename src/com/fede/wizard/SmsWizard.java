@@ -55,8 +55,8 @@ public class SmsWizard extends Activity {
     }
     
     private void storeValues(boolean enabled){
-    	PrefUtils.setStringPreference(mEditor, R.string.sms_to_forward_key, mSmsNumber.getText().toString(), this);
-    	PrefUtils.setStringPreference(mEditor, R.string.reply_key, mReply.getText().toString(), this);
+    	PrefUtils.setStringPreference(mEditor, R.string.sms_to_forward_key, mSmsNumber.getText().toString().trim(), this);
+    	PrefUtils.setStringPreference(mEditor, R.string.reply_key, mReply.getText().toString().trim(), this);
     	PrefUtils.setBoolPreference(mEditor, R.string.forward_to_sms_key, enabled, this);
     	PrefUtils.setBoolPreference(mEditor, R.string.reply_enable_key, !(mReply.getText().toString().equals("")),
     			this);

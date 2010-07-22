@@ -4,10 +4,14 @@ Rimettere il wait con timeout
 Test posizione attaccato al telefono vero */
 
 
+Invio mail: provarci un paio di volte
+Risalvare strings.xml
 Testare fallimento invio mail attivazione
-Ritestare invio sms
+Testare -e 
+Ritestare invio sms: non va una sega! Probabilmente e' il send multi message, ma forse è il fatto che sta squillando
+Ritestare invio mail: installato from scratch, setup, non manda la mail
 Testare flush missed calls
-Testare get numbers 
+Testare get numbers, magari con un nome che ha tanti numeri 
 Testare disable da sms
 Cambiare il nome
 

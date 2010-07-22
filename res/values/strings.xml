@@ -92,7 +92,7 @@
     <string name="no_name_found">No valid number found for %s</string>
     <string name="number_for_contact">Number for %s: %s</string>
     <string name="mail_activated_message">Home alone: activated from %s</string>
-    <string name="failed_to_send_activ_mail">Failed to send activation mail</string>
+    <string name="failed_to_send_activ_mail">Failed to send activation mail, homealone not enable. Try to use sms forwarding with -sms: option</string>
     <string name="flushed_calls">Missed from %s %s time %s</string>
     <string name="already_enabled_error">Status already on</string>
     <string name="already_disabled_error">Status already off</string>

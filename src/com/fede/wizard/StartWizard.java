@@ -44,7 +44,7 @@ public class StartWizard extends Activity {
     }
     
     private void storeValues(){
-    	PrefUtils.setStringPreference(mEditor, R.string.password_key, mPwd.getText().toString(), this);
+    	PrefUtils.setStringPreference(mEditor, R.string.password_key, mPwd.getText().toString().trim(), this);
     	mEditor.commit();
     }
     

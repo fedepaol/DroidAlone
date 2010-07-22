@@ -59,9 +59,9 @@ public class MailWizard extends Activity {
     }
     
     private void storeValues(boolean enabled){
-    	PrefUtils.setStringPreference(mEditor, R.string.gmail_user_key, mMailUser.getText().toString(), this);
-    	PrefUtils.setStringPreference(mEditor, R.string.gmail_pwd_key, mMailPwd.getText().toString(), this);
-    	PrefUtils.setStringPreference(mEditor, R.string.mail_to_forward_key, mMailTarget.getText().toString(), this);
+    	PrefUtils.setStringPreference(mEditor, R.string.gmail_user_key, mMailUser.getText().toString().trim(), this);
+    	PrefUtils.setStringPreference(mEditor, R.string.gmail_pwd_key, mMailPwd.getText().toString().trim(), this);
+    	PrefUtils.setStringPreference(mEditor, R.string.mail_to_forward_key, mMailTarget.getText().toString().trim(), this);
     	PrefUtils.setBoolPreference(mEditor, R.string.forward_to_mail_key, enabled, this);
     	mEditor.commit();
     }

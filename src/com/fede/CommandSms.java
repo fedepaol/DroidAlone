@@ -326,6 +326,10 @@ public class CommandSms {
 	
 	private void flushMissedCalls(){
 		String[] missedCalls = GeneralUtils.getMissedCalls(context); 
+		
+		if(missedCalls.length == 0)
+			return;
+		
 		StringBuffer buf = new StringBuffer();
 		for(String missed : missedCalls){
 			buf.append(missed);
