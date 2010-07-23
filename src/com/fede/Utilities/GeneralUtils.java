@@ -69,17 +69,33 @@ public class GeneralUtils {
 
 		GMailSender sender = new GMailSender(mailUser, mailPwd);
 		
-		try{
-			sender.sendMail("HOMEALONE", 
-				  		 body, 
-				  		 "HomeAloneSoftware", 
+		boolean sent = false;
+		
+		for (int i = 0; i < 2; i++){
+			try{
+				sender.sendMail("HOMEALONE", 
+						body, 
+						"HomeAloneSoftware", 
 				  		 mailDest);
-			
-		}catch (Exception e){
-			String shortDesc = c.getString(R.string.failed_to_send_email_to) + " " + mailDest ;
-			String fullDesc = c.getString(R.string.email_body_not_sent) + " " + body ;
-			notifyEvent(fullDesc, shortDesc, c);
-			throw e;
+				sent = true;
+				break;
+			}catch (Exception e){
+			}
+		}
+		
+		if(!sent){
+			try{
+				sender.sendMail("HOMEALONE", 
+						body, 
+						"HomeAloneSoftware", 
+				  		 mailDest);
+		
+			}catch (Exception e){		
+				String shortDesc = c.getString(R.string.failed_to_send_email_to) + " " + mailDest ;
+				String fullDesc = String.format(("%s %s %s"), c.getString(R.string.email_body_not_sent), body, e.getMessage()) ;
+				notifyEvent(fullDesc, shortDesc, c);
+				throw e;
+			}
 		}
 	}
 
