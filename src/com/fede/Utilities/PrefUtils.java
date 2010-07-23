@@ -48,7 +48,11 @@ public class PrefUtils {
 		editor.putBoolean(STATUS_ENABLED, enabled);
 		editor.commit();
 		if(!enabled){
+			GeneralUtils.notifyEvent(c.getString(R.string.inactive_state), c.getString(R.string.inactive_state), c);
 			setLastFlushedCalls(c);
+			GeneralUtils.removeNotifications(c);
+		}else{	//Enabled
+			GeneralUtils.notifyEvent(c.getString(R.string.active_state), c.getString(R.string.active_state), c);
 		}
 		
 		Intent i = new Intent(HomeAlone.STATE_CHANGED);

@@ -1,7 +1,5 @@
-Finire gestione squilla - non squilla
-Db, flush e delete all
-
 Notify icon: metterla per dire che è attivo - inattivo
+All'avvio settarla
 Invio mail: provarci un paio di volte
 Risalvare strings.xml
 Testare fallimento invio mail attivazione

@@ -41,7 +41,6 @@ public class MainTabActivity extends TabActivity {
 	    if(!showEvents){
 	    	tabHost.setCurrentTab(0);
 	    }else{
-	    	GeneralUtils.removeNotifications(this);
 	    	tabHost.setCurrentTab(1);
 	    }
 	

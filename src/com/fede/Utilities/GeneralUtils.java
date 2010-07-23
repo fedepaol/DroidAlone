@@ -175,6 +175,11 @@ public class GeneralUtils {
 	}
 	
 	public static void notifyEvent(String event, String fullDescEvent, Context c, DbAdapter dbHelper){
+		dbHelper.addEvent(fullDescEvent, event);	// Add to sqlite anyway
+		
+		if(PrefUtils.homeAloneEnabled(c) == false)	// if the status is disabled I dont want to show the notification
+			return;
+		
 		String svcName = Context.NOTIFICATION_SERVICE;
 		NotificationManager notificationManager = (NotificationManager)c.getSystemService(svcName);
 		
@@ -198,10 +203,6 @@ public class GeneralUtils {
 		                                launchIntent);
 		int notificationRef = 1;
 		notificationManager.notify(notificationRef, notification);
-		
-		dbHelper.addEvent(fullDescEvent, event);
-
-
 	}
 	
 	public static void removeNotifications(Context c){

@@ -15,7 +15,7 @@ import android.util.Log;
 public class DbAdapter {
   private static final String DATABASE_NAME = "homeAloneDb.db";
   
-  private static final int DATABASE_VERSION = 4;
+  private static final int DATABASE_VERSION = 5;
   
   //Events
   	private static final String EVENT_TABLE = "Events";
