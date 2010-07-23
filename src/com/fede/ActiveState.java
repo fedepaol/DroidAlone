@@ -1,5 +1,6 @@
 package com.fede;
 
+import android.database.Cursor;
 import android.os.Bundle;
 
 import com.fede.MessageException.InvalidCommandException;
@@ -29,7 +30,7 @@ public class ActiveState implements ServiceState {
 	
 	
 	// Tells caller name from number
-	private String getCallerNameString(Bundle b, String number, HomeAloneService s){
+	private String getCallerNameString(String number, HomeAloneService s){
 		try{
 			 return GeneralUtils.getNameFromNumber(number, s);
 		}catch (NameNotFoundException e){
@@ -38,13 +39,19 @@ public class ActiveState implements ServiceState {
 	}
 	
 	
-	// Handle incoming call and forwards to sms / email
+	// Handle ringing state and store the number to forwards to sms / email later
 	@Override
 	public void handleIncomingCall(HomeAloneService s, Bundle b) {
-		String number =  b.getString(HomeAloneService.NUMBER);
+		DbAdapter DbHelper = new DbAdapter(s);
+		DbHelper.open();
+		DbHelper.addCall(b.getString(HomeAloneService.NUMBER));
+		DbHelper.close();
+	}
+	
+	
+	private void notifyCall(String number, HomeAloneService s){
 		String callString = s.getString(R.string.call_from);
-		
-		String msg = String.format(callString, getCallerNameString(b, number, s), number);
+		String msg = String.format(callString, getCallerNameString(number, s), number);
 		
 		EventForwarder f = new EventForwarder(msg, s);
 		
@@ -53,10 +60,27 @@ public class ActiveState implements ServiceState {
 		return;
 
 	}
+	
+	@Override
+	public void handlePhoneIdle(HomeAloneService s){
+	// when idle I need to check if I have one or more pending calls. This should be done also
+	// in onidle of inactivestate
+		DbAdapter db = new DbAdapter(s);
+		db.open();
+		Cursor c = db.getAllCalls();
+		if (c.moveToFirst()) {
+            do{                           
+               notifyCall(c.getString(DbAdapter.CALL_NUMBER_DESC_COLUMN), s);
+            } while (c.moveToNext());
+         }
+		c.close();
+		db.removeAllCalls();
+		db.close();
+	}
 
 	private void handleSmsToNotify(HomeAloneService s, Bundle b, String body){
 		String number =  b.getString(HomeAloneService.NUMBER);
-		String msg = String.format("Sms %s %s:%s", getCallerNameString(b, number, s),number, body);
+		String msg = String.format("Sms %s %s:%s", getCallerNameString(number, s),number, body);
 		EventForwarder f = new EventForwarder(msg, s);
 		f.forward();
 		sendReply(s, number);

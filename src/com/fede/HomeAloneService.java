@@ -9,8 +9,9 @@ import android.os.IBinder;
 
 public class HomeAloneService extends IntentService {
 	public static final String EVENT_TYPE = "Event type";
-	public static final String RECEIVED_CALL = "Received Call";	
+	public static final String PHONE_RINGING = "Received Call";	
 	public static final String NUMBER = "Number";
+	public static final String PHONE_IDLE = "Idle";
 	
 	public static final String RECEIVED_SMS = "Received Sms";
 	public static final String MESSAGE_BODY = "Message body";
@@ -59,8 +60,11 @@ public class HomeAloneService extends IntentService {
 			state.handleSms(this, extras);
 		}
 		
-		if(type.equals(RECEIVED_CALL)){
+		if(type.equals(PHONE_RINGING)){
 			state.handleIncomingCall(this, extras);
+		}
+		if(type.equals(PHONE_IDLE)){
+			state.handlePhoneIdle(this);
 		}
 		// TODO Rimuovere se non si fanno i test?
 		Intent i = new Intent(HOMEALONE_TEST_EVENT_PROCESSED);

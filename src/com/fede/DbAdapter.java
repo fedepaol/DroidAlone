@@ -25,9 +25,17 @@ public class DbAdapter {
 	public static final int EVENT_TIME_COLUMN = 2;
 	public static final String SHORT_DESC_KEY = "ShortDesc";
 	public static final int SHORT_DESC_COLUMN = 3;
+	public static final String ROW_ID = "_id";
 		
 	
-	public static final String ROW_ID = "_id";
+	
+	// Missed calls
+	private static final String CALL_TABLE = "Calls";
+  	public static final String CALL_NUMBER_DESC_KEY = "Number";
+	public static final int CALL_NUMBER_DESC_COLUMN = 1;
+	public static final String CALL_TIME_KEY = "Time";
+	public static final int CALL_TIME_COLUMN = 2;
+	
 	
 	
   
@@ -43,6 +51,11 @@ public class DbAdapter {
     EVENT_TIME_KEY + " integer, " +
     SHORT_DESC_KEY + " string);";
   
+  private static final String DATABASE_CALLS_CREATE = "create table " + 
+  CALL_TABLE + " (" + ROW_ID + 
+  " integer primary key autoincrement, " +
+  CALL_NUMBER_DESC_KEY + " string, " + 
+  EVENT_TIME_KEY + " integer);"; 
     			
     			
   // Variable to hold the database instance
@@ -67,8 +80,38 @@ public class DbAdapter {
 	  db.close();
   }
 
-  // POSITION
+  //CALLS
+  public long addCall(String number)
+  {
+	  
+		Date d = new Date();
+	    ContentValues contentValues = new ContentValues();
+	    contentValues.put(CALL_NUMBER_DESC_KEY, number);
+  	    contentValues.put(CALL_TIME_KEY, d.getTime());
+  	    return db.insert(CALL_TABLE, null, contentValues);
+  }
   
+    
+
+  public boolean removeCall(Long _rowIndex) {
+	  return db.delete(CALL_TABLE, ROW_ID + "=" + _rowIndex, null) > 0;
+  }
+
+  public boolean removeAllCalls()
+  {
+		return db.delete(CALL_TABLE, null, null) > 0;
+  }
+   
+  
+  public Cursor getAllCalls () {
+	String orderBy = CALL_TIME_KEY + " desc";
+    return db.query(CALL_TABLE, new String[] {ROW_ID, 
+    											  CALL_NUMBER_DESC_KEY, 
+    											  CALL_TIME_KEY}, 
+                    null, null, null, null, orderBy);
+  }
+
+  // EVENTS  
   public long addEvent(String event, String shortDesc, Date date)
   {
 	    ContentValues contentValues = new ContentValues();
@@ -135,6 +178,7 @@ public class DbAdapter {
     @Override
     public void onCreate(SQLiteDatabase _db) {      
       _db.execSQL(DATABASE_EVENT_CREATE);
+      _db.execSQL(DATABASE_CALLS_CREATE);
     }
 
     // Called when there is a database version mismatch meaning that the version
@@ -152,6 +196,8 @@ public class DbAdapter {
 
       // The simplest case is to drop the old table and create a new one.
       _db.execSQL("DROP TABLE IF EXISTS " + EVENT_TABLE + ";");
+      _db.execSQL("DROP TABLE IF EXISTS " + CALL_TABLE + ";");
+
       // Create a new one.
       onCreate(_db);
     }

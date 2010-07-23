@@ -18,7 +18,12 @@ public class InactiveState implements ServiceState {
 
 	}
 
-	
+	@Override
+	public void handlePhoneIdle(HomeAloneService s) {
+		// if inactive returns 
+		return;
+
+	}
 
 	
 	@Override
