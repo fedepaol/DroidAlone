@@ -7,7 +7,7 @@
     <string name="forward_to_mail">Forward to mail</string>
     <string name="forward_to_mail_summary">Check this to enable mail forward</string>
     <string name="forward_to_mail_key">ENABLE_MAIL</string>
-    <string name="mail_to_forward">Mail to forward</string>
+    <string name="mail_to_forward">Mail notify recipient</string>
     <string name="mail_to_forward_summary">Address to forward the mail to</string>
     <string name="mail_to_forward_key">MAIL_TO_FORWARD</string>
     <string name="forward_to_sms">Forward to sms</string>

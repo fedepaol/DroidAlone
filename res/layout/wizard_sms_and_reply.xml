@@ -21,12 +21,12 @@
 
 
 <TextView 	android:textColor="@color/tutorial_text_color" 
-android:textSize="20dip" android:text="@string/sms_to_forward" android:id="@+id/TextView03" android:layout_width="wrap_content" android:layout_height="wrap_content" android:inputType="phone"></TextView>
-<EditText  android:id="@+id/Wizard_sms_target" android:layout_width="fill_parent" android:layout_height="wrap_content" ></EditText>
+android:textSize="20dip" android:text="@string/sms_to_forward" android:id="@+id/TextView03" android:layout_width="wrap_content" android:layout_height="wrap_content" ></TextView>
+<EditText android:id="@+id/Wizard_sms_target" android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="phone"></EditText>
 
 <TextView 	android:textColor="@color/tutorial_text_color" 
 android:textSize="20dip" android:text="@string/reply" android:id="@+id/TextView01" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<EditText  android:id="@+id/Wizard_reply_message" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxLines="1"></EditText>
+<EditText  android:id="@+id/Wizard_reply_message" android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="textImeMultiLine"></EditText>
 
 
 	

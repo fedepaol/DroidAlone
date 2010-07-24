@@ -124,7 +124,6 @@ public class HomeAlone extends Activity {
     		mStatusImage.setImageResource(R.drawable.disable_state_image);
     	}else{
     		mStatusImage.setImageResource(R.drawable.enabled_state_image);
-    		
     	}
     }
     

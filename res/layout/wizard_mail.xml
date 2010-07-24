@@ -21,15 +21,15 @@
 
 <TextView 	android:textColor="@color/tutorial_text_color" 
  android:textSize="20dip" android:text="@string/gmail_user" android:id="@+id/TextView01" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<EditText  android:id="@+id/Wizard_gmail_user" android:layout_width="fill_parent" android:layout_height="wrap_content" ></EditText>
+<EditText  android:id="@+id/Wizard_gmail_user" android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="textImeMultiLine"></EditText>
 
 <TextView 	android:textColor="@color/tutorial_text_color" 
  android:textSize="20dip" android:text="@string/gmail_pwd" android:id="@+id/TextView02" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<EditText  android:id="@+id/Wizard_gmail_pwd" android:layout_width="fill_parent" android:layout_height="wrap_content"  android:inputType="textPassword" ></EditText>
+<EditText android:id="@+id/Wizard_gmail_pwd" android:layout_width="fill_parent" android:layout_height="wrap_content"  android:inputType="textPassword" ></EditText>
 
 <TextView 	android:textColor="@color/tutorial_text_color" 
- android:textSize="20dip" android:text="@string/mail_to_forward" android:id="@+id/TextView03" android:layout_width="wrap_content" android:layout_height="wrap_content" android:inputType="textEmailAddress"></TextView>
-<EditText  android:id="@+id/Wizard_mail_target" android:layout_width="fill_parent" android:layout_height="wrap_content" ></EditText>
+ android:textSize="20dip" android:text="@string/mail_to_forward" android:id="@+id/TextView03" android:layout_width="wrap_content" android:layout_height="wrap_content" ></TextView>
+<EditText android:id="@+id/Wizard_mail_target" android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="textEmailAddress"></EditText>
 
 	
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent" android:gravity="bottom">
