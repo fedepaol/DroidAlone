@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.fede.Utilities.GeneralUtils;
 import com.fede.Utilities.PrefUtils;
@@ -24,8 +24,7 @@ public class HomeAlone extends Activity {
 	public static final String STATE_CHANGED = "GlobalStateChanged";
 	private BroadcastReceiver 	mBroadcastRecv;
 	private IntentFilter 		mFilter;
-	private Button 				mActivateButton;
-	private TextView			mStatusText;
+	private ImageView			mStatusImage;
 	IncomingCallReceiver 		mReceiver;
 	
 	
@@ -122,13 +121,10 @@ public class HomeAlone extends Activity {
     private void setButtonCaption()
     {	
     	if(PrefUtils.homeAloneEnabled(this) == false){
-    		mActivateButton.setText(R.string.activate);
-    		mStatusText.setText(R.string.inactive_state);
-    		mStatusText.setBackgroundColor(getResources().getColor(R.color.status_disabled_color));
+    		mStatusImage.setImageResource(R.drawable.disable_state_image);
     	}else{
-    		mActivateButton.setText(R.string.deactivate);
-    		mStatusText.setText(R.string.active_state);
-    		mStatusText.setBackgroundColor(getResources().getColor(R.color.status_enabled_color));
+    		mStatusImage.setImageResource(R.drawable.enabled_state_image);
+    		
     	}
     }
     
@@ -137,10 +133,10 @@ public class HomeAlone extends Activity {
     {
 
 		// BUTTONS
-		mActivateButton = (Button) findViewById(R.id.ActivateButton);
-		mStatusText = (TextView) findViewById(R.id.StatusTextView);
 		
-		mActivateButton.setOnClickListener(new View.OnClickListener(){
+		mStatusImage = (ImageView) findViewById(R.id.StatusImageView);
+		mStatusImage.setClickable(true);
+		mStatusImage.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View view){
 		    	if(PrefUtils.homeAloneEnabled(view.getContext()) == true){
 		    		PrefUtils.setStatus(false, view.getContext());

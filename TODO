@@ -1,13 +1,10 @@
-Se uno cancella gli eventi non si vede piu' che e' attivo
-
 Testare fallimento invio mail attivazione
-Testare flush missing calls
-Ritestare invio mail: installato from scratch, setup, non manda la mail
 Testare flush missed calls
-Testare get numbers, magari con un nome che ha tanti numeri 
 Testare disable da sms
 
-Cambiare il nome
+
+Stringhe in rosso nell'help
+Pataccone che indica lo stato. Metterci un'immagine?
 
 Test / Profiling
 

@@ -205,6 +205,7 @@ public class GeneralUtils {
 		long when = System.currentTimeMillis();
 		Notification notification = new Notification(icon, event, when);
 		notification.number = -1;
+		notification.flags |= Notification.FLAG_NO_CLEAR;
 		
 		String expandedText = fullDescEvent;
 		String expandedTitle = c.getString(R.string.home_alone_event);
@@ -248,39 +249,47 @@ public class GeneralUtils {
 		if (idCursor.moveToFirst()) {	// I try with the first record
 			int idIdx = idCursor.getColumnIndexOrThrow(ContactsContract.Contacts._ID);
 			id = idCursor.getString(idIdx);
+			
+
 		}
 		idCursor.close();
-		if (id != null) {
-		   // Return all the contact details of type PHONE for the contact we found
-			String where = ContactsContract.Data.CONTACT_ID + " = " + id + " AND " +
-									ContactsContract.Data.MIMETYPE + " = '" +
-									ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE +"'";
-			
-			Cursor dataCursor = c.getContentResolver().query(ContactsContract.Data.CONTENT_URI, null, where, null, null);
-		   // Use the convenience properties to get the index of the columns
-			int nameIdx = dataCursor.getColumnIndexOrThrow(ContactsContract.Data.DISPLAY_NAME);
-			int phoneIdx = dataCursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER);
 		
-			String[] result = new String[dataCursor.getCount()];
-			
-			
-			if (dataCursor.moveToFirst())
-				do {
-					// Extract the name.
-					String name = dataCursor.getString(nameIdx);
-					// Extract the phone number.
-					String number = dataCursor.getString(phoneIdx);
-					int position = dataCursor.getPosition();
-					if(position == 0)		// I put the name only in the first record to save space
-						result[position] = name + " (" + number + ")";
-					else
-						result[position] = " (" + number + ")";
-						
-				} while(dataCursor.moveToNext());
-			dataCursor.close();
-			return result;
-		}
-		throw new NameNotFoundException("");
+		if(id == null)
+			throw new NameNotFoundException(c.getString(R.string.name_not_found));
+		
+		
+		
+	   // Return all the contact details of type PHONE for the contact we found
+					
+		String where = ContactsContract.Data.CONTACT_ID + " = " + id + " AND " +
+								ContactsContract.Data.MIMETYPE + " = '" +
+								ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE +"'";
+		
+		Cursor dataCursor = c.getContentResolver().query(ContactsContract.Data.CONTENT_URI, null, where, null, null);
+	   // Use the convenience properties to get the index of the columns
+		int nameIdx = dataCursor.getColumnIndexOrThrow(ContactsContract.Data.DISPLAY_NAME);
+		int phoneIdx = dataCursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER);
+	
+		String[] result = new String[dataCursor.getCount()];
+		
+		if(dataCursor.getCount() == 0)
+			throw new NameNotFoundException(c.getString(R.string.name_not_valid_numbers));
+		
+		if (dataCursor.moveToFirst())
+			do {
+				// Extract the name.
+				String name = dataCursor.getString(nameIdx);
+				// Extract the phone number.
+				String number = dataCursor.getString(phoneIdx);
+				int position = dataCursor.getPosition();
+				if(position == 0)		// I put the name only in the first record to save space
+					result[position] = name + " (" + number + ")";
+				else
+					result[position] = " (" + number + ")";
+					
+			} while(dataCursor.moveToNext());
+		dataCursor.close();
+		return result;
 	
 	}
 	

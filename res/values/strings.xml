@@ -59,6 +59,8 @@
     <string name="event_list">Managed events</string>
     <string name="reply_notified_to">Reply %s notified to %s</string>
     <string name="sent_via_sms">Sent via sms</string>
+    <string name="name_not_found">Name not found</string>
+    <string name="name_not_valid_numbers">Provided name does not have any phone number associated</string>
     <string name="sent_via_mail">Sent via mail</string>
     <string name="command_executed">Command executed. Received from </string>
     <string name="incoming_sms">Incoming sms</string>

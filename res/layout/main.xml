@@ -13,18 +13,13 @@
     >
     <View  android:layout_height="fill_parent" android:layout_weight="5" android:layout_width="fill_parent" android:background="@color/event_back_color"/>
     
-	<TextView  android:layout_gravity="center_horizontal"
+	<ImageView  android:layout_gravity="center_horizontal"
 	android:layout_weight="1" 
 	
 	android:gravity="center_horizontal"
-	android:padding="30dip" android:id="@+id/StatusTextView" 
-	android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="30dip"></TextView>
+	android:padding="30dip" android:id="@+id/StatusImageView" 
+	android:layout_width="fill_parent" android:layout_height="wrap_content"></ImageView>
 	<View  android:layout_height="fill_parent" android:layout_weight="5" android:layout_width="fill_parent" android:background="@color/event_back_color"/>
 	</LinearLayout>
-	
-	<View        android:layout_height="30dip" android:layout_width="fill_parent" android:background="@color/event_back_color"/>
-	
-	<Button android:id="@+id/ActivateButton" android:layout_width="fill_parent" android:layout_height="wrap_content"
-	 ></Button>
 
 </LinearLayout>
