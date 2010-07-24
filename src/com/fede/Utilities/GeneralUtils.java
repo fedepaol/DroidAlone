@@ -262,14 +262,20 @@ public class GeneralUtils {
 			int phoneIdx = dataCursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER);
 		
 			String[] result = new String[dataCursor.getCount()];
-		
+			
+			
 			if (dataCursor.moveToFirst())
 				do {
 					// Extract the name.
 					String name = dataCursor.getString(nameIdx);
 					// Extract the phone number.
 					String number = dataCursor.getString(phoneIdx);
-					result[dataCursor.getPosition()] = name + " (" + number + ")";
+					int position = dataCursor.getPosition();
+					if(position == 0)		// I put the name only in the first record to save space
+						result[position] = name + " (" + number + ")";
+					else
+						result[position] = " (" + number + ")";
+						
 				} while(dataCursor.moveToNext());
 			dataCursor.close();
 			return result;

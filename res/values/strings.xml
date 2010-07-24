@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, HomeAlone!</string>
-    <string name="app_name">HomeAlone</string>
+    <string name="app_name">PhoneAlone</string>
     <string name="password">Password</string>
     <string name="password_summary">Activation Password</string>
     <string name="password_key">PASSWORD</string>
@@ -53,7 +52,7 @@
     <string name="invalid_mail_user">Email user not set, can\'t enable mail forwarding</string>
     <string name="invalid_mail_pwd">Email password not set, can\'t enable mail forwarding</string>
     <string name="network_not_available">Network not available</string>
-    <string name="home_alone_event">Home alone event</string>
+    <string name="home_alone_event">Phone Alone event</string>
     <string name="events">Received events</string>
     <string name="delete_all">Delete all</string>
     <string name="forwarding_not_enabled">At least one forwarding type must be enabled</string>
@@ -69,7 +68,7 @@
     <string name="to">to</string>
     <string name="next">Next</string>
     <string name="cancel">Cancel</string>
-    <string name="tutorial_title">Home Alone Wizard</string>
+    <string name="tutorial_title">Phone Alone Wizard</string>
     <string name="wizard_mail_title">Mail forwarding settings</string>
     <string name="wizard_mail_intro">You must provide your gmail account and password along with target mail address to be notified by mail. Leave the fields empty to disable this feature</string>
     <string name="wizard_sms_reply_title">Sms settings</string>
@@ -91,8 +90,8 @@
     <string name="help_requested_full">%s requested help message</string>
     <string name="no_name_found">No valid number found for %s</string>
     <string name="number_for_contact">Number for %s: %s</string>
-    <string name="mail_activated_message">Home alone: activated from %s</string>
-    <string name="failed_to_send_activ_mail">Failed to send activation mail, homealone not enable. Try to use sms forwarding with -sms: option</string>
+    <string name="mail_activated_message">Phone Alone: activated from %s</string>
+    <string name="failed_to_send_activ_mail">Failed to send activation mail, PhoneAlone not enabled. Try to use sms forwarding with -sms: option</string>
     <string name="flushed_calls">Missed from %s %s time %s</string>
     <string name="already_enabled_error">Status already on</string>
     <string name="already_disabled_error">Status already off</string>
@@ -101,7 +100,7 @@
     <string name="active_state">Enabled</string>
     <string name="help_name">Help</string>
     <string name="please_set_password">Please set password</string>
-    <string name="intro">Welcome to Home Alone. This wizard will guide you through the application setup. \nHit cancel if you want to
+    <string name="intro">Welcome to Phone Alone. This wizard will guide you through the application setup. \nHit cancel if you want to
      go to the application. You can relaunch this wizard pressing menu button from main view. You can set single options from menu.</string>
      <string name="help">The settings can be set using the options view, using the tutorial or remotely by sms command.\n\n
 An sms command must begin with # plus the password.\n \n

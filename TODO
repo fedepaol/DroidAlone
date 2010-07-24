@@ -1,14 +1,12 @@
-Notify icon: metterla per dire che è attivo - inattivo
-All'avvio settarla
-Invio mail: provarci un paio di volte
-Risalvare strings.xml
+Se uno cancella gli eventi non si vede piu' che e' attivo
+
 Testare fallimento invio mail attivazione
-Testare -e 
 Testare flush missing calls
 Ritestare invio mail: installato from scratch, setup, non manda la mail
 Testare flush missed calls
 Testare get numbers, magari con un nome che ha tanti numeri 
 Testare disable da sms
+
 Cambiare il nome
 
 Test / Profiling

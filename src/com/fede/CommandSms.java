@@ -301,7 +301,7 @@ public class CommandSms {
 		
 			for (String number:res){
 				buf.append(number);
-				buf.append("  ");
+				buf.append(" ");
 			}
 			GeneralUtils.sendSms(incomingNumber,
 					String.format(context.getString(R.string.number_for_contact), name, buf.toString()));
