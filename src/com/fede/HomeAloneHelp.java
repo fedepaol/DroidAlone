@@ -8,6 +8,7 @@ import android.webkit.WebView;
 public class HomeAloneHelp extends Activity{
 	SharedPreferences prefs;
 	
+	@Override
 	public void onCreate(Bundle savedInstanceState) {	
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.help);

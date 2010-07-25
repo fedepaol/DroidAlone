@@ -66,9 +66,7 @@ public class HomeAloneService extends IntentService {
 		if(type.equals(PHONE_IDLE)){
 			state.handlePhoneIdle(this);
 		}
-		// TODO Rimuovere se non si fanno i test?
-		Intent i = new Intent(HOMEALONE_TEST_EVENT_PROCESSED);
-		sendBroadcast(i);
+
 		
 	}
 	

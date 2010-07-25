@@ -1,9 +1,8 @@
-Nella add get ci si perde il + in testa
-Forzare portrait
+Ritestare forwarding
 Testare fallimento invio mail attivazione
 Testare flush missed calls
 Testare disable da sms
-
+Testare sms lunghi smodati da fare forward
 
 Test / Profiling
 

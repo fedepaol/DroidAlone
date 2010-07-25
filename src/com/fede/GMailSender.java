@@ -48,7 +48,8 @@ import javax.mail.internet.MimeMessage;
          session = Session.getDefaultInstance(props, this);  
      }  
    
-     protected PasswordAuthentication getPasswordAuthentication() {  
+     @Override
+	protected PasswordAuthentication getPasswordAuthentication() {  
          return new PasswordAuthentication(user, password);  
      }  
    

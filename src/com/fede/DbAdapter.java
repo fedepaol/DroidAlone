@@ -15,7 +15,7 @@ import android.util.Log;
 public class DbAdapter {
   private static final String DATABASE_NAME = "homeAloneDb.db";
   
-  private static final int DATABASE_VERSION = 6;
+  private static final int DATABASE_VERSION = 7;
   
   //Events
   	private static final String EVENT_TABLE = "Events";
@@ -54,7 +54,7 @@ public class DbAdapter {
   private static final String DATABASE_CALLS_CREATE = "create table " + 
   CALL_TABLE + " (" + ROW_ID + 
   " integer primary key autoincrement, " +
-  CALL_NUMBER_DESC_KEY + " string, " + 
+  CALL_NUMBER_DESC_KEY + " text, " + 
   EVENT_TIME_KEY + " integer);"; 
     			
     			

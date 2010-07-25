@@ -15,6 +15,7 @@ import com.fede.Utilities.GeneralUtils;
 public class HomeAlonePreferences extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 	SharedPreferences prefs;
 	
+	@Override
 	public void onCreate(Bundle savedInstanceState) {	
 		super.onCreate(savedInstanceState); 
 		Context context = getApplicationContext(); 

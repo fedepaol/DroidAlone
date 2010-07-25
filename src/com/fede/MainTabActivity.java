@@ -9,6 +9,7 @@ import android.widget.TabHost;
 import com.fede.Utilities.GeneralUtils;
 
 public class MainTabActivity extends TabActivity {
+	@Override
 	public void onCreate (Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 	    setContentView(R.layout.tab_layout);
