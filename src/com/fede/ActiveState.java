@@ -39,12 +39,30 @@ public class ActiveState implements ServiceState {
 	}
 	
 	
+	private String addQuotes(String s){
+		return String.format("'%s'", s);
+	}
+	
+	private String removeQuotes(String str)
+	  {
+	      if (str.startsWith("'"))
+	      {
+	          str = str.substring(1, str.length());
+	      }
+	      if (str.endsWith("'"))
+	      {
+	          str = str.substring(0, str.length() - 1);
+	      }
+	      return str;
+	  }
+	
 	// Handle ringing state and store the number to forwards to sms / email later
 	@Override
 	public void handleIncomingCall(HomeAloneService s, Bundle b) {
 		DbAdapter DbHelper = new DbAdapter(s);
 		DbHelper.open();
-		DbHelper.addCall(b.getString(HomeAloneService.NUMBER));
+		String numberWithQuotes = addQuotes(b.getString(HomeAloneService.NUMBER));
+		DbHelper.addCall(numberWithQuotes);
 		DbHelper.close();
 	}
 	
@@ -69,8 +87,9 @@ public class ActiveState implements ServiceState {
 		db.open();
 		Cursor c = db.getAllCalls();
 		if (c.moveToFirst()) {
-            do{                           
-               notifyCall(c.getString(DbAdapter.CALL_NUMBER_DESC_COLUMN), s);
+            do{           
+            	String number = removeQuotes(c.getString(DbAdapter.CALL_NUMBER_DESC_COLUMN));
+               notifyCall(number, s);	
             } while (c.moveToNext());
          }
 		c.close();

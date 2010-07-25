@@ -73,7 +73,7 @@ public class GeneralUtils {
 		
 		for (int i = 0; i < 2; i++){
 			try{
-				sender.sendMail("HOMEALONE", 
+				sender.sendMail("[PHONEALONE]", 
 						body, 
 						"HomeAloneSoftware", 
 				  		 mailDest);
@@ -85,7 +85,7 @@ public class GeneralUtils {
 		
 		if(!sent){
 			try{
-				sender.sendMail("HOMEALONE", 
+				sender.sendMail("[PHONEALONE]", 
 						body, 
 						"HomeAloneSoftware", 
 				  		 mailDest);

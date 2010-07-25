@@ -15,7 +15,7 @@ import android.util.Log;
 public class DbAdapter {
   private static final String DATABASE_NAME = "homeAloneDb.db";
   
-  private static final int DATABASE_VERSION = 5;
+  private static final int DATABASE_VERSION = 6;
   
   //Events
   	private static final String EVENT_TABLE = "Events";
@@ -81,7 +81,9 @@ public class DbAdapter {
   }
 
   //CALLS
-  public long addCall(String number)
+  
+//Beware that if you add a number with a heading "+" it will not be stored
+  public long addCall(String number)	
   {
 	  
 		Date d = new Date();
