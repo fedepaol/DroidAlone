@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PhoneAlone</string>
+    <string name="app_name">DroidAlone</string>
     <string name="password">Password</string>
     <string name="password_summary">Activation Password</string>
     <string name="password_key">PASSWORD</string>
@@ -52,7 +52,7 @@
     <string name="invalid_mail_user">Email user not set, can\'t enable mail forwarding</string>
     <string name="invalid_mail_pwd">Email password not set, can\'t enable mail forwarding</string>
     <string name="network_not_available">Network not available</string>
-    <string name="home_alone_event">Phone Alone event</string>
+    <string name="home_alone_event">Droid Alone Event</string>
     <string name="events">Received events</string>
     <string name="delete_all">Delete all</string>
     <string name="forwarding_not_enabled">At least one forwarding type must be enabled</string>
@@ -70,30 +70,27 @@
     <string name="to">to</string>
     <string name="next">Next</string>
     <string name="cancel">Cancel</string>
-    <string name="tutorial_title">Phone Alone Wizard</string>
+    <string name="tutorial_title">Droid Alone Wizard</string>
     <string name="wizard_mail_title">Mail forwarding settings</string>
-    <string name="wizard_mail_intro">You must provide your gmail account and password along with target mail address to be notified by mail. Leave the fields empty to disable this feature</string>
+    <string name="wizard_mail_intro">HomeAlone needs your GMail user and password to send emails. The mail recipient may be different from your gmail address. Leave the fields empty to disable this feature</string>
     <string name="wizard_sms_reply_title">Sms settings</string>
     <string name="wizard_sms_reply_intro">You must provide a target sms number to be notified via sms. If you want to send an automatic reply
   	to callers fill the reply field. Leave the fields empty to disable this feature</string>
 
     <string name="finish">Finish</string>
     <string name="wizard">Wizard</string>
-
     <string name="back">Back</string>
     <string name="empty_password">Password cannot be empty</string>
     <string name="empty_mail_values">All values must be filled or mail forwarding will be disabled. Press ok to confirm disabled forwarding, cancel to edit</string>
     <string name="empty_sms_number">Sms number must be filled or forwarding to sms will be disabled. Press ok to continue with forwarding disabled, cancel to edit</string>
-    
-
-    <string name="reply_notified">Automatic reply sent</string>
+   <string name="reply_notified">Automatic reply sent</string>
     <string name="help_requested">Help request</string>
     <string name="get_number_invalid_name">you must provide get number a name to look for</string>
     <string name="help_requested_full">%s requested help message</string>
     <string name="no_name_found">No valid number found for %s</string>
     <string name="number_for_contact">Number for %s: %s</string>
-    <string name="mail_activated_message">Phone Alone: activated from %s</string>
-    <string name="failed_to_send_activ_mail">Failed to send activation mail, PhoneAlone not enabled. Try to use sms forwarding with -sms: option</string>
+    <string name="mail_activated_message">Droid Alone: activated from %s</string>
+    <string name="failed_to_send_activ_mail">Failed to send activation mail, DroidAlone not enabled. Try to use sms forwarding with -sms: option</string>
     <string name="flushed_calls">Missed from %s %s time %s</string>
     <string name="already_enabled_error">Status already on</string>
     <string name="already_disabled_error">Status already off</string>
@@ -102,20 +99,6 @@
     <string name="active_state">Enabled</string>
     <string name="help_name">Help</string>
     <string name="please_set_password">Please set password</string>
-    <string name="intro">Welcome to Phone Alone. This wizard will guide you through the application setup. \nHit cancel if you want to
+    <string name="intro">Welcome to Droid Alone. This wizard will guide you through the application setup. \nHit cancel if you want to
      go to the application. You can relaunch this wizard pressing menu button from main view. You can set single options from menu.</string>
-     <string name="help">The settings can be set using the options view, using the tutorial or remotely by sms command.\n\n
-An sms command must begin with # plus the password.\n \n
-Every command is separated by a -, ie: #pwd-e\n
-If the command needs a parameter, the command name and the parameter are separated by ":" ie: #pwd-s:on\n\n
-You can specify many parameters in the same sms command.\n\n
-If the command requires a parameter but you don\'t provide it, it means that you want to disable that feature, ie: #pwd-sms:-m: disables sms forwarding.\n\n
-The available commands are:\n
-#pwd WITH NO OPTIONS: replies with an example of every single functionality\n
- -e replies with the state of every option \n
- -s:on / off enables or disables forwarding\n
- -m:aa@bb.com enables mail notification to the address specified. Null disables mail notifications \n
- -sms:123123 enables sms notification to the number specified. Null disables sms notifications \n
- -r:reply sets automatic I\'m away reply. Null disables replies \n
- -g:name tries to retrieve the number(s) associated to the name and notifies them\n\n\n\n</string>
-</resources>
+     </resources>
