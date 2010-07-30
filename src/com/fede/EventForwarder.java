@@ -24,7 +24,7 @@ public class EventForwarder {
 		boolean forwardedToMail = false;
 		if(PrefUtils.getBoolPreference(prefs, R.string.forward_to_sms_key, c) == true){
 			GeneralUtils.sendSms(PrefUtils.getStringPreference(prefs, R.string.sms_to_forward_key, c), 
-					toForward);
+					toForward, c);
 			forwardedToSms = true;
 		}
 		

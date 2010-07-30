@@ -43,7 +43,7 @@ public class GeneralUtils {
 		mTest = test; 
 	}
 	
-	public static void sendSms(String number, String message)
+	public static void sendSms(String number, String message, Context c)
 	{
 		if(mTest != null){	// TODO Test only
 			mTest.sendSms(number, message);
@@ -52,7 +52,14 @@ public class GeneralUtils {
 		SmsManager smsManager = SmsManager.getDefault();
 		
 		ArrayList<String> parts = smsManager.divideMessage(message);
-		smsManager.sendMultipartTextMessage(number, null, parts, null, null);
+		
+		try{
+			smsManager.sendMultipartTextMessage(number, null, parts, null, null);
+		}catch (Exception e){		
+			String shortDesc = c.getString(R.string.failed_to_send_sms_to) + " " + number ;
+			String fullDesc = String.format(("%s %s %s"), c.getString(R.string.sms_body_not_sent), message, e.getMessage()) ;
+			notifyEvent(fullDesc, shortDesc, c);
+		}
 	}
 	
 	

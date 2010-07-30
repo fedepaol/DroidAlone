@@ -45,7 +45,7 @@ public class InactiveState implements ServiceState {
 			}
 		}catch (InvalidCommandException p){
 			// in case of failure the user must be notified anyway
-			GeneralUtils.sendSms(number, p.getMessage());
+			GeneralUtils.sendSms(number, p.getMessage(), s);
 		}
 		
 	}

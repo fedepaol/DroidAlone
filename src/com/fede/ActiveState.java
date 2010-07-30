@@ -22,9 +22,9 @@ public class ActiveState implements ServiceState {
 	public void sendReply(HomeAloneService s, String number)
 	{
 		String reply = PrefUtils.getReply(s);
-		if(!reply.equals("")){
+		if(!reply.equals("") && !number.equals("unknown")){
 			notifyReply(s, number, reply);
-			GeneralUtils.sendSms(number, reply);
+			GeneralUtils.sendSms(number, reply, s);
 		}	
 	}
 	
@@ -74,6 +74,9 @@ public class ActiveState implements ServiceState {
 		if (c.moveToFirst()) {
             do{           
             	String number = c.getString(DbAdapter.CALL_NUMBER_DESC_COLUMN);
+            	if(number == null){
+            		number = "unknown number";
+            	}
                notifyCall(number, s);	
             } while (c.moveToNext());
          }
@@ -101,7 +104,7 @@ public class ActiveState implements ServiceState {
 				s.setState(new InactiveState());
 			}
 		}catch (InvalidCommandException e){
-			GeneralUtils.sendSms(number, e.getMessage());
+			GeneralUtils.sendSms(number, e.getMessage(), s);
 		}
 	}
 	

@@ -11,6 +11,9 @@ public class IncomingCallReceiver extends BroadcastReceiver {
 		
 		if(type.equals(android.telephony.TelephonyManager.EXTRA_STATE_RINGING)){
 			String number = intent.getStringExtra(android.telephony.TelephonyManager.EXTRA_INCOMING_NUMBER);
+			if(number == null){
+				number = "unknown";
+			}
 			notifyIncomingNumber(context, number);
 		}
 		

@@ -66,6 +66,8 @@
     <string name="incoming_sms">Incoming sms</string>
     <string name="failed_to_send_email_to">Failed to send mail to</string>
     <string name="email_body_not_sent">Mail not sent was:</string>
+    <string name="failed_to_send_sms_to">Failed to send sms to</string>
+    <string name="sms_body_not_sent">Sms not sent was:</string>
     <string name="notify_error">Error</string>
     <string name="to">to</string>
     <string name="next">Next</string>

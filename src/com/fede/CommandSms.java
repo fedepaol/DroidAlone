@@ -247,7 +247,7 @@ public class CommandSms {
 	}
 	
 	private void sendHelpMessage(){
-		GeneralUtils.sendSms(incomingNumber, EXAMPLE);
+		GeneralUtils.sendSms(incomingNumber, EXAMPLE, context);
 		
 		GeneralUtils.notifyEvent(context.getString(R.string.help_requested), String.format(context.getString(R.string.help_requested_full), incomingNumber), context);
 	}
@@ -304,12 +304,14 @@ public class CommandSms {
 				buf.append(" ");
 			}
 			GeneralUtils.sendSms(incomingNumber,
-					String.format(context.getString(R.string.number_for_contact), name, buf.toString()));
+					String.format(context.getString(R.string.number_for_contact), name, buf.toString()),
+					 context);
 
 		
 		}catch(NameNotFoundException e){
 			GeneralUtils.sendSms(incomingNumber,
-				String.format(context.getString(R.string.no_name_found), name));
+				String.format(context.getString(R.string.no_name_found), name),
+				 context);
 		}
 		
 		
@@ -369,7 +371,7 @@ public class CommandSms {
 			String status = PrefUtils.getPreferencesStatus(context);
 	
 			if(echoCommand == BoolCommand.ENABLED){
-				GeneralUtils.sendSms(incomingNumber, status);
+				GeneralUtils.sendSms(incomingNumber, status, context);
 			}
 			
 			if(retrieveNumber){
