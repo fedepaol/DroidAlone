@@ -11,6 +11,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.SystemClock;
 
 import com.fede.R;
 import com.fede.MessageException.LocationNotFoundException;
@@ -21,70 +22,90 @@ public class LocationUpdater {
 	private LocationManager mLManager;
 	private String mLProvider;
 	private Context mContext;
-	private final Object mLock = new Object();
+	static final long maxAgeNetworkMilliSeconds = 1000 * 60 * 10;  // 10 minutes
 	
-	public Location getLocation() throws LocationNotFoundException{
-		Location location = null;
+	private Location findLocation(int sleepTime){
+		SystemClock.sleep(sleepTime);
+		Location here = mLManager.getLastKnownLocation(mLProvider);		
+				
+		long now = System.currentTimeMillis();
+		long locationTime = here.getTime();
 		
-		LocationListener l = new LocationListener() {
-	        public void onLocationChanged(Location location) {
-	        	location =  mLManager.getLastKnownLocation(mLProvider);
-	            synchronized (mLock) {
-	            	mLock.notify();
-	            }
-	        }
-       
-	        public void onProviderDisabled(String provider){
-	        		        	
-	        }
-	        
-	        public void onStatusChanged(String provider, int status, Bundle extras) {
-	        }
+		if (here == null || locationTime < now - maxAgeNetworkMilliSeconds){
+			return null;
+		}
+		return here;
+	}
+	
+	private String locationFromCoordinates(Location l){
+		return "lat " + String.valueOf(l.getLatitude()) + " lon " + String.valueOf(l.getLongitude());
+	}
+	
+	public String getLocation() throws LocationNotFoundException{
 
-	        public void onProviderEnabled(String provider) {}
+		LocationListener l = new LocationListener(){
+			@Override
+			public void onLocationChanged(Location location) {
+				String fava = "fava";
+				
+			}
+
+			@Override
+			public void onProviderDisabled(String provider){}
+			
+			@Override
+			public void onProviderEnabled(String provider) {
+				String fava = "fava";
+			}
+
+			@Override
+			public void onStatusChanged(String provider, int status,
+					Bundle extras) {}	
 		};
 		
 		mLManager.requestLocationUpdates(mLProvider, 1000, 0, l);
-		synchronized(mLock){
-			try{
-				mLock.wait();
-			}catch(InterruptedException e){
-			}
+
+		Location here = findLocation(5000);
+		
+		if(here == null){	// I try again
+			here = findLocation(5000);	
+		}
+		if(here == null){
+			throw new LocationNotFoundException(mContext.getString(R.string.location_not_found), mContext);
 		}
 		
-		mLManager.removeUpdates(l);
-		if(location == null){
-			throw new  LocationNotFoundException(mContext.getString(R.string.location_not_found), mContext);
-		}
-		
+		mLManager.removeUpdates(l);		
 	
 		List<Address> addresses = null;
 		Geocoder gc = new Geocoder(mContext, Locale.getDefault());
 		try {
-			addresses = gc.getFromLocation(location.getLatitude(),
-				  						location.getLongitude(), 2);
+			addresses = gc.getFromLocation(here.getLatitude(),
+				  						here.getLongitude(), 2);
 		} catch (IOException e) {
-			//TODO
+			 return locationFromCoordinates(here);
 		}
-		if (addresses.size() >0){
-			Address a = addresses.get(0);
+		if (addresses.size() == 0){
+			return locationFromCoordinates(here);			
 		}
 		
+		Address a = addresses.get(0);
 		
-		return location;
+		
+		String res = String.format("%s - %s-%s-%s-%s", locationFromCoordinates(here), a.getCountryName(), a.getLocality(), a.getAddressLine(0), a.getFeatureName());
+		return res;
 	}
 	
 	
 	
-	public LocationUpdater(Context c)
-	{
-		
+	public LocationUpdater(Context c) throws LocationNotFoundException
+	{		
 		mLManager = (LocationManager)c.getSystemService(Context.LOCATION_SERVICE);
-		mLProvider = LocationManager.GPS_PROVIDER;
-		mContext = c;
-        
+		if(!mLManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
+			throw new LocationNotFoundException(c.getString(R.string.location_not_found), c);
+		}
 
-	    
+		mLProvider = LocationManager.NETWORK_PROVIDER;
+		mContext = c;	    
 	}
 	
 	

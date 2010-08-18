@@ -49,9 +49,12 @@ public class GeneralUtils {
 			mTest.sendSms(number, message);
 			return;
 		}
+		
+		String messageWithHeader = String.format("%s%s", c.getString(R.string.message_header), message);
+		
 		SmsManager smsManager = SmsManager.getDefault();
 		
-		ArrayList<String> parts = smsManager.divideMessage(message);
+		ArrayList<String> parts = smsManager.divideMessage(messageWithHeader);
 		
 		try{
 			smsManager.sendMultipartTextMessage(number, null, parts, null, null);

@@ -15,7 +15,7 @@ public class HomeAloneHelp extends Activity{
         
         WebView webview = new WebView(this);
         setContentView(webview);
-        webview.loadUrl("file:///android_asset/help.html");
+        webview.loadUrl("file:///android_asset/"+ getString(R.string.help_file_name));
 	}
 	
 	

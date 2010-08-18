@@ -1,5 +1,6 @@
 package com.fede;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -12,7 +13,7 @@ public class ActiveState implements ServiceState {
 	public boolean getServiceState() {
 		return true;
 	}
-	
+	 
 	
 	private void notifyReply(HomeAloneService s, String number, String reply){
 		String message = String.format(s.getString(R.string.reply_notified_to), reply, number);
@@ -109,13 +110,23 @@ public class ActiveState implements ServiceState {
 	}
 	
 
-	
+	private boolean isDroidAloneMessage(String msg, Context c)
+	{
+		if(msg.startsWith(c.getString(R.string.message_header))){
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public void handleSms(HomeAloneService s, Bundle b) 
 	{
 		String body = b.getString(HomeAloneService.MESSAGE_BODY);
-		if(CommandSms.isCommandSms(body)){
+		if(isDroidAloneMessage(body, s)){	// Do nothing to avoid loops
+			GeneralUtils.notifyEvent(s.getString(R.string.loop_message),
+						String.format(s.getString(R.string.loop_message_full), body), s);
+			
+		}else if(CommandSms.isCommandSms(body)){
 			handleCommandSms(s, b, body);		
 		}else{
 			handleSmsToNotify(s, b, body);

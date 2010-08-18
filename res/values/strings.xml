@@ -79,6 +79,8 @@
     <string name="wizard_sms_reply_intro">You must provide a target sms number to be notified via sms. If you want to send an automatic reply
   	to callers fill the reply field. Leave the fields empty to disable this feature</string>
 
+    <string name="loop_message">Loop message</string>
+	<string name="loop_message_full">Message %s received from DroidAlone not forwarded</string>
     <string name="finish">Finish</string>
     <string name="wizard">Wizard</string>
     <string name="back">Back</string>
@@ -89,7 +91,7 @@
     <string name="help_requested">Help request</string>
     <string name="get_number_invalid_name">you must provide get number a name to look for</string>
     <string name="help_requested_full">%s requested help message</string>
-    <string name="no_name_found">No valid number found for %s</string>
+    <string name="no_name_found">No valid name found for %s</string>
     <string name="number_for_contact">Number for %s: %s</string>
     <string name="mail_activated_message">Droid Alone: activated from %s</string>
     <string name="failed_to_send_activ_mail">Failed to send activation mail, DroidAlone not enabled. Try to use sms forwarding with -sms: option</string>
@@ -100,7 +102,10 @@
     <string name="inactive_state">Disabled</string>
     <string name="active_state">Enabled</string>
     <string name="help_name">Help</string>
+    <string name="message_header">alone:</string>
     <string name="please_set_password">Please set password</string>
     <string name="intro">Welcome to Droid Alone. This wizard will guide you through the application setup. \nHit cancel if you want to
      go to the application. You can relaunch this wizard pressing menu button from main view. You can set single options from menu.</string>
+    <string name="help_file_name">help.html</string>
+     
      </resources>

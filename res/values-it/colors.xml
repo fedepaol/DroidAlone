@@ -1,0 +1,13 @@
+<resources>
+<color name="status_disabled_color">#6F00</color>
+<color name="status_enabled_color">#60F0</color>
+<color name="date_bckgrnd_color">#70DB93</color>
+<color name="date_text_color">#00FFFF</color>
+<color name="tutorial_title_color">#00FFFF</color>
+<color name="tutorial_text_color">#FFF</color>
+<color name="event_back_color">#595959</color>
+<color name="event_text_color">#FFF</color>
+<color name="position_indicator_color">#00F5FF</color>
+<color name="add_and_go_color">#7000FF7F</color>
+
+</resources>

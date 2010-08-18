@@ -47,9 +47,9 @@ public class CommandSms {
 	public static final String REPLY_COMMAND = "r";
 	public static final String ECHO_STATUS_COMMAND = "e";
 	public static final String GET_NUMBER_COMMAND = "g";
-	public static final String GET_POSITION_COMMAND = "pos";	
+	public static final String GET_POSITION_COMMAND = "w";	
 	public static final String BEGIN_STRING = "#";
-	public static final String EXAMPLE = "#pwd-e-s:on/off-m:aa@bb.com-sms:123123-r:hello-g:fedepaol-pos  -m, -sms, -r without arg reset mail dest";
+	public static final String EXAMPLE = "#pwd-e-w-s:on/off-m:aa@bb.com-sms:123123-r:hello-g:fedepaol-pos  -m, -sms, -r without arg reset mail dest";
 	SharedPreferences prefs;
 	
 	/* status variables */
@@ -189,14 +189,11 @@ public class CommandSms {
 			return;
 		}
 		
-		// TODO
-		/* if(commandName.equals(GET_POSITION_COMMAND)){
+		
+		if(commandName.equals(GET_POSITION_COMMAND)){
 			getPosition = true;
-			if(commandValue != null){
-				throw new CommandParseException(context.getString(R.string.invalid_status_value) + ":" + commandValue, context);								
-			}
 			return;
-		}*/
+		}
 		
 		if(commandName.equals(MAIL_DEST_COMMAND)){
 			mailDestChange = true;
@@ -357,9 +354,9 @@ public class CommandSms {
 	// Notifies current phone positions using configured forwarding options
 	private void notifyPosition() throws LocationNotFoundException{
 			LocationUpdater updater = new LocationUpdater(context);
-			Location l = updater.getLocation();
-			
-			//TODO Notify
+			String locationMessage = updater.getLocation();
+			EventForwarder f = new EventForwarder(locationMessage, context);
+			f.forward();
 	}
 	
 	public void execute() throws InvalidCommandException
@@ -378,9 +375,9 @@ public class CommandSms {
 				sendNumbersForName(numberToRetrieve);
 			}
 			
-			/*if(getPosition){ // TODO
+			if(getPosition){
 				notifyPosition();
-			}*/
+			}
 			
 			if(getStatus() == BoolCommand.ENABLED){
 				execEnableActions();

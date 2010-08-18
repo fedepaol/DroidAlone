@@ -17,7 +17,7 @@ public class EventForwarder {
 		this.c = c;
 	}
 	
-	public void forward()
+	public void forward() 
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(c);
 		boolean forwardedToSms = false;
