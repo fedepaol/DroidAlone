@@ -1,6 +1,7 @@
 package com.fede;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -43,11 +44,25 @@ public class HomeAlone extends Activity {
     		}
     	};
     	
+    	performFirstLaunch();
+    	
+    	
+    }
+    
+    
+    private void performFirstLaunch(){
+    	if(PrefUtils.showChangeLog(this)){
+    	   	AlertDialog.Builder ad = new AlertDialog.Builder(this); 
+    	   	ad.setTitle(R.string.change_log_title);
+        	ad.setMessage(R.string.change_log); 
+        	ad.setPositiveButton(R.string.ok_name,null);
+        	ad.show();
+    	}
+    	
     	if(PrefUtils.showWizard(this)){
     		launchWizard();
     	}
-    }
-    
+	}
     
 	@Override
 	protected void onPause() {		

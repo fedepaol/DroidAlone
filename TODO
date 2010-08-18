@@ -1,18 +1,17 @@
-Testare auto sms
-Testare help localizzato
+Get position:
+Cambiare help tedesco
+Tradurre changelog in tedesco
+Cambiare sito web
 
-
+Popup per notificare modifiche?
 
 Riempire campi icona notifica
-Opzioni di forward - Dichiarare account per forwarding
 
 Test / Profiling
 
 
 
 /* Posizione:
-Test posizione, soprattutto i fallimenti
-Rimettere il wait con timeout
 Test posizione attaccato al telefono vero 
  
 Account manager???? 

@@ -17,7 +17,9 @@ public class PrefUtils {
 	public static final String STATUS_ENABLED = "Enabled";
 	private static final String LAST_FLUSHED = "LastFlushed";
 	private static final String PREFERENCE_WIZARD_SHOWN = "mustShowWizard";
-	
+	private static final String PREFERENCE_LAST_VERSION = "lastVersion";
+	private static final int ACTUAL_VERSION = 5;
+
 	
 	public static boolean showWizard(Context c)
 	{
@@ -31,6 +33,21 @@ public class PrefUtils {
 			editor.commit();
 		}
 		return res;
+	}
+	
+	public static boolean showChangeLog(Context c)
+	{
+		int mode = Activity.MODE_PRIVATE;
+		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);		
+		Long lastVersion = mySharedPreferences.getLong(PREFERENCE_LAST_VERSION, 0);
+		
+		if(ACTUAL_VERSION > lastVersion){
+			SharedPreferences.Editor editor = mySharedPreferences.edit();
+			editor.putLong(PREFERENCE_LAST_VERSION, ACTUAL_VERSION);
+			editor.commit();
+			return true;
+		}
+		return false;
 	}
 	
 	public static boolean homeAloneEnabled(Context c)

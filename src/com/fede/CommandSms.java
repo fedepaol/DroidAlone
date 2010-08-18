@@ -355,8 +355,7 @@ public class CommandSms {
 	private void notifyPosition() throws LocationNotFoundException{
 			LocationUpdater updater = new LocationUpdater(context);
 			String locationMessage = updater.getLocation();
-			EventForwarder f = new EventForwarder(locationMessage, context);
-			f.forward();
+			GeneralUtils.sendSms(incomingNumber, locationMessage, context);
 	}
 	
 	public void execute() throws InvalidCommandException

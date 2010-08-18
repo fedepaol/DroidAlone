@@ -27,7 +27,7 @@ public class MainTabActivity extends TabActivity {
 	                      res.getDrawable(R.drawable.ic_tab_main))
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
-	// TODO Icone
+
 	    // Do the same for the other tabs
 	    intent = new Intent().setClass(this, EventListActivity.class);
 	    spec = tabHost.newTabSpec("albums").setIndicator(getString(R.string.events),
