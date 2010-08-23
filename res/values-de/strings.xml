@@ -16,11 +16,11 @@
     <string name="sms_to_forward">SMS-Empfänger</string>
     <string name="sms_to_forward_summary">SMS-Nummer, an die weitergeleitet wird</string>
     <string name="sms_to_forward_key">NUMBER_TO_FORWARD</string>
-    <string name="reply_enable">\'Bin abwesend\' Mitteilung</string>
+    <string name="reply_enable">\'Bin nicht erreichbar\'</string>
     <string name="reply_enable_summary">Aktiviert die Abwesenheits-Mitteilung</string>
     <string name="reply_enable_key">ENABLE_REPLY</string>
     <string name="reply_category">Antwort-Mitteilung</string>
-    <string name="reply">Antwort auf eingehende Anrufe</string>
+    <string name="reply">Abwesenheits-Mitteilung</string>
     <string name="reply_name">Antwort</string>
     <string name="reply_summary">Antwort, die zurückgesandt wird</string>
     <string name="reply_key">REPLY</string>
@@ -31,13 +31,13 @@
     <string name="gmail_user_summary">User-ID des Accounts, der für die Mail-Weiterleitung genutzt wird</string>
     <string name="gmail_user_key">gmail_user</string>
     <string name="call_from">Anruf von %s %s</string>
-    <string name="activate">Aktiviert</string>
-    <string name="deactivate">Deaktiviert</string>
+    <string name="activate">Aktivieren</string>
+    <string name="deactivate">Deaktivieren</string>
     <string name="options">Optionen</string>
     <string name="forwarding_options">Weiterleitungs-Optionen</string>
     <string name="forwarding_options_summary">Weiterleitungs-Optionen für eingehende Anrufe und SMS</string>
     <string name="gmail_account_options">Gmail-Account</string>
-    <string name="gmail_account_screen_summary">Gmail-Account User und PW</string>
+    <string name="gmail_account_screen_summary">Gmail-Account User und Passwort</string>
     <string name="not_valid_number_message">ist keine gültige Telefonnummer</string>
     <string name="not_valid_mail_message">ist keine gültige Mail-Adresse</string>
     <string name="status_expect_value">Mögliche Parameter sind on oder off</string>
@@ -52,16 +52,16 @@
     <string name="invalid_mail_user">Mail-User fehlt, Mail-Weiterleitung kann nicht aktiviert werden</string>
     <string name="invalid_mail_pwd">Mail-Passwort fehlt, Mail-Weiterleitung kann nicht aktiviert werden</string>
     <string name="network_not_available">Keine Netzwerkverbindung</string>
-    <string name="home_alone_event">Droid Alone Aktivitäten</string>
-    <string name="events">Eingehende Aktivitäten</string>
+    <string name="home_alone_event">DroidAlone Aktivitäten</string>
+    <string name="events">Aktivitäten</string>
     <string name="delete_all">Alle löschen</string>
     <string name="forwarding_not_enabled">Mindestens eine Weiterleitungs-Funktion muss aktiviert sein</string>
     <string name="event_list">Überwachte Aktivitäten</string>
-    <string name="reply_notified_to">Antwort %s weitergeleitet an %s</string>
-    <string name="sent_via_sms">Per SMS übermittelt</string>
+    <string name="reply_notified_to">Antwort: %s gesendet an: %s</string>
+    <string name="sent_via_sms">Per SMS übermittelt an:</string>
     <string name="name_not_found">Name nicht gefunden</string>
     <string name="name_not_valid_numbers">Zum übermittelten Namen sind keine Telefonnummern erfasst</string>
-    <string name="sent_via_mail">Per Mail übermittelt</string>
+    <string name="sent_via_mail">Per Mail übermittelt an:</string>
     <string name="command_executed">Befehl ausgeführt. Empfangen von </string>
     <string name="incoming_sms">Eingehende SMS</string>
     <string name="failed_to_send_email_to">Fehler beim Senden der Mail an </string>
@@ -72,16 +72,15 @@
     <string name="to">an</string>
     <string name="next">Weiter</string>
     <string name="cancel">Abbrechen</string>
-    <string name="tutorial_title">Droid Alone Wizard</string>
+    <string name="tutorial_title">DroidAlone Wizard</string>
     <string name="wizard_mail_title">Mail-Weiterleitungs-Einstellungen</string>
-    <string name="wizard_mail_intro">HomeAlone benötigt deine GMail User-ID und Passwort um Mails zu versenden. Als Mail-Empfänger kann eine beliebige Mail-Adresse gewählt werden. Felder leer lassen zum Deaktivieren der Funktion</string>
+    <string name="wizard_mail_intro">DroidAlone benötigt deine Gmail User-ID und das Gmail Account Passwort um Mails zu versenden. Als Mail-Empfänger kann eine beliebige Mail-Adresse gewählt werden. Felder leer lassen zum Deaktivieren der Funktion.</string>
     <string name="wizard_sms_reply_title">SMS Einstellungen</string>
-    <string name="wizard_sms_reply_intro">Du musst einen SMS Empfänger angeben, um per SMS informiert zu werden. Wenn du Anrufern automatisch antworten möchtest, bitte Antwort-Feld ausfüllen.Felder leer lassen zum Deaktivieren der Funktion</string>
-
+    <string name="wizard_sms_reply_intro">Du musst einen SMS Empfänger angeben, um per SMS informiert zu werden. Wenn du Anrufern automatisch antworten möchtest, bitte die Abwesenheits-Mitteilung ausfüllen. Felder leer lassen zum Deaktivieren der Funktion.</string>
     <string name="finish">Beenden</string>
     <string name="wizard">Wizard</string>
     <string name="back">Zurück</string>
-    <string name="empty_password">Passworkann nicht leer sein</string>
+    <string name="empty_password">Passwort kann nicht leer sein</string>
     <string name="empty_mail_values">Alle Werte müssen ausgefüllt sein, ansonsten wird die Mail-Weiterleitung deaktiviert. OK um Deaktivierung zu bestätigen, Abbrechen um Einstellungen zu ändern</string>
     <string name="empty_sms_number">SMS Nummer eingeben, ansonsten wird die SMS-Weiterleitung deaktiviert. OK um Deaktivierung zu bestätigen, Abbrechen um Einstellungen zu ändern</string>
    <string name="reply_notified">Automatische Antwort gesendet</string>
@@ -90,7 +89,7 @@
     <string name="help_requested_full">%s hat Hilfe angefordert</string>
     <string name="no_name_found">Keine gültige Nummer gefunden für %s</string>
     <string name="number_for_contact">Nummer für %s: %s</string>
-    <string name="mail_activated_message">Droid Alone: aktiviert von %s</string>
+    <string name="mail_activated_message">DroidAlone: aktiviert von %s</string>
     <string name="failed_to_send_activ_mail">Aktivierungs-Mail konnte nicht gesendet werden, DroidAlone ist deaktiviert. SMS Weiterleitung mit -sms: Option verwenden</string>
     <string name="flushed_calls">Verpasst von %s %s um %s</string>
     <string name="already_enabled_error">Bereits aktiviert</string>
@@ -100,10 +99,6 @@
     <string name="active_state">Aktiviert</string>
     <string name="help_name">Hilfe</string>
     <string name="please_set_password">Bitte Passwort eingeben</string>
-    <string name="intro">Willkommen bei Droid Alone. Dieser Wizard wird dich durch die Einstellungen führen. \nAbbrechen, um den Wizard zu verlassen. Wizard kann durch Drücken der Menü-Taste im Hauptbildschirm jederzeit gestartet werden. In den Optionen können einzelne Einstellungen geändert werden.</string>
-    <string name="help_file_name">help_de.html</string>
-    <string name="loop_message">Loop Warnung</string>
-    <string name="message_header">alone:</string>
-    
-    <string name="loop_message_full">Eigene Mitteilung %s von DroidAlone nicht weitergeleitet </string>
-     </resources>
+    <string name="intro">Willkommen bei DroidAlone. Dieser Wizard wird dich durch die Einstellungen führen. \nAbbrechen wählen, um den Wizard zu verlassen. Dieser Wizard kann jederzeit durch Drücken der Menü-Taste im Hauptbildschirm gestartet werden. In den Optionen können einzelne Einstellungen geändert werden.</string>
+	<string name="change_log">Version 1.5: Positions-Befehl hinzugefügt. Auf den Befehl -w übermittelt  das Smartphone seine Position (Längengrad, Breitengrad und wenn möglich Adresse)</string>
+</resources>
