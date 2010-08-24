@@ -81,6 +81,12 @@ public class LocationUpdater {
 		try {
 			addresses = gc.getFromLocation(here.getLatitude(),
 				  						here.getLongitude(), 2);
+			if (addresses.size() == 0){				
+				SystemClock.sleep(1000);
+				addresses = gc.getFromLocation(here.getLatitude(),
+						here.getLongitude(), 2);
+			}
+			
 		} catch (IOException e) {
 			 return locationFromCoordinates(here);
 		}

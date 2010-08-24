@@ -54,7 +54,7 @@ import javax.mail.internet.MimeMessage;
      }  
    
      public synchronized void sendMail(String subject, String body, String sender, String recipients) throws Exception {  
-         MimeMessage message = new MimeMessage(session);  
+    	 MimeMessage message = new MimeMessage(session);  
          DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));  
          message.setSender(new InternetAddress(sender));  
          message.setSubject(subject);  
