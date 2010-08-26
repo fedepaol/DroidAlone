@@ -99,6 +99,10 @@
     <string name="active_state">Aktiviert</string>
     <string name="help_name">Hilfe</string>
     <string name="please_set_password">Bitte Passwort eingeben</string>
+    <string name="help_file_name">help_de.html</string>
+    <string name="loop_message">Loop Warnung</string>
+    <string name="message_header">alone:</string>    
+    <string name="loop_message_full">Eigene Mitteilung %s von DroidAlone nicht weitergeleitet </string>
     <string name="intro">Willkommen bei DroidAlone. Dieser Wizard wird dich durch die Einstellungen führen. \nAbbrechen wählen, um den Wizard zu verlassen. Dieser Wizard kann jederzeit durch Drücken der Menü-Taste im Hauptbildschirm gestartet werden. In den Optionen können einzelne Einstellungen geändert werden.</string>
 	<string name="change_log">Version 1.5: Positions-Befehl hinzugefügt. Auf den Befehl -w übermittelt  das Smartphone seine Position (Längengrad, Breitengrad und wenn möglich Adresse)</string>
 </resources>
