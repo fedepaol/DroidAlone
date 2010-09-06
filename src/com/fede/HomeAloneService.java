@@ -12,6 +12,7 @@ public class HomeAloneService extends IntentService {
 	public static final String PHONE_RINGING = "Received Call";	
 	public static final String NUMBER = "Number";
 	public static final String PHONE_IDLE = "Idle";
+	public static final String HANDLING_CALL = "On Call";
 	
 	public static final String RECEIVED_SMS = "Received Sms";
 	public static final String MESSAGE_BODY = "Message body";
@@ -65,6 +66,10 @@ public class HomeAloneService extends IntentService {
 		}
 		if(type.equals(PHONE_IDLE)){
 			state.handlePhoneIdle(this);
+		}
+		
+		if(type.equals(HANDLING_CALL)){
+			state.handlePhoneOffHook(this);
 		}
 
 		

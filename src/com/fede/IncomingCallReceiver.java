@@ -24,6 +24,14 @@ public class IncomingCallReceiver extends BroadcastReceiver {
 									 HomeAloneService.PHONE_IDLE);
 			context.startService(myServiceIntent);
 		}
+		
+		if(type.equals(android.telephony.TelephonyManager.EXTRA_STATE_OFFHOOK)){
+			Intent myServiceIntent = new Intent(context, HomeAloneService.class);
+			
+			myServiceIntent.putExtra(HomeAloneService.EVENT_TYPE, 
+									 HomeAloneService.HANDLING_CALL);
+			context.startService(myServiceIntent);
+		}
 	}
 	
 	private void notifyIncomingNumber(Context context, String number){

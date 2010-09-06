@@ -12,6 +12,9 @@ public interface ServiceState {
 	// handles idle phone event
 	public void handlePhoneIdle(HomeAloneService s);
 	
+	//handles phone off hook event
+	public void handlePhoneOffHook(HomeAloneService s);
+	
 	// tells the value to store in the service state
 	public boolean getServiceState();
 }

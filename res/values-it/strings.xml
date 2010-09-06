@@ -107,6 +107,11 @@
     <string name="intro">Benvenuto su Droid Alone. Questo wizard ti guiderà attraverso il setup dell\'applicazione. \nPremi cancella se vuoi andare direttamente all\'applicazione. Puoi rilanciare questo wizard in ogni momento dal menu della pagina principale. Le singole opzioni possono essere impostate dal menu.</string>
     <string name="help_file_name">help_it.html</string>
     <string name="change_log_title">Changelog</string>
-    <string name="change_log">Version 1.5: Aggiunto comando per ottenere la posizione. Adesso si può inviare un comando -w e il telefono risponderà con la sua latitudine e longitudine e con il suo indirizzo</string>
+    <string name="change_log">Version 1.6: Aggiunta opzione per scartare le telefonate gestite. Si può scegliere di essere notificati o meno delle telefonate a cui si è risposto mentre DroidAlone era attivo</string>
+     <string name="skip_handled_key">skiphandled</string>
+     <string name="skip_handled_calls">Scarta telefonate gestite</string>
+     <string name="skip_handled_summary">Non notifica le telefonate gestite</string>
+     <string name="skipped">Scartata:</string>
+     <string name="skipped_call">Chiamata scartata</string>
          
      </resources>

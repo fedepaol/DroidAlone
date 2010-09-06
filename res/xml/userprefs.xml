@@ -42,5 +42,8 @@ android:key="@string/password_key" android:title="@string/password" android:summ
 	android:key="@string/reply_key" android:title="@string/reply" android:summary="@string/reply_summary"
 	/> 
 </PreferenceCategory>
+<CheckBoxPreference
+	android:key="@string/skip_handled_key" android:title="@string/skip_handled_calls" android:summary="@string/skip_handled_summary" android:defaultValue="false"
+	/> 
 
 </PreferenceScreen>

@@ -1,8 +1,10 @@
 package com.fede;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import com.fede.MessageException.InvalidCommandException;
 import com.fede.Utilities.GeneralUtils;
@@ -63,6 +65,12 @@ public class ActiveState implements ServiceState {
 		sendReply(s, number);
 		return;
 
+	}
+	
+	private void notifySkippedCall(String number, HomeAloneService s, DbAdapter dbHelper){
+		String callString = s.getString(R.string.call_from);
+		String msg = s.getString(R.string.skipped) + " " + String.format(callString, getCallerNameString(number, s), number);
+		GeneralUtils.notifyEvent(s.getString(R.string.skipped_call), msg, s, dbHelper);
 	}
 	
 	@Override
@@ -131,6 +139,32 @@ public class ActiveState implements ServiceState {
 		}else{
 			handleSmsToNotify(s, b, body);
 		}
+	}
+
+
+	@Override
+	public void handlePhoneOffHook(HomeAloneService s) {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(s);
+		if(PrefUtils.getBoolPreference(prefs, R.string.skip_handled_key, s) == false)
+			return;
+		
+		DbAdapter db = new DbAdapter(s);
+		db.open();
+		
+		Cursor c = db.getAllCalls();
+		if (c.moveToFirst()) {
+            do{           
+            	String number = c.getString(DbAdapter.CALL_NUMBER_DESC_COLUMN);
+            	if(number == null){
+            		number = "unknown number";
+            	}
+               notifySkippedCall(number, s, db);	
+            } while (c.moveToNext());
+         }
+		c.close();
+		db.removeAllCalls();
+		db.close();
+		
 	}
 
 }

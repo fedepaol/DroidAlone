@@ -50,4 +50,10 @@ public class InactiveState implements ServiceState {
 		
 	}
 
+	@Override
+	public void handlePhoneOffHook(HomeAloneService s) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

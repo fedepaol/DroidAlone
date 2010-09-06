@@ -18,7 +18,7 @@ public class PrefUtils {
 	private static final String LAST_FLUSHED = "LastFlushed";
 	private static final String PREFERENCE_WIZARD_SHOWN = "mustShowWizard";
 	private static final String PREFERENCE_LAST_VERSION = "lastVersion";
-	private static final int ACTUAL_VERSION = 5;
+	private static final int ACTUAL_VERSION = 6;
 
 	
 	public static boolean showWizard(Context c)
