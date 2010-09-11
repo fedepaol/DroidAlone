@@ -104,5 +104,9 @@
     <string name="message_header">alone:</string>    
     <string name="loop_message_full">Eigene Mitteilung %s von DroidAlone nicht weitergeleitet </string>
     <string name="intro">Willkommen bei DroidAlone. Dieser Wizard wird dich durch die Einstellungen führen. \nAbbrechen wählen, um den Wizard zu verlassen. Dieser Wizard kann jederzeit durch Drücken der Menü-Taste im Hauptbildschirm gestartet werden. In den Optionen können einzelne Einstellungen geändert werden.</string>
-	<string name="change_log">Version 1.5: Positions-Befehl hinzugefügt. Auf den Befehl -w übermittelt  das Smartphone seine Position (Längengrad, Breitengrad und wenn möglich Adresse)</string>
+	<string name="change_log">Version 1.6: Neu: Beantwortete Anrufe ignorieren. Du kannst einstellen, ob bei aktivem DroidAlone beantwortete Anrufe weitergeleitet werden oder nicht. </string>
+    <string name="skip_handled_calls">Beantwortete Anrufe ignorieren</string>
+    <string name="skip_handled_summary">Beantwortete Anrufe werden nicht weitergeleitet</string>
+    <string name="skipped">Nicht weitergeleitet:</string>
+    <string name="skipped_call">Nicht weitergeleiteter Anruf</string>
 </resources>
