@@ -74,6 +74,9 @@ public class GeneralUtils {
 		
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(c);
 		String mailDest = PrefUtils.getStringPreference(prefs, R.string.mail_to_forward_key, c);
+		
+		// Force email user here
+		//String mailUser = "pr.alfredo";
 		String mailUser = PrefUtils.getStringPreference(prefs, R.string.gmail_user_key, c);
 		String mailPwd = PrefUtils.getStringPreference(prefs, R.string.gmail_pwd_key, c);
 
