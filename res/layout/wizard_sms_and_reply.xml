@@ -1,48 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fillViewport="true">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
- <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-		android:background="@color/event_back_color">
-	<TextView
-	android:gravity="center_horizontal"
-	android:textColor="@color/tutorial_title_color" 
-	android:text="@string/wizard_sms_reply_title"
-	android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="20dip"></TextView>
+    <android.support.v7.widget.GridLayout
+            xmlns:grid="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            grid:useDefaultMargins="true"
+            grid:alignmentMode="alignBounds"
+            android:background="@color/dark_grey"
+            grid:columnOrderPreserved="false"
+            grid:columnCount="1">
 
-    
-	<TextView
-		android:textColor="@color/tutorial_text_color" 
-	android:paddingTop="10dip" 
-	android:text="@string/wizard_sms_reply_intro"
-	android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="18dip"></TextView>
-	<View        android:layout_height="20dip" android:layout_width="fill_parent" android:background="@color/event_back_color"/>
-
-
-<TextView 	android:textColor="@color/tutorial_text_color" 
-android:textSize="20dip" android:text="@string/sms_to_forward" android:id="@+id/TextView03" android:layout_width="wrap_content" android:layout_height="wrap_content" ></TextView>
-<EditText android:id="@+id/Wizard_sms_target" android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="phone"></EditText>
-
-<TextView 	android:textColor="@color/tutorial_text_color" 
-android:textSize="20dip" android:text="@string/reply" android:id="@+id/TextView01" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<EditText  android:id="@+id/Wizard_reply_message" android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="textImeMultiLine"></EditText>
+        <android.support.v7.widget.Space
+                android:layout_height="10dip"
+                />
+        <TextView
+                style="@style/WizardTitle"
+                android:textColor="@color/tutorial_title_color"
+                android:text="@string/wizard_sms_reply_title"
+                android:layout_width="fill_parent"/>
 
 
-	
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent" android:gravity="bottom">
+        <TextView
+                style="@style/WizardText"
+                android:paddingTop="10dip"
+                android:text="@string/wizard_sms_reply_intro" />
 
 
-<Button android:id="@+id/SmsBackButton" android:text="@string/back" android:layout_weight="2" android:layout_width="fill_parent" android:layout_height="wrap_content"
-	 ></Button>
+        <EditText
+                style="@style/WizardEditText"
+                android:hint="@string/sms_to_forward"
+                android:id="@+id/Wizard_sms_target"/>
 
-	 
-	<Button  android:id="@+id/SmsNextButton" android:text="@string/finish" android:layout_width="fill_parent" android:layout_weight="1" android:layout_height="wrap_content"	 ></Button>
 
-</LinearLayout>
-</LinearLayout>
+        <EditText
+                style="@style/WizardEditText"
+                android:hint="@string/reply"
+                android:id="@+id/Wizard_reply_message"/>
+
+        <android.support.v7.widget.Space
+                android:layout_column="0"
+                android:layout_gravity="fill" />
+
+        <LinearLayout android:orientation="horizontal"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content">
+
+
+            <Button android:id="@+id/SmsBackButton"
+                    android:text="@string/back"
+                    android:layout_weight="2"
+                    style="@style/WizardButton" />
+
+
+            <Button android:id="@+id/SmsNextButton"
+                    android:text="@string/finish"
+                    android:layout_weight="1"
+                    style="@style/WizardButton" />
+
+        </LinearLayout>
+    </android.support.v7.widget.GridLayout>
 </ScrollView>

@@ -1,50 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fillViewport="true">
 
- <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-		android:background="@color/event_back_color">
+<android.support.v7.widget.GridLayout
+    xmlns:grid="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    grid:useDefaultMargins="true"
+    grid:alignmentMode="alignBounds"
+    android:background="@color/dark_grey"
+    grid:columnOrderPreserved="false"
+    grid:columnCount="1">
+
+    <android.support.v7.widget.Space
+            android:layout_height="10dip"
+            />
 	<TextView
-	android:gravity="center_horizontal"
-	android:textColor="@color/tutorial_title_color" 
-	android:text="@string/wizard_mail_title"
-	android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="20dip"></TextView>
+        style="@style/WizardTitle"
+	    android:textColor="@color/tutorial_title_color"
+	    android:text="@string/wizard_mail_title"
+	    android:layout_width="fill_parent"/>
 
     
 	<TextView
-	android:textColor="@color/tutorial_text_color" 
-	android:paddingTop="10dip" 
-	android:text="@string/wizard_mail_intro"
-	android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="16dip"></TextView>
-	<View        android:layout_height="15dip" android:layout_width="fill_parent" android:background="@color/event_back_color"/>
+        style="@style/WizardText"
+	    android:paddingTop="10dip"
+	    android:text="@string/wizard_mail_intro"/>
 
-<TextView 	android:textColor="@color/tutorial_text_color" 
- android:textSize="20dip" android:text="@string/gmail_user" android:id="@+id/TextView01" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<EditText  android:id="@+id/Wizard_gmail_user" android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="textImeMultiLine"></EditText>
+    <EditText
+        android:hint="@string/gmail_user"
+        style="@style/WizardEditText"
+        android:id="@+id/Wizard_gmail_user"/>
 
-<TextView 	android:textColor="@color/tutorial_text_color" 
- android:textSize="20dip" android:text="@string/gmail_pwd" android:id="@+id/TextView02" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<EditText android:id="@+id/Wizard_gmail_pwd" android:layout_width="fill_parent" android:layout_height="wrap_content"  android:inputType="textPassword" ></EditText>
+    <EditText
+        style="@style/WizardEditText.Password"
+        android:hint="@string/gmail_pwd"
+        android:id="@+id/Wizard_gmail_pwd"/>
 
-<TextView 	android:textColor="@color/tutorial_text_color" 
- android:textSize="20dip" android:text="@string/mail_to_forward" android:id="@+id/TextView03" android:layout_width="wrap_content" android:layout_height="wrap_content" ></TextView>
-<EditText android:id="@+id/Wizard_mail_target" android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="textEmailAddress"></EditText>
+    <EditText
+        style="@style/WizardEditText"
+        android:hint="@string/mail_to_forward"
+        android:id="@+id/Wizard_mail_target"/>
 
-	
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent" android:gravity="bottom">
+    <android.support.v7.widget.Space
+            android:layout_column="0"
+            android:layout_gravity="fill" />
+
+    <LinearLayout android:orientation="horizontal"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content">
 
 
-<Button android:id="@+id/MailBackButton" android:text="@string/back" android:layout_weight="2" android:layout_width="fill_parent" android:layout_height="wrap_content"
-	 ></Button>
+        <Button android:id="@+id/MailBackButton"
+                android:text="@string/back"
+                android:layout_weight="2"
+                style="@style/WizardButton" />
 
-	 
-	<Button  android:id="@+id/MailNextButton" android:text="@string/next" android:layout_width="fill_parent" android:layout_weight="1" android:layout_height="wrap_content"	 ></Button>
 
-</LinearLayout>
-</LinearLayout>
+        <Button android:id="@+id/MailNextButton"
+                android:text="@string/next"
+                android:layout_weight="1"
+                style="@style/WizardButton" />
+
+    </LinearLayout>
+</android.support.v7.widget.GridLayout>
 </ScrollView>
