@@ -30,7 +30,7 @@
     <string name="gmail_user">Utente Gmail</string>
     <string name="gmail_user_summary">Utente dell\'account da usare per mandare le mail</string>
     <string name="gmail_user_key">gmail_user</string>
-    <string name="call_from">Chiamata da %s %s</string>
+    <string name="call_from">Chiamata da %1$s %2$s</string>
     <string name="activate">Abilita</string>
     <string name="deactivate">Disabilita</string>
     <string name="options">Opzioni</string>
@@ -46,8 +46,8 @@
     <string name="empty_reply_message">Reply is empty</string>
     <string name="ok_name">Ok</string>
     <string name="error_name">Error</string>
-    <string name="not_valid_number_message_full">%s non è un numero di telefono valido, correggerlo</string>
-    <string name="not_valid_mail_message_full">%s non è un indirizzo di posta valido, correggerlo</string>
+    <string name="not_valid_number_message_full">%1$s non è un numero di telefono valido, correggerlo</string>
+    <string name="not_valid_mail_message_full">%1$s non è un indirizzo di posta valido, correggerlo</string>
     <string name="invalid_mail_user_full">Utente Gmail o password vuoti, per favore riempirli nella sezione account</string>
     <string name="invalid_mail_user">L\'utente email non è impostato, non si può abilitare l\'inoltro via mail</string>
     <string name="invalid_mail_pwd">La password dell\'email non è impostata, non si può abilitare l\'inoltro via mail</string>
@@ -57,7 +57,7 @@
     <string name="delete_all">Cancella tutto</string>
     <string name="forwarding_not_enabled">Almeno un tipo di inoltro deve essere abilitato</string>
     <string name="event_list">Eventi gestiti</string>
-    <string name="reply_notified_to">Risposta %s notificata a %s</string>
+    <string name="reply_notified_to">Risposta %1$s notificata a %2$s</string>
     <string name="sent_via_sms">Inviato via sms</string>
     <string name="name_not_found">Nome non trovato</string>
     <string name="name_not_valid_numbers">Il nome fornito non ha numeri associati</string>
@@ -80,7 +80,7 @@
     riempi il campo relativo. Lascia i campi vuoti per disabilitare questa opzione</string>
 
     <string name="loop_message">Messaggio in loop</string>
-	<string name="loop_message_full">Il messaggio %s ricevuto da DroidAlone non è stato inoltrato</string>
+	<string name="loop_message_full">Il messaggio %1$s ricevuto da DroidAlone non è stato inoltrato</string>
     <string name="finish">Fine</string>
     <string name="wizard">Wizard</string>
     <string name="back">Indietro</string>
@@ -90,12 +90,12 @@
    <string name="reply_notified">Risposta automatica spedita</string>
     <string name="help_requested">Richiesta di Help</string>
     <string name="get_number_invalid_name">Devi fornire al comando get un numero da cercare</string>
-    <string name="help_requested_full">%s ha richiesto un messaggio di help</string>
-    <string name="no_name_found">Non ho trovato un nome valido per %s</string>
-    <string name="number_for_contact">Numero per %s: %s</string>
-    <string name="mail_activated_message">Droid Alone: attivato da %s</string>
+    <string name="help_requested_full">%1$s ha richiesto un messaggio di help</string>
+    <string name="no_name_found">Non ho trovato un nome valido per %1$s</string>
+    <string name="number_for_contact">Numero per %1$s: %2$s</string>
+    <string name="mail_activated_message">Droid Alone: attivato da %1$s</string>
     <string name="failed_to_send_activ_mail">Invio di mail di attivazione fallito, DroidAlone non verrà abilitato. Prova a usare l\'inoltro via sms con -sms:</string>
-    <string name="flushed_calls">Chiamata persa da %s %s ora %s</string>
+    <string name="flushed_calls">Chiamata persa da %1$s %2$s ora %3$s</string>
     <string name="already_enabled_error">Lo stato è già on</string>
     <string name="already_disabled_error">Lo stato è già off</string>
     <string name="location_not_found">Non sono riuscito a trovare la posizione</string>

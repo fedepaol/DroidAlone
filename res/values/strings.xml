@@ -30,7 +30,7 @@
     <string name="gmail_user">Gmail userid</string>
     <string name="gmail_user_summary">User id of the gmail account used to forward</string>
     <string name="gmail_user_key">gmail_user</string>
-    <string name="call_from">Call from %s %s</string>
+    <string name="call_from">Call from %1$s %2$s</string>
     <string name="activate">Activate</string>
     <string name="deactivate">Disable</string>
     <string name="options">Options</string>
@@ -46,8 +46,8 @@
     <string name="empty_reply_message">Reply is empty</string>
     <string name="ok_name">Ok</string>
     <string name="error_name">Error</string>
-    <string name="not_valid_number_message_full">%s is not a valid phone number, please correct it</string>
-    <string name="not_valid_mail_message_full">%s is not a valid email address, please correct it</string>
+    <string name="not_valid_number_message_full">%1$s is not a valid phone number, please correct it</string>
+    <string name="not_valid_mail_message_full">%1$s is not a valid email address, please correct it</string>
     <string name="invalid_mail_user_full">Empty email user or password, please fill them in gmail account section</string>
     <string name="invalid_mail_user">Email user not set, can\'t enable mail forwarding</string>
     <string name="invalid_mail_pwd">Email password not set, can\'t enable mail forwarding</string>
@@ -57,7 +57,7 @@
     <string name="delete_all">Delete all</string>
     <string name="forwarding_not_enabled">At least one forwarding type must be enabled</string>
     <string name="event_list">Managed events</string>
-    <string name="reply_notified_to">Reply %s notified to %s</string>
+    <string name="reply_notified_to">Reply %1$s notified to %2$s</string>
     <string name="sent_via_sms">Sent via sms</string>
     <string name="name_not_found">Name not found</string>
     <string name="name_not_valid_numbers">Provided name does not have any phone number associated</string>
@@ -74,28 +74,28 @@
     <string name="cancel">Cancel</string>
     <string name="tutorial_title">Droid Alone Wizard</string>
     <string name="wizard_mail_title">Mail forwarding settings</string>
-    <string name="wizard_mail_intro">HomeAlone needs your GMail user and password to send emails. The mail recipient may be different from your gmail address. Leave the fields empty to disable this feature</string>
+    <string name="wizard_mail_intro">DroidAlone needs your GMail user and password to send emails. The mail recipient may be different from your gmail address. Leave the fields empty to disable this feature</string>
     <string name="wizard_sms_reply_title">Sms settings</string>
     <string name="wizard_sms_reply_intro">You must provide a target sms number to be notified via sms. If you want to send an automatic reply
   	to callers fill the reply field. Leave the fields empty to disable this feature</string>
 
     <string name="loop_message">Loop message</string>
-	<string name="loop_message_full">Message %s received from DroidAlone not forwarded</string>
+	<string name="loop_message_full">Message %1$s received from DroidAlone not forwarded</string>
     <string name="finish">Finish</string>
     <string name="wizard">Wizard</string>
     <string name="back">Back</string>
     <string name="empty_password">Password cannot be empty</string>
     <string name="empty_mail_values">All values must be filled or mail forwarding will be disabled. Press ok to confirm disabled forwarding, cancel to edit</string>
     <string name="empty_sms_number">Sms number must be filled or forwarding to sms will be disabled. Press ok to continue with forwarding disabled, cancel to edit</string>
-   <string name="reply_notified">Automatic reply sent</string>
+    <string name="reply_notified">Automatic reply sent</string>
     <string name="help_requested">Help request</string>
     <string name="get_number_invalid_name">you must provide get number a name to look for</string>
-    <string name="help_requested_full">%s requested help message</string>
-    <string name="no_name_found">No valid name found for %s</string>
-    <string name="number_for_contact">Number for %s: %s</string>
+    <string name="help_requested_full">%1$s requested help message</string>
+    <string name="no_name_found">No valid name found for %1$s</string>
+    <string name="number_for_contact">Number for %1$s: %2$s</string>
     <string name="mail_activated_message">Droid Alone: activated from %s</string>
     <string name="failed_to_send_activ_mail">Failed to send activation mail, DroidAlone not enabled. Try to use sms forwarding with -sms: option</string>
-    <string name="flushed_calls">Missed from %s %s time %s</string>
+    <string name="flushed_calls">Missed from %1$s %2$s time %3$s</string>
     <string name="already_enabled_error">Status already on</string>
     <string name="already_disabled_error">Status already off</string>
     <string name="location_not_found">Unable to find location</string>
@@ -114,5 +114,6 @@
      <string name="skip_handled_summary">Does not notify handled calls</string>
      <string name="skipped">Skipped:</string>
      <string name="skipped_call">Skipped call</string>
-     
+    <string name="clean">Clean</string>
+
      </resources>

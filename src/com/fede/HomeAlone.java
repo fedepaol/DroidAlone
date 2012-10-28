@@ -37,7 +37,8 @@ public class HomeAlone extends Activity {
 	private IntentFilter 		mFilter;
 	private ImageView			mStatusImage;
 	IncomingCallReceiver 		mReceiver;
-	
+
+
 	
     /** Called when the activity is first created. */
     @Override

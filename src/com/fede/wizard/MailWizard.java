@@ -11,23 +11,22 @@ limitations under the License.*/
 
 package com.fede.wizard;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import com.actionbarsherlock.app.SherlockActivity;
 import com.fede.R;
 import com.fede.Utilities.GeneralUtils;
 import com.fede.Utilities.PrefUtils;
 
-public class MailWizard extends Activity {
+public class MailWizard extends SherlockActivity {
 	private Button 				mNextButton;
 	private Button 				mBackButton;
 	private EditText			mMailPwd;

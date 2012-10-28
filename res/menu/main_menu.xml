@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/main_menu_clean"
+          android:title="@string/clean"
+          android:icon="@drawable/ic_trash"
+          android:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/main_menu_wizard"
+          android:title="@string/wizard"
+          android:icon="@drawable/ic_trash"
+          android:showAsAction="never"/>
+
+    <item android:id="@+id/main_menu_option"
+          android:title="@string/options"
+          android:icon="@drawable/ic_trash"
+          android:showAsAction="ifRoom|withText"/>
+
+    <item android:id="@+id/main_menu_help"
+          android:title="@string/help_name"
+          android:icon="@drawable/ic_trash"
+          android:showAsAction="ifRoom|withText"/>
+</menu>

@@ -30,7 +30,7 @@
     <string name="gmail_user">Gmail User-ID</string>
     <string name="gmail_user_summary">User-ID des Accounts, der für die Mail-Weiterleitung genutzt wird</string>
     <string name="gmail_user_key">gmail_user</string>
-    <string name="call_from">Anruf von %s %s</string>
+    <string name="call_from">Anruf von %1$s %2$s</string>
     <string name="activate">Aktivieren</string>
     <string name="deactivate">Deaktivieren</string>
     <string name="options">Optionen</string>
@@ -46,8 +46,8 @@
     <string name="empty_reply_message">Antwort ist leer</string>
     <string name="ok_name">ok</string>
     <string name="error_name">Fehler</string>
-    <string name="not_valid_number_message_full">%s ist keine gültige Telefonnummer, bitte korrigieren</string>
-    <string name="not_valid_mail_message_full">%s ist keine gültige Mail-Adresse, bitte korrigieren</string>
+    <string name="not_valid_number_message_full">%1$s ist keine gültige Telefonnummer, bitte korrigieren</string>
+    <string name="not_valid_mail_message_full">%1$s ist keine gültige Mail-Adresse, bitte korrigieren</string>
     <string name="invalid_mail_user_full">Angaben fehlen, bitte Gmail-Kontoeinstellungen ergänzen</string>
     <string name="invalid_mail_user">Mail-User fehlt, Mail-Weiterleitung kann nicht aktiviert werden</string>
     <string name="invalid_mail_pwd">Mail-Passwort fehlt, Mail-Weiterleitung kann nicht aktiviert werden</string>
@@ -57,7 +57,7 @@
     <string name="delete_all">Alle löschen</string>
     <string name="forwarding_not_enabled">Mindestens eine Weiterleitungs-Funktion muss aktiviert sein</string>
     <string name="event_list">Überwachte Aktivitäten</string>
-    <string name="reply_notified_to">Antwort: %s gesendet an: %s</string>
+    <string name="reply_notified_to">Antwort: %1$s gesendet an: %2$s</string>
     <string name="sent_via_sms">Per SMS übermittelt an:</string>
     <string name="name_not_found">Name nicht gefunden</string>
     <string name="name_not_valid_numbers">Zum übermittelten Namen sind keine Telefonnummern erfasst</string>
@@ -86,12 +86,12 @@
    <string name="reply_notified">Automatische Antwort gesendet</string>
     <string name="help_requested">Hilfe anfordern</string>
     <string name="get_number_invalid_name">Bitte Namen, nach dem gesucht wird, eingeben</string>
-    <string name="help_requested_full">%s hat Hilfe angefordert</string>
-    <string name="no_name_found">Keine gültige Nummer gefunden für %s</string>
-    <string name="number_for_contact">Nummer für %s: %s</string>
-    <string name="mail_activated_message">DroidAlone: aktiviert von %s</string>
+    <string name="help_requested_full">%1$s hat Hilfe angefordert</string>
+    <string name="no_name_found">Keine gültige Nummer gefunden für %1$s</string>
+    <string name="number_for_contact">Nummer für %1$s: %2$s</string>
+    <string name="mail_activated_message">DroidAlone: aktiviert von %1$s</string>
     <string name="failed_to_send_activ_mail">Aktivierungs-Mail konnte nicht gesendet werden, DroidAlone ist deaktiviert. SMS Weiterleitung mit -sms: Option verwenden</string>
-    <string name="flushed_calls">Verpasst von %s %s um %s</string>
+    <string name="flushed_calls">Verpasst von %1$s %2$s um %3$s</string>
     <string name="already_enabled_error">Bereits aktiviert</string>
     <string name="already_disabled_error">Bereits deaktiviert</string>
     <string name="location_not_found">Ort nicht gefunden</string>
@@ -102,7 +102,7 @@
     <string name="help_file_name">help_de.html</string>
     <string name="loop_message">Loop Warnung</string>
     <string name="message_header">alone:</string>    
-    <string name="loop_message_full">Eigene Mitteilung %s von DroidAlone nicht weitergeleitet </string>
+    <string name="loop_message_full">Eigene Mitteilung %1$s von DroidAlone nicht weitergeleitet </string>
     <string name="intro">Willkommen bei DroidAlone. Dieser Wizard wird dich durch die Einstellungen führen. \nAbbrechen wählen, um den Wizard zu verlassen. Dieser Wizard kann jederzeit durch Drücken der Menü-Taste im Hauptbildschirm gestartet werden. In den Optionen können einzelne Einstellungen geändert werden.</string>
 	<string name="change_log">Version 1.6: Neu: Beantwortete Anrufe ignorieren. Du kannst einstellen, ob bei aktivem DroidAlone beantwortete Anrufe weitergeleitet werden oder nicht. </string>
     <string name="skip_handled_calls">Beantwortete Anrufe ignorieren</string>
