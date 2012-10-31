@@ -11,16 +11,15 @@ limitations under the License.*/
 
 package com.fede.Utilities;
 
-import java.util.Date;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-
-import com.fede.HomeAlone;
+import com.fede.HomeAloneService;
 import com.fede.R;
+
+import java.util.Date;
 
 
 public class PrefUtils {
@@ -83,7 +82,7 @@ public class PrefUtils {
 			GeneralUtils.notifyEvent(c.getString(R.string.active_state), c.getString(R.string.active_state), c);
 		}
 		
-		Intent i = new Intent(HomeAlone.STATE_CHANGED);
+		Intent i = new Intent(HomeAloneService.STATE_CHANGED);
 		c.sendBroadcast(i);
 	}
 	

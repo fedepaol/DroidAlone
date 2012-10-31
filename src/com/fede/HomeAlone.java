@@ -32,7 +32,6 @@ public class HomeAlone extends Activity {
 	static final int MENU_WIZARD = Menu.FIRST + 1;
 	static final int MENU_HELP = Menu.FIRST + 2;
 	
-	public static final String STATE_CHANGED = "GlobalStateChanged";
 	private BroadcastReceiver 	mBroadcastRecv;
 	private IntentFilter 		mFilter;
 	private ImageView			mStatusImage;
@@ -47,7 +46,6 @@ public class HomeAlone extends Activity {
         setContentView(R.layout.main);
 
         setupButtons();
-        mFilter = new IntentFilter(HomeAlone.STATE_CHANGED);
 
         mBroadcastRecv = new BroadcastReceiver(){
     		@Override

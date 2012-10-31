@@ -30,6 +30,8 @@ public class HomeAloneService extends IntentService {
 	public static final String HOMEALONE_EVENT_PROCESSED = "com.fede.action.EVENTPROCESSED";
 	public static final String HOMEALONE_TEST_EVENT_PROCESSED = "com.fede.action.TESTEVENTPROCESSED";
 
+    public static final String STATE_CHANGED = "GlobalStateChanged";
+
 	private ServiceState state;
 	
 	@Override public void onCreate() {

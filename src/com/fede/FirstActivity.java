@@ -14,6 +14,8 @@ import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.fede.Utilities.GeneralUtils;
+import com.fede.Utilities.PrefUtils;
 import com.fede.wizard.StartWizard;
 
 import java.util.Date;
@@ -24,14 +26,27 @@ import java.util.Date;
  * Date: 10/25/12
  * Time: 11:24 PM
  */
-public class FirstActivity extends SherlockListActivity {
+public class FirstActivity extends SherlockListActivity{
+
+    private class EventsReceiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction().equals(HomeAloneService.STATE_CHANGED)){
+                invalidateOptionsMenu();
+            }
+            if(intent.getAction().equals(HomeAloneService.HOMEALONE_EVENT_PROCESSED)){
+                mEventCursor.requery(); // TODO Cursor deprecated
+            }
+        }
+    }
 
     private Cursor mEventCursor;
 	private java.text.DateFormat mDateFormat;
 	private java.text.DateFormat mTimeFormat;
-	private BroadcastReceiver mBroadcastRecv;
 
-	private IntentFilter mFilter;
+	private IntentFilter mEventFilter;
+    private IntentFilter mStatusFilter;
+    private EventsReceiver mReceiver;
 
 
 	protected DbAdapter mDbHelper;
@@ -49,29 +64,27 @@ public class FirstActivity extends SherlockListActivity {
 
         mDateFormat = android.text.format.DateFormat.getDateFormat(this);    // short date
         mTimeFormat = android.text.format.DateFormat.getTimeFormat(this);    // 12/24 time
-        mFilter = new IntentFilter(HomeAloneService.HOMEALONE_EVENT_PROCESSED);
+
+        mEventFilter = new IntentFilter(HomeAloneService.HOMEALONE_EVENT_PROCESSED);
+        mStatusFilter = new IntentFilter(HomeAloneService.STATE_CHANGED);
+        mReceiver = new EventsReceiver();
 
         fillData();
-
-        mBroadcastRecv = new BroadcastReceiver(){
-    		@Override
-    		public void onReceive(Context context, Intent intent) {
-    			mEventCursor.requery();
-    		}
-    	};
 
     }
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		unregisterReceiver(mBroadcastRecv);
+		unregisterReceiver(mReceiver);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		registerReceiver(mBroadcastRecv, mFilter);
+		registerReceiver(mReceiver, mEventFilter);
+        registerReceiver(mReceiver, mStatusFilter);
+
 		mEventCursor.requery();
 	}
 
@@ -81,14 +94,35 @@ public class FirstActivity extends SherlockListActivity {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = this.getSupportMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
+
+        if(PrefUtils.homeAloneEnabled(this)){
+            menu.findItem(R.id.main_menu_toggle).setIcon(R.drawable.ic_button_on);
+        }else{
+            menu.findItem(R.id.main_menu_toggle).setIcon(R.drawable.ic_button_off);
+        }
+
         return true;
     }
 
+    /**
+     * Gets called when the user presses the toggle button
+     */
+    private void onStatusToggled(){
+        if(PrefUtils.homeAloneEnabled(this)){
+            PrefUtils.setStatus(false, this);
+        }else{
+            if(PrefUtils.checkForwardingEnabled(this)){
+                PrefUtils.setStatus(true, this);
+            }else{
+                GeneralUtils.showErrorDialog(getString(R.string.forwarding_not_enabled), this);
+            }
+        }
+    }
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-		super.onOptionsItemSelected(item);  // TODO Caprie come si fa
+		super.onOptionsItemSelected(item);
 		switch(item.getItemId()){
             case R.id.main_menu_clean:
 				mDbHelper.removeAllEvents();
@@ -102,6 +136,9 @@ public class FirstActivity extends SherlockListActivity {
                 Intent i1 = new Intent(this, HomeAlonePreferences.class);
                 startActivity(i1);
             break;
+            case R.id.main_menu_toggle:
+                onStatusToggled();
+                break;
             case R.id.main_menu_wizard:
                 launchWizard();
             break;
@@ -154,7 +191,6 @@ public class FirstActivity extends SherlockListActivity {
     	EventListAdapter mEventsAdapter = new EventListAdapter(this, mEventCursor);
         setListAdapter(mEventsAdapter);
     }
-
 
 
     /* package */ class EventListAdapter extends CursorAdapter {
