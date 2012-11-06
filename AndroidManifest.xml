@@ -46,7 +46,13 @@
 	    	          
 	    	
 		</receiver>
-	    <receiver android:name="com.fede.IncomingSmsReceiver"> 
+
+
+        <provider android:name=".DroidContentProvider"
+                  android:authorities="com.fede.dbprovider"
+           />
+
+        <receiver android:name="com.fede.IncomingSmsReceiver">
 	    	<intent-filter><action android:name="android.provider.Telephony.SMS_RECEIVED"/> </intent-filter>
 		</receiver>	
 	 	<receiver android:name="com.fede.BootReceiver"> 
