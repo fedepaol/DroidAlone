@@ -1,22 +1,10 @@
+/**********************************************************************************************************************************************************************
+****** AUTO GENERATED FILE BY ANDROID SQLITE HELPER SCRIPT BY FEDERICO PAOLINELLI. ANY CHANGE WILL BE WIPED OUT IF THE SCRIPT IS PROCESSED AGAIN. *******
+**********************************************************************************************************************************************************************/
 package com.fede;
 
-/**
- * Created with IntelliJ IDEA.
- * User: fede
- * Date: 11/6/12
- * Time: 9:10 AM
- * To change this template use File | Settings | File Templates.
- */
-/**
- * Listing 8-14: A skeleton Content Provider implementation
- */
 
-
-import android.content.ContentProvider;
-import android.content.ContentUris;
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.UriMatcher;
+import android.content.*;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
@@ -28,126 +16,121 @@ import android.text.TextUtils;
 import android.util.Log;
 
 public class DroidContentProvider extends ContentProvider {
+    private static final String DATABASE_NAME = "dbFileDb.db";
+    private static final int DATABASE_VERSION = 1;
+    private static final String TAG = "DroidContentProvider";
+    
+
+	// -------------- URIS ------------
+
+	public static final Uri EVENT_URI = Uri.parse("content://com.fede.dbprovider/event");
+	public static final Uri CALL_URI = Uri.parse("content://com.fede.dbprovider/call");
 
 
-    private static final String DATABASE_NAME = "homeAloneDb.db";
+	public static final String ROW_ID = "_id";
 
-    private static final int DATABASE_VERSION = 7;
+	// -------------- EVENT DEFINITIONS ------------
 
-    //Events
-    private static final String EVENT_TABLE = "Events";
-    public static final String EVENT_DESCRIPTION_KEY = "Desc";
-    public static final int EVENT_DESCRIPTION_COLUMN = 1;
-    public static final String EVENT_TIME_KEY = "Time";
-    public static final int EVENT_TIME_COLUMN = 2;
-    public static final String SHORT_DESC_KEY = "ShortDesc";
-    public static final int SHORT_DESC_COLUMN = 3;
-    public static final String ROW_ID = "_id";
-    private static final int ALLEVENTS = 1;
-    private static final int SINGLE_EVENT = 2;
-    public static final Uri EVENTS_URI = Uri.parse("content://com.fede.dbprovider/events");
+	public static final String EVENT_TABLE = "Event";
+	public static final String EVENT_DESCRIPTION_COLUMN = "Description";
+	public static final int EVENT_DESCRIPTION_COLUMN_POSITION = 1;
+	public static final String EVENT_TIME_COLUMN = "Time";
+	public static final int EVENT_TIME_COLUMN_POSITION = 2;
+	public static final String EVENT_SHORTDESC_COLUMN = "ShortDesc";
+	public static final int EVENT_SHORTDESC_COLUMN_POSITION = 3;
 
-
-    // Missed calls
-    private static final String CALL_TABLE = "Calls";
-    public static final String CALL_NUMBER_DESC_KEY = "Number";
-    public static final int CALL_NUMBER_DESC_COLUMN = 1;
-    public static final String CALL_TIME_KEY = "Time";
-    private static final int ALLCALLS = 3;
-    private static final int SINGLE_CALL = 4;
-
-    public static final Uri CALLS_URI = Uri.parse("content://com.fede.dbprovider/calls");
+	private static final int ALLEVENT= 1;
+	private static final int SINGLE_EVENT= 2;
 
 
 
+	// -------------- CALL DEFINITIONS ------------
 
-    private static final UriMatcher uriMatcher;
+	public static final String CALL_TABLE = "Call";
+	public static final String CALL_NUMBER_COLUMN = "Number";
+	public static final int CALL_NUMBER_COLUMN_POSITION = 1;
+	public static final String CALL_TIME_COLUMN = "Time";
+	public static final int CALL_TIME_COLUMN_POSITION = 2;
 
+	private static final int ALLCALL= 3;
+	private static final int SINGLE_CALL= 4;
+
+
+
+	private static final UriMatcher uriMatcher;
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        uriMatcher.addURI("com.fede.dbprovider",
-                "events", ALLEVENTS);
-        uriMatcher.addURI("com.fede.dbprovider",
-                "events/#", SINGLE_EVENT);
-        uriMatcher.addURI("com.fede.dbprovider",
-                "calls", ALLCALLS);
-        uriMatcher.addURI("com.fede.dbprovider",
-                "calls/#", SINGLE_CALL);
-    }
+		uriMatcher.addURI("com.fede.dbprovider", "event", ALLEVENT);
+		uriMatcher.addURI("com.fede.dbprovider", "event/#", SINGLE_EVENT);
+		uriMatcher.addURI("com.fede.dbprovider", "call", ALLCALL);
+		uriMatcher.addURI("com.fede.dbprovider", "call/#", SINGLE_CALL);
+	}
+
+	// -------- TABLES CREATION ----------
+
+	// Event CREATION 
+	private static final String DATABASE_EVENT_CREATE = "create table " + EVENT_TABLE + " (" + 
+				 ROW_ID + " integer primary key autoincrement" + ", " + 
+				 EVENT_DESCRIPTION_COLUMN + " text  " + ", " + 
+				 EVENT_TIME_COLUMN + " integer  " + ", " + 
+				 EVENT_SHORTDESC_COLUMN + " text  " + ");";
+
+
+	// Call CREATION 
+	private static final String DATABASE_CALL_CREATE = "create table " + CALL_TABLE + " (" + 
+				 ROW_ID + " integer primary key autoincrement" + ", " + 
+				 CALL_NUMBER_COLUMN + " text  " + ", " + 
+				 CALL_TIME_COLUMN + " integer  " + ");";
 
 
 
-    private static final String DATABASE_EVENT_CREATE = "create table " +
-            EVENT_TABLE + " (" + ROW_ID +
-            " integer primary key autoincrement, " +
-            EVENT_DESCRIPTION_KEY + " string, " +
-            EVENT_TIME_KEY + " integer, " +
-            SHORT_DESC_KEY + " string);";
-
-    private static final String DATABASE_CALLS_CREATE = "create table " +
-            CALL_TABLE + " (" + ROW_ID +
-            " integer primary key autoincrement, " +
-            CALL_NUMBER_DESC_KEY + " text, " +
-            EVENT_TIME_KEY + " integer);";
-
-
-
-    /**
-     * Listing 8-9: Creating the Content ProviderÕs database
-     */
-    private MySQLiteOpenHelper myOpenHelper;
+    private MyDbHelper myOpenHelper;
 
     @Override
     public boolean onCreate() {
-        // Construct the underlying database.
-        // Defer opening the database until you need to perform
-        // a query or transaction.
-        myOpenHelper = new MySQLiteOpenHelper(getContext(),
-                DATABASE_NAME, null,
-                DATABASE_VERSION);
-
+        myOpenHelper = new MyDbHelper(getContext(), DATABASE_NAME, null, DATABASE_VERSION);
         return true;
     }
 
-
-    /**
-     * Returns the right table name for the given uri
-     * @param uri
-     * @return
-     */
+	/**
+    * Returns the right table name for the given uri
+    * @param uri
+    * @return
+    */
     private String getTableNameFromUri(Uri uri){
         switch (uriMatcher.match(uri)) {
-            case ALLCALLS:
-            case SINGLE_CALL:
-                return CALL_TABLE;
-            case ALLEVENTS:
-            case SINGLE_EVENT:
-                return EVENT_TABLE;
-            default: break;
+			case ALLEVENT:
+			case SINGLE_EVENT:
+				return EVENT_TABLE;
+			case ALLCALL:
+			case SINGLE_CALL:
+				return CALL_TABLE;
+			default: break;
         }
 
         return null;
     }
 
-
+	/**
+    * Returns the parent uri for the given uri
+    * @param uri
+    * @return
+    */
     private Uri getContentUriFromUri(Uri uri){
         switch (uriMatcher.match(uri)) {
-            case ALLCALLS:
-            case SINGLE_CALL:
-                return CALLS_URI;
-            case ALLEVENTS:
-            case SINGLE_EVENT:
-                return EVENTS_URI;
-            default: break;
+			case ALLEVENT:
+			case SINGLE_EVENT:
+				return EVENT_URI;
+			case ALLCALL:
+			case SINGLE_CALL:
+				return CALL_URI;
+			default: break;
         }
 
         return null;
     }
 
-    /**
-     * Listing 8-10: Implementing queries and transactions within a Content Provider
-     */
-    @Override
+	@Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
 
@@ -167,15 +150,10 @@ public class DroidContentProvider extends ContentProvider {
 
         // If this is a row query, limit the result set to the passed in row.
         switch (uriMatcher.match(uri)) {
-
-            case SINGLE_CALL:
-                String callRowID = uri.getPathSegments().get(1);
-                queryBuilder.appendWhere(ROW_ID + "=" + callRowID);
-            break;
-            case SINGLE_EVENT:
-                String eventRowID = uri.getPathSegments().get(1);
-                queryBuilder.appendWhere(ROW_ID + "=" + eventRowID);
-                break;
+			case SINGLE_EVENT:
+			case SINGLE_CALL:
+                String rowID = uri.getPathSegments().get(1);
+                queryBuilder.appendWhere(ROW_ID + "=" + rowID);
             default: break;
         }
 
@@ -187,40 +165,37 @@ public class DroidContentProvider extends ContentProvider {
         Cursor cursor = queryBuilder.query(db, projection, selection,
                 selectionArgs, groupBy, having, sortOrder);
 
+        cursor.setNotificationUri(getContext().getContentResolver(), uri);
+
         // Return the result Cursor.
         return cursor;
     }
 
-    /**
-     * Listing 8-11: Returning a Content Provider MIME type
-     */
-    @Override
+	@Override
     public String getType(Uri uri) {
-        // Return a string that identifies the MIME type
-        // for a Content Provider URI
+     // Return a string that identifies the MIME type
+     // for a Content Provider URI
         switch (uriMatcher.match(uri)) {
-            case ALLEVENTS:
-                return "vnd.android.cursor.dir/vnd.fede.event";
-            case SINGLE_EVENT:
-                return "vnd.android.cursor.item/vnd.fede.event";
-            case ALLCALLS:
-                return "vnd.android.cursor.dir/vnd.fede.call";
-            case SINGLE_CALL:
-                return "vnd.android.cursor.item/vnd.fede.call";
-            default:
-                throw new IllegalArgumentException("Unsupported URI: " +
-                        uri);
+			case ALLEVENT:
+				return "vnd.android.cursor.dir/vnd.com.fede.event";
+			case SINGLE_EVENT:
+				return "vnd.android.cursor.dir/vnd.com.fede.event";
+			case ALLCALL:
+				return "vnd.android.cursor.dir/vnd.com.fede.call";
+			case SINGLE_CALL:
+				return "vnd.android.cursor.dir/vnd.com.fede.call";
+			default:
+                throw new IllegalArgumentException("Unsupported URI: " + uri);
         }
     }
 
-
-    @Override
+	@Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         SQLiteDatabase db = myOpenHelper.getWritableDatabase();
 
         switch (uriMatcher.match(uri)) {
-            case SINGLE_CALL :
-            case SINGLE_EVENT:
+        			case SINGLE_EVENT:
+			case SINGLE_CALL:
                 String rowID = uri.getPathSegments().get(1);
                 selection = ROW_ID + "=" + rowID
                         + (!TextUtils.isEmpty(selection) ?
@@ -240,27 +215,23 @@ public class DroidContentProvider extends ContentProvider {
         return deleteCount;
     }
 
-    @Override
+	@Override
     public Uri insert(Uri uri, ContentValues values) {
         SQLiteDatabase db = myOpenHelper.getWritableDatabase();
-
-
         String nullColumnHack = null;
 
-        long id = db.insert(getTableNameFromUri(uri),
-                nullColumnHack, values);
-
+        long id = db.insert(getTableNameFromUri(uri), nullColumnHack, values);
         if (id > -1) {
             Uri insertedId = ContentUris.withAppendedId(getContentUriFromUri(uri), id);
+                                getContext().getContentResolver().notifyChange(insertedId, null);
             getContext().getContentResolver().notifyChange(insertedId, null);
-
-            return insertedId;
-        }
-        else
+            return uri;
+        } else {
             return null;
+        }
     }
 
-    @Override
+	@Override
     public int update(Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
 
@@ -268,19 +239,15 @@ public class DroidContentProvider extends ContentProvider {
         SQLiteDatabase db = myOpenHelper.getWritableDatabase();
 
         // If this is a row URI, limit the deletion to the specified row.
-        switch (uriMatcher.match(uri)) {
-            case SINGLE_CALL :
-            case SINGLE_EVENT:
+        switch (uriMatcher.match(uri)) { 			case SINGLE_EVENT:
+			case SINGLE_CALL:
                 String rowID = uri.getPathSegments().get(1);
-                selection = ROW_ID + "=" + rowID
-                        + (!TextUtils.isEmpty(selection) ?
-                        " AND (" + selection + ')' : "");
+                selection = ROW_ID + "=" + rowID + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : "");
             default: break;
         }
 
         // Perform the update.
-        int updateCount = db.update(getTableNameFromUri(uri),
-                values, selection, selectionArgs);
+        int updateCount = db.update(getTableNameFromUri(uri), values, selection, selectionArgs);
 
         // Notify any observers of the change in the data set.
         getContext().getContentResolver().notifyChange(uri, null);
@@ -288,43 +255,43 @@ public class DroidContentProvider extends ContentProvider {
         return updateCount;
     }
 
-    private static class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
-
-
-
-
-        public MySQLiteOpenHelper(Context context, String name,
-                                  CursorFactory factory, int version) {
+    private static class MyDbHelper extends SQLiteOpenHelper {
+    
+        public MyDbHelper(Context context, String name, CursorFactory factory, int version) {
             super(context, name, factory, version);
         }
 
         // Called when no database exists in disk and the helper class needs
-        // to create a new one.
+        // to create a new one. 
         @Override
-        public void onCreate(SQLiteDatabase _db) {
-            _db.execSQL(DATABASE_EVENT_CREATE);
-            _db.execSQL(DATABASE_CALLS_CREATE);
+        public void onCreate(SQLiteDatabase db) {      
+            db.execSQL(DATABASE_EVENT_CREATE);
+			db.execSQL(DATABASE_CALL_CREATE);
+			
         }
 
         // Called when there is a database version mismatch meaning that the version
         // of the database on disk needs to be upgraded to the current version.
         @Override
-        public void onUpgrade(SQLiteDatabase _db, int _oldVersion, int _newVersion) {
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             // Log the version upgrade.
-            Log.w("TaskDBAdapter", "Upgrading from version " +
-                    _oldVersion + " to " +
-                    _newVersion + ", which will destroy all old data");
-
-            // Upgrade the existing database to conform to the new version. Multiple
+            Log.w(TAG, "Upgrading from version " + 
+                        oldVersion + " to " +
+                        newVersion + ", which will destroy all old data");
+            
+            // Upgrade the existing database to conform to the new version. Multiple 
             // previous versions can be handled by comparing _oldVersion and _newVersion
             // values.
 
             // The simplest case is to drop the old table and create a new one.
-            _db.execSQL("DROP TABLE IF IT EXISTS " + CALL_TABLE);
-            _db.execSQL("DROP TABLE IF IT EXISTS " + EVENT_TABLE);
+            db.execSQL("DROP TABLE IF EXISTS " + EVENT_TABLE + ";");
+			db.execSQL("DROP TABLE IF EXISTS " + CALL_TABLE + ";");
+			
             // Create a new one.
-            onCreate(_db);
+            onCreate(db);
         }
     }
+     
+    /** Dummy object to allow class to compile */
 }
