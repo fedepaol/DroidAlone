@@ -11,21 +11,15 @@ limitations under the License.*/
 
 package com.fede.Utilities;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -34,15 +28,13 @@ import android.preference.PreferenceManager;
 import android.provider.CallLog;
 import android.provider.ContactsContract;
 import android.telephony.SmsManager;
+import com.fede.*;
 
-import com.fede.DbAdapter;
-import com.fede.GMailSender;
-import com.fede.HomeAloneService;
-import com.fede.MainTabActivity;
-import com.fede.NameNotFoundException;
-import com.fede.OkDialogInterface;
-import com.fede.R;
-import com.fede.TestStubInterface;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class GeneralUtils {
@@ -214,9 +206,9 @@ public class GeneralUtils {
     	return;    
 	}
 	
-	public static void notifyEvent(String event, String fullDescEvent, Context c, DbAdapter dbHelper){
-		dbHelper.addEvent(fullDescEvent, event);	// Add to sqlite anyway
-		
+	public static void notifyEvent(String event, String fullDescEvent, Context c){
+        DroidContentProviderClient.addEvent(event, new Date(), fullDescEvent, 	c);
+
 		if(PrefUtils.homeAloneEnabled(c) == false)	// if the status is disabled I dont want to show the notification
 			return;
 		
@@ -224,7 +216,6 @@ public class GeneralUtils {
 		NotificationManager notificationManager = (NotificationManager)c.getSystemService(svcName);
 		
 		
-		// TODO set a valid icon
 		int icon = R.drawable.ic_stat_home_alone_notify;
 		long when = System.currentTimeMillis();
 		Notification notification = new Notification(icon, event, when);
@@ -233,9 +224,12 @@ public class GeneralUtils {
 		
 		String expandedText = fullDescEvent;
 		String expandedTitle = c.getString(R.string.home_alone_event);
-		
+
+        Intent i = new Intent(HomeAloneService.HOMEALONE_EVENT_PROCESSED);
+        c.sendBroadcast(i);
+
 		// Intent to launch an activity when the extended text is clicked		
-		Intent intent = new Intent(c, MainTabActivity.class);
+		Intent intent = new Intent(c, FirstActivity.class);
 		intent.putExtra(EVENT_LIST_INTENT, true);
 		PendingIntent launchIntent = PendingIntent.getActivity(c, 0, intent, 0);
 		notification.setLatestEventInfo(c,
@@ -252,17 +246,7 @@ public class GeneralUtils {
 		notificationManager.cancel(1);
 	}
 
-	public static void notifyEvent(String event, String fullDescEvent, Context c){
-		DbAdapter dbHelper = new DbAdapter(c);
-		dbHelper.open();
-		notifyEvent(event, fullDescEvent, c, dbHelper);
-		dbHelper.close();
-		
-		Intent i = new Intent(HomeAloneService.HOMEALONE_EVENT_PROCESSED);
-		c.sendBroadcast(i);
-	}
 
-	
 	public static String[] getContactNumbers(String contact, Context c) throws NameNotFoundException{
 	// Find a contact using a partial name match
 		Uri lookupUri =

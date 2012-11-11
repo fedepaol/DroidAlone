@@ -20,6 +20,8 @@ import com.fede.MessageException.InvalidCommandException;
 import com.fede.Utilities.GeneralUtils;
 import com.fede.Utilities.PrefUtils;
 
+import java.util.Date;
+
 public class ActiveState implements ServiceState {
 	@Override
 	public boolean getServiceState() {
@@ -57,11 +59,8 @@ public class ActiveState implements ServiceState {
 	// Handle ringing state and store the number to forwards to sms / email later
 	@Override
 	public void handleIncomingCall(HomeAloneService s, Bundle b) {
-		DbAdapter DbHelper = new DbAdapter(s);
-		DbHelper.open();
 		String numberWithQuotes = b.getString(HomeAloneService.NUMBER);
-		DbHelper.addCall(numberWithQuotes);
-		DbHelper.close();
+        DroidContentProviderClient.addCall(numberWithQuotes, new Date(), s);
 	}
 	
 	
@@ -77,22 +76,20 @@ public class ActiveState implements ServiceState {
 
 	}
 	
-	private void notifySkippedCall(String number, HomeAloneService s, DbAdapter dbHelper){
+	private void notifySkippedCall(String number, HomeAloneService s){
 		String callString = s.getString(R.string.call_from);
 		String msg = s.getString(R.string.skipped) + " " + String.format(callString, getCallerNameString(number, s), number);
-		GeneralUtils.notifyEvent(s.getString(R.string.skipped_call), msg, s, dbHelper);
+		GeneralUtils.notifyEvent(s.getString(R.string.skipped_call), msg, s);
 	}
 	
 	@Override
 	public void handlePhoneIdle(HomeAloneService s){
 	// when idle I need to check if I have one or more pending calls. This should be done also
 	// in onidle of inactivestate
-		DbAdapter db = new DbAdapter(s);
-		db.open();
-		Cursor c = db.getAllCalls();
+		Cursor c = DroidContentProviderClient.getAllCall(s);
 		if (c.moveToFirst()) {
             do{           
-            	String number = c.getString(DbAdapter.CALL_NUMBER_DESC_COLUMN);
+            	String number = c.getString(DroidContentProvider.CALL_NUMBER_COLUMN_POSITION);
             	if(number == null){
             		number = "unknown number";
             	}
@@ -100,8 +97,8 @@ public class ActiveState implements ServiceState {
             } while (c.moveToNext());
          }
 		c.close();
-		db.removeAllCalls();
-		db.close();
+
+        DroidContentProviderClient.removeAllCall(s);
 	}
 
 	private void handleSmsToNotify(HomeAloneService s, Bundle b, String body){
@@ -158,23 +155,18 @@ public class ActiveState implements ServiceState {
 		if(PrefUtils.getBoolPreference(prefs, R.string.skip_handled_key, s) == false)
 			return;
 		
-		DbAdapter db = new DbAdapter(s);
-		db.open();
-		
-		Cursor c = db.getAllCalls();
+		Cursor c = DroidContentProviderClient.getAllCall(s);
 		if (c.moveToFirst()) {
             do{           
-            	String number = c.getString(DbAdapter.CALL_NUMBER_DESC_COLUMN);
+            	String number = c.getString(DroidContentProvider.CALL_NUMBER_COLUMN_POSITION);
             	if(number == null){
             		number = "unknown number";
             	}
-               notifySkippedCall(number, s, db);	
+               notifySkippedCall(number, s);
             } while (c.moveToNext());
          }
 		c.close();
-		db.removeAllCalls();
-		db.close();
-		
+
 	}
 
 }

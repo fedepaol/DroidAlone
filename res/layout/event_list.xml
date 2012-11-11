@@ -7,8 +7,9 @@
     android:background="@color/event_back_color"
     
     >
-<ListView android:id="@android:id/list" 
-		android:layout_width="fill_parent" 
+<ListView
+        android:id="@+id/event_list"
+		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
 		android:gravity="center_horizontal"
 		>
