@@ -20,6 +20,7 @@ import com.fede.Utilities.GeneralUtils;
 import com.fede.Utilities.PrefUtils;
 import com.fede.wizard.StartWizard;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -209,10 +210,14 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
         }
 
         private boolean isDateToday(Date date) {
-            Date today = new Date();
-            if (date.getYear() == today.getYear() &&
-                    date.getMonth() == today.getMonth() &&
-                    date.getDate() == today.getDate()) {
+
+            Calendar dateCalendar = Calendar.getInstance();
+            dateCalendar.setTime(date);
+            Calendar today = Calendar.getInstance();
+            if (
+                    today.get(Calendar.YEAR) - 1900 == dateCalendar.get(Calendar.YEAR)&&
+                    today.get(Calendar.MONTH) == dateCalendar.get(Calendar.MONTH)&&
+                    today.get(Calendar.DAY_OF_MONTH) == dateCalendar.get(Calendar.DAY_OF_MONTH)) {
                 return true;
             }
             return false;
@@ -237,7 +242,6 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
             TextView eventDescView = (TextView) view.findViewById(R.id.event_elem_desc);
             String desc = cursor.getString(DroidContentProvider.EVENT_SHORTDESC_COLUMN_POSITION);
 
-            // TODO Accorciare se troppo lungo
             eventDescView.setText(desc);
 
         }

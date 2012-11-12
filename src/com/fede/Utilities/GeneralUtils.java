@@ -27,6 +27,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.provider.CallLog;
 import android.provider.ContactsContract;
+import android.support.v4.app.NotificationCompat;
 import android.telephony.SmsManager;
 import com.fede.*;
 
@@ -215,27 +216,29 @@ public class GeneralUtils {
 		String svcName = Context.NOTIFICATION_SERVICE;
 		NotificationManager notificationManager = (NotificationManager)c.getSystemService(svcName);
 		
-		
-		int icon = R.drawable.ic_stat_home_alone_notify;
-		long when = System.currentTimeMillis();
-		Notification notification = new Notification(icon, event, when);
+        String expandedText = fullDescEvent;
+        String expandedTitle = c.getString(R.string.home_alone_event);
+
+        Intent intent = new Intent(c, FirstActivity.class);
+        intent.putExtra(EVENT_LIST_INTENT, true);
+        PendingIntent launchIntent = PendingIntent.getActivity(c, 0, intent, 0);
+
+        Notification notification = new NotificationCompat.Builder(c)
+                .setContentTitle(expandedTitle)
+                .setContentText(expandedText).setSmallIcon(R.drawable.ic_stat_home_alone_notify)
+                .setContentIntent(launchIntent)
+                .setTicker(event)
+                .build();
+
 		notification.number = -1;
 		notification.flags |= Notification.FLAG_NO_CLEAR;
 		
-		String expandedText = fullDescEvent;
-		String expandedTitle = c.getString(R.string.home_alone_event);
 
         Intent i = new Intent(HomeAloneService.HOMEALONE_EVENT_PROCESSED);
         c.sendBroadcast(i);
 
 		// Intent to launch an activity when the extended text is clicked		
-		Intent intent = new Intent(c, FirstActivity.class);
-		intent.putExtra(EVENT_LIST_INTENT, true);
-		PendingIntent launchIntent = PendingIntent.getActivity(c, 0, intent, 0);
-		notification.setLatestEventInfo(c,
-		                                expandedTitle,
-		                                expandedText,
-		                                launchIntent);
+
 		int notificationRef = 1;
 		notificationManager.notify(notificationRef, notification);
 	}
