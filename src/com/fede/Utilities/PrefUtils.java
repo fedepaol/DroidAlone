@@ -12,11 +12,14 @@ limitations under the License.*/
 package com.fede.Utilities;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
 import com.fede.HomeAloneService;
+import com.fede.IncomingCallReceiver;
 import com.fede.R;
 
 import java.util.Date;
@@ -81,6 +84,11 @@ public class PrefUtils {
 		}else{	//Enabled
 			GeneralUtils.notifyEvent(c.getString(R.string.active_state), c.getString(R.string.active_state), c);
 		}
+
+        PackageManager pm = c.getPackageManager();
+        ComponentName myReceiverName = new ComponentName(c, IncomingCallReceiver.class);
+        pm.setComponentEnabledSetting(myReceiverName, enabled? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DISABLED
+                                     , PackageManager.DONT_KILL_APP);
 		
 		Intent i = new Intent(HomeAloneService.STATE_CHANGED);
 		c.sendBroadcast(i);

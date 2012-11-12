@@ -12,9 +12,10 @@ limitations under the License.*/
 package com.fede;
 
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-
+import android.content.pm.PackageManager;
 import com.fede.Utilities.GeneralUtils;
 import com.fede.Utilities.PrefUtils;
 
@@ -23,6 +24,10 @@ public class BootReceiver extends BroadcastReceiver {
 	public void onReceive(Context c, Intent intent) {
 		if(PrefUtils.homeAloneEnabled(c)){
 			GeneralUtils.notifyEvent(c.getString(R.string.active_state), c.getString(R.string.active_state), c);
+
+            PackageManager pm = c.getPackageManager();
+            ComponentName myReceiverName = new ComponentName(c, IncomingCallReceiver.class);
+            pm.setComponentEnabledSetting(myReceiverName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
 		}
 	}
 	
