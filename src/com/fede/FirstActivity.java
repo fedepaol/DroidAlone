@@ -10,6 +10,7 @@ import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -36,10 +37,6 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
             if(intent.getAction().equals(HomeAloneService.STATE_CHANGED)){
                 invalidateOptionsMenu();
             }
-            /*
-            if(intent.getAction().equals(HomeAloneService.HOMEALONE_EVENT_PROCESSED)){
-                mEventCursor.requery(); // TODO Cursor deprecated
-            }*/
         }
     }
 
@@ -47,7 +44,6 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
 	private java.text.DateFormat mDateFormat;
 	private java.text.DateFormat mTimeFormat;
 
-	private IntentFilter mEventFilter;
     private IntentFilter mStatusFilter;
     private EventsReceiver mReceiver;
     private EventListAdapter mEventsAdapter;
@@ -65,7 +61,6 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
         mDateFormat = android.text.format.DateFormat.getDateFormat(this);    // short date
         mTimeFormat = android.text.format.DateFormat.getTimeFormat(this);    // 12/24 time
 
-        mEventFilter = new IntentFilter(HomeAloneService.HOMEALONE_EVENT_PROCESSED);
         mStatusFilter = new IntentFilter(HomeAloneService.STATE_CHANGED);
         mReceiver = new EventsReceiver();
 
@@ -75,6 +70,9 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
 
         mList = (ListView) findViewById(R.id.event_list);
         mList.setAdapter(mEventsAdapter);
+        mList.setEmptyView(findViewById(R.id.empty_evts));
+
+
     }
 
 	@Override
@@ -86,10 +84,7 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
 	@Override
 	protected void onResume() {
 		super.onResume();
-		// REMOVE ME registerReceiver(mReceiver, mEventFilter);
         registerReceiver(mReceiver, mStatusFilter);
-
-		// mEventCursor.requery();
 	}
 
 
@@ -240,9 +235,30 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
             dateView.setText(text);
 
             TextView eventDescView = (TextView) view.findViewById(R.id.event_elem_desc);
-            String desc = cursor.getString(DroidContentProvider.EVENT_SHORTDESC_COLUMN_POSITION);
+            TextView fullDescView = (TextView) view.findViewById(R.id.event_elem_full_desc);
+            ImageView icon = (ImageView) view.findViewById(R.id.event_icon);
 
-            eventDescView.setText(desc);
+            String shortDesc = cursor.getString(DroidContentProvider.EVENT_SHORTDESC_COLUMN_POSITION);
+            String fullStatus = cursor.getString(DroidContentProvider.EVENT_DESCRIPTION_COLUMN_POSITION);
+            eventDescView.setText(shortDesc);
+            fullDescView.setText(fullStatus);
+
+           int eventType = cursor.getInt(DroidContentProvider.EVENT_EVENTTYPE_COLUMN_POSITION);
+            DroidContentProviderClient.EventType type = DroidContentProviderClient.EventType.values()[eventType];
+            switch(type){
+                case COMMAND:
+                    icon.setImageResource(R.drawable.forwarded_call);
+                break;
+                case FAILURE:
+                    icon.setImageResource(R.drawable.error);
+                break;
+                case FORWARDED_CALL:
+                    icon.setImageResource(R.drawable.forwarded_call);
+                break;
+                case REPLY:
+                    icon.setImageResource(R.drawable.replied);
+                break;
+            }
 
         }
 

@@ -13,15 +13,9 @@ package com.fede;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-
-import com.fede.MessageException.CommandParseException;
-import com.fede.MessageException.ForwardingDisabledException;
-import com.fede.MessageException.InvalidCommandException;
-import com.fede.MessageException.InvalidPasswordException;
-import com.fede.MessageException.LocationNotFoundException;
+import com.fede.MessageException.*;
 import com.fede.Utilities.GeneralUtils;
 import com.fede.Utilities.LocationUpdater;
 import com.fede.Utilities.PrefUtils;
@@ -257,7 +251,9 @@ public class CommandSms {
 	private void sendHelpMessage(){
 		GeneralUtils.sendSms(incomingNumber, EXAMPLE, context);
 		
-		GeneralUtils.notifyEvent(context.getString(R.string.help_requested), String.format(context.getString(R.string.help_requested_full), incomingNumber), context);
+		GeneralUtils.notifyEvent(context.getString(R.string.help_requested),
+                    String.format(context.getString(R.string.help_requested_full), incomingNumber),
+                    DroidContentProviderClient.EventType.COMMAND, context);
 	}
 	
 	// updates preferences from command instructions
@@ -400,7 +396,7 @@ public class CommandSms {
 	private void notifyCommandExecution(String status, BoolCommand echoCommand){
 		String shortDesc = context.getString(R.string.command_executed) + " " + incomingNumber;
 		String fullDesc = context.getString(R.string.incoming_sms) + " " + smsBody;
-		GeneralUtils.notifyEvent(shortDesc, fullDesc, context);
+		GeneralUtils.notifyEvent(shortDesc, fullDesc, DroidContentProviderClient.EventType.COMMAND, context);
 	}
 	
 	public BoolCommand getStatus() {

@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
-    android:background="@color/event_back_color"
+    android:background="@color/light_blue_theme"
     
     >
 <ListView
@@ -15,7 +15,7 @@
 		>
 </ListView>
 <ViewStub
-        android:id="@android:id/empty"
+        android:id="@+id/empty_evts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

@@ -115,6 +115,6 @@
      <string name="skipped">Skipped:</string>
      <string name="skipped_call">Skipped call</string>
     <string name="clean">Clean</string>
-    <string name="no_events_to_show">No events to show</string>
+    <string name="no_events_to_show">No events to show\nSms with #PASS-s:on\nto activate</string>
 
      </resources>

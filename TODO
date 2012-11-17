@@ -1,15 +1,25 @@
-Content provider
-Cursor loader
-Dropdown list
+Dropdown list / Descrizione migliore
+Analytics
+Bugsense
+
 Holo everywhere
 Password piu' sicura
-Abilitare / disabilitare broadcast receiver
-Figurine 
-Bottone per accendere / spengere
-Deprecated java date
+Figurine x tipo di evento
 Lista vuota di eventi piu' bellina
 
 Cosa mancava
 No styles
 Deprecated java date
 Lista vuota 
+Content provider + loader. Used script
+Abilitare / disabilitare broadcast receiver
+
+
+Fatti
+Content provider
+Cursor loader
+Deprecated java date
+Deprecated notification constructor
+Bottone per accendere / spengere
+
+183471ZZ

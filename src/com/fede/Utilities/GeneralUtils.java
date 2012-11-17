@@ -65,7 +65,7 @@ public class GeneralUtils {
 		}catch (Exception e){		
 			String shortDesc = c.getString(R.string.failed_to_send_sms_to) + " " + number ;
 			String fullDesc = String.format(("%s %s %s"), c.getString(R.string.sms_body_not_sent), message, e.getMessage()) ;
-			notifyEvent(fullDesc, shortDesc, c);
+			notifyEvent(fullDesc, shortDesc, DroidContentProviderClient.EventType.FAILURE, c);
 		}
 	}
 	
@@ -110,7 +110,7 @@ public class GeneralUtils {
 			}catch (Exception e){		
 				String shortDesc = c.getString(R.string.failed_to_send_email_to) + " " + mailDest ;
 				String fullDesc = String.format(("%s %s %s"), c.getString(R.string.email_body_not_sent), body, e.getMessage()) ;
-				notifyEvent(fullDesc, shortDesc, c);
+				notifyEvent(fullDesc, shortDesc, DroidContentProviderClient.EventType.FAILURE, c);
 				throw e;
 			}
 		}
@@ -207,8 +207,8 @@ public class GeneralUtils {
     	return;    
 	}
 	
-	public static void notifyEvent(String event, String fullDescEvent, Context c){
-        DroidContentProviderClient.addEvent(event, new Date(), fullDescEvent, 	c);
+	public static void notifyEvent(String event, String fullDescEvent, DroidContentProviderClient.EventType type, Context c){
+        DroidContentProviderClient.addEvent(event, new Date(), fullDescEvent, type,	c);
 
 		if(PrefUtils.homeAloneEnabled(c) == false)	// if the status is disabled I dont want to show the notification
 			return;

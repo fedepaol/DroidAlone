@@ -37,9 +37,38 @@
       <item name="android:layout_height">wrap_content</item>
       <item name="android:inputType">textImeMultiLine</item>
   </style>
-  <style name="WizardEditText.Password">
-      <item name="android:inputType">textPassword</item>
+
+   <style name="NoEventsText">
+       <item name="android:textColor">@color/darkest_brown_theme</item>
+       <item name="android:textStyle">bold</item>
+       <item name="android:textSize">@dimen/text_size_xlarge</item>
+        </style>
+
+   <style name="WizardEditText.Password">
+       <item name="android:inputType">textPassword</item>
+   </style>
+
+  <style name="EventText">
+      <item name="android:layout_height">wrap_content</item>
+      <item name="android:layout_width">wrap_content</item>
+      <item name="android:textColor">@color/darkest_brown_theme</item>
   </style>
 
+  <style name="EventText.Date">
+      <item name="android:textColor">@color/dark_brown_theme</item>
+      <item name="android:textSize">@dimen/text_size_small</item>
+  </style>
 
+  <style name="EventText.ShortDescription">
+     <item name="android:ellipsize">end</item>
+     <item name="android:singleLine">true</item>
+     <item name="android:textSize">@dimen/text_size_large</item>
+     <item name="android:textStyle">bold</item>
+     <item name="android:paddingLeft">@dimen/margin_small</item>
+  </style>
+
+  <style name="EventText.LongDescription">
+     <item name="android:textSize">@dimen/text_size_medium</item>
+     <item name="android:paddingLeft">@dimen/margin_small</item>
+  </style>
 </resources>

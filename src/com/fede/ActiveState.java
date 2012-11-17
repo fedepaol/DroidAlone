@@ -31,7 +31,7 @@ public class ActiveState implements ServiceState {
 	
 	private void notifyReply(HomeAloneService s, String number, String reply){
 		String message = String.format(s.getString(R.string.reply_notified_to), reply, number);
-		GeneralUtils.notifyEvent(s.getString(R.string.reply_notified), message, s);
+		GeneralUtils.notifyEvent(s.getString(R.string.reply_notified), message, DroidContentProviderClient.EventType.REPLY, s);
 	}
 	
 	public void sendReply(HomeAloneService s, String number)
@@ -79,7 +79,7 @@ public class ActiveState implements ServiceState {
 	private void notifySkippedCall(String number, HomeAloneService s){
 		String callString = s.getString(R.string.call_from);
 		String msg = s.getString(R.string.skipped) + " " + String.format(callString, getCallerNameString(number, s), number);
-		GeneralUtils.notifyEvent(s.getString(R.string.skipped_call), msg, s);
+		GeneralUtils.notifyEvent(s.getString(R.string.skipped_call), msg, DroidContentProviderClient.EventType.FORWARDED_CALL , s);
 	}
 	
 	@Override
@@ -139,7 +139,7 @@ public class ActiveState implements ServiceState {
 		String body = b.getString(HomeAloneService.MESSAGE_BODY);
 		if(isDroidAloneMessage(body, s)){	// Do nothing to avoid loops
 			GeneralUtils.notifyEvent(s.getString(R.string.loop_message),
-						String.format(s.getString(R.string.loop_message_full), body), s);
+						String.format(s.getString(R.string.loop_message_full), body), DroidContentProviderClient.EventType.FAILURE, s);
 			
 		}else if(CommandSms.isCommandSms(body)){
 			handleCommandSms(s, b, body);		

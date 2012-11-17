@@ -16,4 +16,9 @@
 <color name="dark_grey">#595959</color>
 <color name="green">#7000FF7F</color>
 
+<color name="light_blue_theme">#BEC2E3</color>
+<color name="lightest_brown_theme">#F3E6C5</color>
+<color name="darkest_brown_theme">#5D4609</color>
+<color name="dark_brown_theme">#7D7151</color>
+
 </resources>

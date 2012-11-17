@@ -11,6 +11,7 @@ limitations under the License.*/
 
 package com.fede.MessageException;
 
+import com.fede.DroidContentProviderClient;
 import com.fede.R;
 import com.fede.Utilities.GeneralUtils;
 
@@ -21,7 +22,7 @@ public class InvalidCommandException extends Exception {
 	{
 		super(r);
 		String error = c.getString(R.string.notify_error);
-		GeneralUtils.notifyEvent(error, r, c);
+		GeneralUtils.notifyEvent(error, r, DroidContentProviderClient.EventType.FAILURE, c);
 	}
 }
 

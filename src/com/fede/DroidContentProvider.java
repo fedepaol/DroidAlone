@@ -4,7 +4,11 @@
 package com.fede;
 
 
-import android.content.*;
+import android.content.ContentProvider;
+import android.content.ContentUris;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
@@ -17,67 +21,70 @@ import android.util.Log;
 
 public class DroidContentProvider extends ContentProvider {
     private static final String DATABASE_NAME = "dbFileDb.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String TAG = "DroidContentProvider";
-    
-
-	// -------------- URIS ------------
-
-	public static final Uri EVENT_URI = Uri.parse("content://com.fede.dbprovider/event");
-	public static final Uri CALL_URI = Uri.parse("content://com.fede.dbprovider/call");
 
 
-	public static final String ROW_ID = "_id";
+    // -------------- URIS ------------
 
-	// -------------- EVENT DEFINITIONS ------------
-
-	public static final String EVENT_TABLE = "Event";
-	public static final String EVENT_DESCRIPTION_COLUMN = "Description";
-	public static final int EVENT_DESCRIPTION_COLUMN_POSITION = 1;
-	public static final String EVENT_TIME_COLUMN = "Time";
-	public static final int EVENT_TIME_COLUMN_POSITION = 2;
-	public static final String EVENT_SHORTDESC_COLUMN = "ShortDesc";
-	public static final int EVENT_SHORTDESC_COLUMN_POSITION = 3;
-
-	private static final int ALLEVENT= 1;
-	private static final int SINGLE_EVENT= 2;
+    public static final Uri EVENT_URI = Uri.parse("content://com.fede.dbprovider/event");
+    public static final Uri CALL_URI = Uri.parse("content://com.fede.dbprovider/call");
 
 
+    public static final String ROW_ID = "_id";
 
-	// -------------- CALL DEFINITIONS ------------
+    // -------------- EVENT DEFINITIONS ------------
 
-	public static final String CALL_TABLE = "Call";
-	public static final String CALL_NUMBER_COLUMN = "Number";
-	public static final int CALL_NUMBER_COLUMN_POSITION = 1;
-	public static final String CALL_TIME_COLUMN = "Time";
-	public static final int CALL_TIME_COLUMN_POSITION = 2;
+    public static final String EVENT_TABLE = "Event";
+    public static final String EVENT_DESCRIPTION_COLUMN = "Description";
+    public static final int EVENT_DESCRIPTION_COLUMN_POSITION = 1;
+    public static final String EVENT_TIME_COLUMN = "Time";
+    public static final int EVENT_TIME_COLUMN_POSITION = 2;
+    public static final String EVENT_SHORTDESC_COLUMN = "ShortDesc";
+    public static final int EVENT_SHORTDESC_COLUMN_POSITION = 3;
+    public static final String EVENT_EVENTTYPE_COLUMN = "EventType";
+    public static final int EVENT_EVENTTYPE_COLUMN_POSITION = 4;
 
-	private static final int ALLCALL= 3;
-	private static final int SINGLE_CALL= 4;
+    private static final int ALLEVENT= 1;
+    private static final int SINGLE_EVENT= 2;
 
 
 
-	private static final UriMatcher uriMatcher;
+    // -------------- CALL DEFINITIONS ------------
+
+    public static final String CALL_TABLE = "Call";
+    public static final String CALL_NUMBER_COLUMN = "Number";
+    public static final int CALL_NUMBER_COLUMN_POSITION = 1;
+    public static final String CALL_TIME_COLUMN = "Time";
+    public static final int CALL_TIME_COLUMN_POSITION = 2;
+
+    private static final int ALLCALL= 3;
+    private static final int SINGLE_CALL= 4;
+
+
+
+    private static final UriMatcher uriMatcher;
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-		uriMatcher.addURI("com.fede.dbprovider", "event", ALLEVENT);
-		uriMatcher.addURI("com.fede.dbprovider", "event/#", SINGLE_EVENT);
-		uriMatcher.addURI("com.fede.dbprovider", "call", ALLCALL);
-		uriMatcher.addURI("com.fede.dbprovider", "call/#", SINGLE_CALL);
-	}
+        uriMatcher.addURI("com.fede.dbprovider", "event", ALLEVENT);
+        uriMatcher.addURI("com.fede.dbprovider", "event/#", SINGLE_EVENT);
+        uriMatcher.addURI("com.fede.dbprovider", "call", ALLCALL);
+        uriMatcher.addURI("com.fede.dbprovider", "call/#", SINGLE_CALL);
+    }
 
-	// -------- TABLES CREATION ----------
+    // -------- TABLES CREATION ----------
 
-	// Event CREATION 
-	private static final String DATABASE_EVENT_CREATE = "create table " + EVENT_TABLE + " (" + 
+    // Event CREATION 
+    private static final String DATABASE_EVENT_CREATE = "create table " + EVENT_TABLE + " (" + 
 				 ROW_ID + " integer primary key autoincrement" + ", " + 
 				 EVENT_DESCRIPTION_COLUMN + " text  " + ", " + 
 				 EVENT_TIME_COLUMN + " integer  " + ", " + 
-				 EVENT_SHORTDESC_COLUMN + " text  " + ");";
+				 EVENT_SHORTDESC_COLUMN + " text  " + ", " + 
+				 EVENT_EVENTTYPE_COLUMN + " integer  " + ");";
 
 
-	// Call CREATION 
-	private static final String DATABASE_CALL_CREATE = "create table " + CALL_TABLE + " (" + 
+    // Call CREATION 
+    private static final String DATABASE_CALL_CREATE = "create table " + CALL_TABLE + " (" + 
 				 ROW_ID + " integer primary key autoincrement" + ", " + 
 				 CALL_NUMBER_COLUMN + " text  " + ", " + 
 				 CALL_TIME_COLUMN + " integer  " + ");";
@@ -92,23 +99,23 @@ public class DroidContentProvider extends ContentProvider {
         return true;
     }
 
-	/**
+    /**
     * Returns the right table name for the given uri
     * @param uri
     * @return
     */
     private String getTableNameFromUri(Uri uri){
         switch (uriMatcher.match(uri)) {
-			case ALLEVENT:
-			case SINGLE_EVENT:
-				return EVENT_TABLE;
-			case ALLCALL:
-			case SINGLE_CALL:
-				return CALL_TABLE;
-			default: break;
+            case ALLEVENT:
+            case SINGLE_EVENT:
+                return EVENT_TABLE;
+            case ALLCALL:
+            case SINGLE_CALL:
+                return CALL_TABLE;
+            default: break;
         }
 
-        return null;
+           return null;
     }
 
 	/**
@@ -118,21 +125,21 @@ public class DroidContentProvider extends ContentProvider {
     */
     private Uri getContentUriFromUri(Uri uri){
         switch (uriMatcher.match(uri)) {
-			case ALLEVENT:
-			case SINGLE_EVENT:
-				return EVENT_URI;
-			case ALLCALL:
-			case SINGLE_CALL:
-				return CALL_URI;
-			default: break;
+            case ALLEVENT:
+            case SINGLE_EVENT:
+                return EVENT_URI;
+            case ALLCALL:
+            case SINGLE_CALL:
+                return CALL_URI;
+            default: break;
         }
 
         return null;
     }
 
-	@Override
+    @Override
     public Cursor query(Uri uri, String[] projection, String selection,
-                        String[] selectionArgs, String sortOrder) {
+        String[] selectionArgs, String sortOrder) {
 
         // Open thedatabase.
         SQLiteDatabase db;
@@ -150,8 +157,8 @@ public class DroidContentProvider extends ContentProvider {
 
         // If this is a row query, limit the result set to the passed in row.
         switch (uriMatcher.match(uri)) {
-			case SINGLE_EVENT:
-			case SINGLE_CALL:
+            case SINGLE_EVENT:
+            case SINGLE_CALL:
                 String rowID = uri.getPathSegments().get(1);
                 queryBuilder.appendWhere(ROW_ID + "=" + rowID);
             default: break;
@@ -163,43 +170,40 @@ public class DroidContentProvider extends ContentProvider {
 
         // Execute the query.
         Cursor cursor = queryBuilder.query(db, projection, selection,
-                selectionArgs, groupBy, having, sortOrder);
-
-        cursor.setNotificationUri(getContext().getContentResolver(), uri);
+                    selectionArgs, groupBy, having, sortOrder);
+            cursor.setNotificationUri(getContext().getContentResolver(), uri);
 
         // Return the result Cursor.
         return cursor;
     }
 
-	@Override
+    @Override
     public String getType(Uri uri) {
-     // Return a string that identifies the MIME type
-     // for a Content Provider URI
+        // Return a string that identifies the MIME type
+        // for a Content Provider URI
         switch (uriMatcher.match(uri)) {
-			case ALLEVENT:
-				return "vnd.android.cursor.dir/vnd.com.fede.event";
-			case SINGLE_EVENT:
-				return "vnd.android.cursor.dir/vnd.com.fede.event";
-			case ALLCALL:
-				return "vnd.android.cursor.dir/vnd.com.fede.call";
-			case SINGLE_CALL:
-				return "vnd.android.cursor.dir/vnd.com.fede.call";
-			default:
+            case ALLEVENT:
+                return "vnd.android.cursor.dir/vnd.com.fede.event";
+            case SINGLE_EVENT:
+                return "vnd.android.cursor.dir/vnd.com.fede.event";
+            case ALLCALL:
+                return "vnd.android.cursor.dir/vnd.com.fede.call";
+            case SINGLE_CALL:
+                return "vnd.android.cursor.dir/vnd.com.fede.call";
+            default:
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
-        }
+            }
     }
 
-	@Override
+    @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         SQLiteDatabase db = myOpenHelper.getWritableDatabase();
 
         switch (uriMatcher.match(uri)) {
-        			case SINGLE_EVENT:
-			case SINGLE_CALL:
+            case SINGLE_EVENT:
+            case SINGLE_CALL:
                 String rowID = uri.getPathSegments().get(1);
-                selection = ROW_ID + "=" + rowID
-                        + (!TextUtils.isEmpty(selection) ?
-                        " AND (" + selection + ')' : "");
+                selection = ROW_ID + "=" + rowID + (!TextUtils.isEmpty(selection) ?  " AND (" + selection + ')' : "");
             default: break;
         }
 
@@ -215,7 +219,7 @@ public class DroidContentProvider extends ContentProvider {
         return deleteCount;
     }
 
-	@Override
+    @Override
     public Uri insert(Uri uri, ContentValues values) {
         SQLiteDatabase db = myOpenHelper.getWritableDatabase();
         String nullColumnHack = null;
@@ -225,13 +229,13 @@ public class DroidContentProvider extends ContentProvider {
             Uri insertedId = ContentUris.withAppendedId(getContentUriFromUri(uri), id);
                                 getContext().getContentResolver().notifyChange(insertedId, null);
             getContext().getContentResolver().notifyChange(insertedId, null);
-            return uri;
+            return insertedId;
         } else {
             return null;
         }
     }
 
-	@Override
+    @Override
     public int update(Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
 
@@ -239,8 +243,8 @@ public class DroidContentProvider extends ContentProvider {
         SQLiteDatabase db = myOpenHelper.getWritableDatabase();
 
         // If this is a row URI, limit the deletion to the specified row.
-        switch (uriMatcher.match(uri)) { 			case SINGLE_EVENT:
-			case SINGLE_CALL:
+        switch (uriMatcher.match(uri)) {             case SINGLE_EVENT:
+            case SINGLE_CALL:
                 String rowID = uri.getPathSegments().get(1);
                 selection = ROW_ID + "=" + rowID + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : "");
             default: break;

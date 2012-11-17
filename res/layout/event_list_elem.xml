@@ -1,34 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-		android:background="@color/event_back_color"
-		android:paddingTop = "10dip"
-	     android:paddingBottom = "10dip"
-		xmlns:android="http://schemas.android.com/apk/res/android">
-		<TextView
-        android:id="@+id/event_elem_time"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/date_text_color"
-        
-        
-        android:layout_alignBaseline="@+id/event_elem_desc" />
-    <TextView
+   <android.support.v7.widget.GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:grid="http://schemas.android.com/apk/res-auto"
+    grid:alignmentMode="alignBounds"
+    grid:columnOrderPreserved="false"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@null"
+    android:padding="@dimen/margin_small"
+    grid:columnCount="2">
+
+
+    <ImageView
+        android:src="@drawable/error"
+        android:id="@+id/event_icon"
+        grid:layout_column="0"
+            />
+   <TextView
+        style="@style/EventText.ShortDescription"
         android:id="@+id/event_elem_desc"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dip"
-        android:layout_marginRight="6dip"
-        android:textColor="@color/event_text_color"
-         />
-		
-		
- 
-</LinearLayout>
+        grid:layout_column="1"
+        android:text="short description"
+    />
+	<TextView
+        style="@style/EventText.Date"
+        android:id="@+id/event_elem_time"
+        grid:layout_column="0"
+        android:text="09:00"
+        />
+
+    <TextView
+        style="@style/EventText.LongDescription"
+        android:id="@+id/event_elem_full_desc"
+        grid:layout_column="1"
+        grid:layout_columnSpan="2"
+        android:text="full description"
+        />
+
+</android.support.v7.widget.GridLayout>
