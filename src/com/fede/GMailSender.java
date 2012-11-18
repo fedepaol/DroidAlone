@@ -5,13 +5,7 @@ package com.fede;
  /*                                 */  
 
    
- import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Properties;
-
-import javax.activation.DataHandler;
+ import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -19,9 +13,14 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Properties;
    
  public class GMailSender extends javax.mail.Authenticator {  
-     private String mailhost = "smtp.gmail.com";  
+     private final static String mailhost = "smtp.gmail.com";
      private String user;  
      private String password;  
      private Session session;  

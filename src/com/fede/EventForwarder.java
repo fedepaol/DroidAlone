@@ -62,7 +62,7 @@ public class EventForwarder {
 		}
 		String fullDesc = String.format("%s %s %s", toForward, forwardedToSmsDesc, forwardedToMailDesc);
 		
-		GeneralUtils.notifyEvent(shortDesc, fullDesc, DroidContentProviderClient.EventType.REPLY, c);
+		GeneralUtils.notifyEvent(shortDesc, fullDesc, DroidContentProviderClient.EventType.FORWARDED_CALL, c);
 	}
 
 }

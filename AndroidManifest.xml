@@ -61,7 +61,6 @@
 				<category android:name="android.intent.category.HOME" />
 			</intent-filter>
 		</receiver>	
-    </application>
 
 	<uses-permission android:name="android.permission.RECEIVE_SMS"/>
 	<uses-permission android:name="android.permission.SEND_SMS"/>
@@ -76,5 +75,6 @@
        
 	<uses-sdk android:minSdkVersion="7"
               android:targetSdkVersion="15"/>
-	
+    </application>
+
 </manifest>

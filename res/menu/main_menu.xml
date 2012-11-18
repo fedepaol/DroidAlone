@@ -6,7 +6,7 @@
 
     <item android:id="@+id/main_menu_clean"
           android:title="@string/clean"
-          android:icon="@drawable/ic_trash"
+          android:icon="@drawable/trash"
           android:showAsAction="ifRoom"/>
 
     <item android:id="@+id/main_menu_wizard"

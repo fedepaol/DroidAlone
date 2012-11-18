@@ -11,21 +11,16 @@ limitations under the License.*/
 
 package com.fede.Utilities;
 
+import android.content.Context;
+import android.location.*;
+import android.os.Bundle;
+import android.os.SystemClock;
+import com.fede.MessageException.LocationNotFoundException;
+import com.fede.R;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-
-import android.content.Context;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import android.os.SystemClock;
-
-import com.fede.R;
-import com.fede.MessageException.LocationNotFoundException;
 
 
 
@@ -37,12 +32,15 @@ public class LocationUpdater {
 	
 	private Location findLocation(int sleepTime){
 		SystemClock.sleep(sleepTime);
-		Location here = mLManager.getLastKnownLocation(mLProvider);		
+		Location here = mLManager.getLastKnownLocation(mLProvider);
+        if(here == null){
+            return null;
+        }
 				
 		long now = System.currentTimeMillis();
 		long locationTime = here.getTime();
 		
-		if (here == null || locationTime < now - maxAgeNetworkMilliSeconds){
+		if (locationTime < now - maxAgeNetworkMilliSeconds){
 			return null;
 		}
 		return here;
@@ -57,8 +55,6 @@ public class LocationUpdater {
 		LocationListener l = new LocationListener(){
 			@Override
 			public void onLocationChanged(Location location) {
-				String fava = "fava";
-				
 			}
 
 			@Override
@@ -66,7 +62,6 @@ public class LocationUpdater {
 			
 			@Override
 			public void onProviderEnabled(String provider) {
-				String fava = "fava";
 			}
 
 			@Override
@@ -87,7 +82,7 @@ public class LocationUpdater {
 		
 		mLManager.removeUpdates(l);		
 	
-		List<Address> addresses = null;
+		List<Address> addresses;
 		Geocoder gc = new Geocoder(mContext, Locale.getDefault());
 		try {
 			addresses = gc.getFromLocation(here.getLatitude(),

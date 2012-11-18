@@ -44,7 +44,7 @@
     <string name="invalid_status_value">Invalid status value</string>
     <string name="doesnt_start_with">Does not start with</string>
     <string name="empty_reply_message">Reply is empty</string>
-    <string name="ok_name">Ok</string>
+    <string name="ok_name">OK</string>
     <string name="error_name">Error</string>
     <string name="not_valid_number_message_full">%1$s is not a valid phone number, please correct it</string>
     <string name="not_valid_mail_message_full">%1$s is not a valid email address, please correct it</string>

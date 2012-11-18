@@ -210,7 +210,7 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
             TextView dateView = (TextView) view.findViewById(R.id.event_elem_time);
             long timestamp = cursor.getLong(DroidContentProvider.EVENT_TIME_COLUMN_POSITION);
             Date date = new Date(timestamp);
-            String text = "";
+            String text;
             if (isDateToday(date)) {
                 text = mTimeFormat.format(date);
             } else {
@@ -231,7 +231,7 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
             DroidContentProviderClient.EventType type = DroidContentProviderClient.EventType.values()[eventType];
             switch(type){
                 case COMMAND:
-                    icon.setImageResource(R.drawable.forwarded_call);
+                    icon.setImageResource(R.drawable.command);
                 break;
                 case FAILURE:
                     icon.setImageResource(R.drawable.error);
@@ -259,7 +259,7 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
         String[] projection = null;
         String where = null;
         String[] whereArgs = null;
-        String sortOrder = null;
+        String sortOrder = "Time desc";
 
         // Query URI
         Uri queryUri = DroidContentProvider.EVENT_URI;

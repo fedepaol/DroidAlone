@@ -132,7 +132,7 @@ public class GeneralUtils {
 	// Returns contact name from number
 	public static String getNameFromNumber(String number, Context c) throws NameNotFoundException
 	{
-		String name = "";
+		String name;
 		String[] columns = {ContactsContract.PhoneLookup.DISPLAY_NAME};
 		
 		Uri lookupUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI,
@@ -189,7 +189,6 @@ public class GeneralUtils {
     	ad.setTitle(context.getString(R.string.error_name)); 
     	ad.setMessage(errorString); 
     	
-    	OkDialogInterface j;
     	ad.setPositiveButton(button1String,l);
     	ad.show();
     	return;    
