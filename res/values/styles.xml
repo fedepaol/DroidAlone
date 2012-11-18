@@ -57,6 +57,7 @@
   <style name="EventText.Date">
       <item name="android:textColor">@color/dark_brown_theme</item>
       <item name="android:textSize">@dimen/text_size_small</item>
+      <item name="android:paddingLeft">@dimen/margin_small</item>
   </style>
 
   <style name="EventText.ShortDescription">

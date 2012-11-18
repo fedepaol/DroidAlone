@@ -2,39 +2,39 @@
    <android.support.v7.widget.GridLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:grid="http://schemas.android.com/apk/res-auto"
-    grid:alignmentMode="alignBounds"
-    grid:columnOrderPreserved="false"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@null"
     android:padding="@dimen/margin_small"
-    grid:columnCount="2">
+    grid:columnCount="2"
+    grid:alignmentMode="alignBounds"
+        >
 
 
     <ImageView
-        android:src="@drawable/error"
+        android:src="@drawable/forwarded_call"
         android:id="@+id/event_icon"
-        grid:layout_column="0"
-            />
+        grid:layout_rowSpan="3" />
+
    <TextView
         style="@style/EventText.ShortDescription"
-        android:id="@+id/event_elem_desc"
-        grid:layout_column="1"
-        android:text="short description"
-    />
-	<TextView
-        style="@style/EventText.Date"
-        android:id="@+id/event_elem_time"
-        grid:layout_column="0"
-        android:text="09:00"
+        grid:layout_row="0"
+        android:id="@+id/event_elem_short_desc"
+        android:text="full description"
         />
-
     <TextView
         style="@style/EventText.LongDescription"
-        android:id="@+id/event_elem_full_desc"
+        grid:layout_row="1"
         grid:layout_column="1"
-        grid:layout_columnSpan="2"
+        android:id="@+id/event_elem_full_desc"
         android:text="full description"
+        />
+   	<TextView
+        style="@style/EventText.Date"
+        android:id="@+id/event_elem_time"
+        android:text="09:00"
+        grid:layout_row="2"
+        grid:layout_column="1"
         />
 
 </android.support.v7.widget.GridLayout>

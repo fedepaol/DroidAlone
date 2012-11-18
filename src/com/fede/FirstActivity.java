@@ -170,22 +170,6 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
 
 
 
-    /*   TODO
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		Cursor c = DroidContentProviderClient.getEvent(id, this);
-		c.moveToFirst();
-		String fullStatus = c.getString(DroidContentProvider.EVENT_DESCRIPTION_COLUMN_POSITION);
-		String shortStatus = c.getString(DroidContentProvider.EVENT_SHORTDESC_COLUMN_POSITION);
-		long time = c.getLong(DroidContentProvider.EVENT_TIME_COLUMN_POSITION);
-		String timeString = mTimeFormat.format(time);
-		String dateString = mDateFormat.format(time);
-
-		String message = String.format("%s\n%s\n%s", dateString, timeString, fullStatus);
-		showDialog(message, shortStatus);
-	}*/
-
-
     class EventListAdapter extends CursorAdapter {
 
         Context mContext;
@@ -234,16 +218,16 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
             }
             dateView.setText(text);
 
-            TextView eventDescView = (TextView) view.findViewById(R.id.event_elem_desc);
             TextView fullDescView = (TextView) view.findViewById(R.id.event_elem_full_desc);
+            TextView shortDescView = (TextView) view.findViewById(R.id.event_elem_short_desc);
             ImageView icon = (ImageView) view.findViewById(R.id.event_icon);
 
             String shortDesc = cursor.getString(DroidContentProvider.EVENT_SHORTDESC_COLUMN_POSITION);
             String fullStatus = cursor.getString(DroidContentProvider.EVENT_DESCRIPTION_COLUMN_POSITION);
-            eventDescView.setText(shortDesc);
             fullDescView.setText(fullStatus);
+            shortDescView.setText(shortDesc);
 
-           int eventType = cursor.getInt(DroidContentProvider.EVENT_EVENTTYPE_COLUMN_POSITION);
+            int eventType = cursor.getInt(DroidContentProvider.EVENT_EVENTTYPE_COLUMN_POSITION);
             DroidContentProviderClient.EventType type = DroidContentProviderClient.EventType.values()[eventType];
             switch(type){
                 case COMMAND:

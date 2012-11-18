@@ -79,11 +79,11 @@ public class PrefUtils {
 		editor.putBoolean(STATUS_ENABLED, enabled);
 		editor.commit();
 		if(!enabled){
-			GeneralUtils.notifyEvent(c.getString(R.string.inactive_state), c.getString(R.string.inactive_state), DroidContentProviderClient.EventType.COMMAND, c);
+			GeneralUtils.notifyEvent(c.getString(R.string.status_changed), c.getString(R.string.inactive_state), DroidContentProviderClient.EventType.COMMAND, c);
 			setLastFlushedCalls(c);
 			GeneralUtils.removeNotifications(c);
 		}else{	//Enabled
-			GeneralUtils.notifyEvent(c.getString(R.string.active_state), c.getString(R.string.active_state), DroidContentProviderClient.EventType.COMMAND, c);
+			GeneralUtils.notifyEvent(c.getString(R.string.status_changed), c.getString(R.string.active_state), DroidContentProviderClient.EventType.COMMAND, c);
 		}
 
         PackageManager pm = c.getPackageManager();

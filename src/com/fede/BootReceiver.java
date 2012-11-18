@@ -23,7 +23,7 @@ public class BootReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context c, Intent intent) {
 		if(PrefUtils.homeAloneEnabled(c)){
-			GeneralUtils.notifyEvent(c.getString(R.string.active_state), c.getString(R.string.active_state), DroidContentProviderClient.EventType.COMMAND, c);
+			GeneralUtils.notifyEvent(c.getString(R.string.active_state), c.getString(R.string.active_state_reboot), DroidContentProviderClient.EventType.COMMAND, c);
 
             PackageManager pm = c.getPackageManager();
             ComponentName myReceiverName = new ComponentName(c, IncomingCallReceiver.class);

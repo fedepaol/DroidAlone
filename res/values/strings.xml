@@ -101,6 +101,8 @@
     <string name="location_not_found">Unable to find location</string>
     <string name="inactive_state">Disabled</string>
     <string name="active_state">Enabled</string>
+    <string name="active_state_reboot">Enabled after reboot</string>
+    <string name="status_changed">Status Changed</string>
     <string name="help_name">Help</string>
     <string name="message_header">alone:</string>
     <string name="please_set_password">Please set password</string>
