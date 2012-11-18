@@ -208,7 +208,7 @@ public class GeneralUtils {
 	}
 	
 	public static void notifyEvent(String event, String fullDescEvent, DroidContentProviderClient.EventType type, Context c){
-        DroidContentProviderClient.addEvent(event, new Date(), fullDescEvent, type,	c);
+        DroidContentProviderClient.addEvent(fullDescEvent, new Date(), event, type,	c);
 
 		if(PrefUtils.homeAloneEnabled(c) == false)	// if the status is disabled I dont want to show the notification
 			return;

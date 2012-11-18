@@ -20,7 +20,7 @@
         style="@style/EventText.ShortDescription"
         grid:layout_row="0"
         android:id="@+id/event_elem_short_desc"
-        android:text="full description"
+        android:text="short description"
         />
     <TextView
         style="@style/EventText.LongDescription"

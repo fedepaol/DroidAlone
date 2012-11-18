@@ -66,10 +66,12 @@
      <item name="android:textSize">@dimen/text_size_large</item>
      <item name="android:textStyle">bold</item>
      <item name="android:paddingLeft">@dimen/margin_small</item>
+     <item name="android:maxLines">4</item>
   </style>
 
   <style name="EventText.LongDescription">
      <item name="android:textSize">@dimen/text_size_medium</item>
      <item name="android:paddingLeft">@dimen/margin_small</item>
+     <item name="android:maxLines">4</item>
   </style>
 </resources>
