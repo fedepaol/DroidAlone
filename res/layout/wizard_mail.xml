@@ -10,7 +10,6 @@
     android:layout_height="match_parent"
     grid:useDefaultMargins="true"
     grid:alignmentMode="alignBounds"
-    android:background="@color/dark_grey"
     grid:columnOrderPreserved="false"
     grid:columnCount="1">
 
@@ -19,7 +18,6 @@
             />
 	<TextView
         style="@style/WizardTitle"
-	    android:textColor="@color/tutorial_title_color"
 	    android:text="@string/wizard_mail_title"
 	    android:layout_width="fill_parent"/>
 
@@ -46,7 +44,7 @@
 
     <android.support.v7.widget.Space
             android:layout_column="0"
-            android:layout_gravity="fill" />
+            grid:layout_gravity="fill" />
 
     <LinearLayout android:orientation="horizontal"
                   android:layout_width="fill_parent"
