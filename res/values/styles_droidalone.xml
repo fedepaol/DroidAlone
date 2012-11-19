@@ -34,6 +34,8 @@
         <item name="android:actionDropDownStyle">@style/droidalone_DropDownNav</item>
         <item name="android:actionBarStyle">@style/droidalone_solid_ActionBar</item>
         <item name="android:panelBackground">@drawable/menu_hardkey_panel_droidalone</item>
+        <item name="android:windowBackground">@color/light_blue_theme</item>
+
     </style>
 
 
