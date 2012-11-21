@@ -107,7 +107,7 @@
     <string name="message_header">alone:</string>
     <string name="please_set_password">Please set password</string>
     <string name="intro">Welcome to Droid Alone. This wizard will guide you through the application setup. \nHit cancel if you want to
-     go to the application. You can relaunch this wizard pressing menu button from main view. You can set single options from menu.</string>
+     go to the application. You can relaunch this wizard by pressing menu button from main view.</string>
     <string name="help_file_name">help.html</string>
     <string name="change_log_title">Changelog</string>
     <string name="change_log">Version 1.6: Added skip handled calls option. You can choose if you want to get notified or not of picked up calls while droidalone is active</string>

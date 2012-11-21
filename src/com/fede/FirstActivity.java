@@ -95,9 +95,9 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
         inflater.inflate(R.menu.main_menu, menu);
 
         if(PrefUtils.homeAloneEnabled(this)){
-            menu.findItem(R.id.main_menu_toggle).setIcon(R.drawable.ic_button_on);
+            menu.findItem(R.id.main_menu_toggle).setIcon(R.drawable.ic_switch_on);
         }else{
-            menu.findItem(R.id.main_menu_toggle).setIcon(R.drawable.ic_button_off);
+            menu.findItem(R.id.main_menu_toggle).setIcon(R.drawable.ic_switch_off);
         }
 
         return true;

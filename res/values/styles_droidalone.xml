@@ -35,6 +35,10 @@
         <item name="android:actionBarStyle">@style/droidalone_solid_ActionBar</item>
         <item name="android:panelBackground">@drawable/menu_hardkey_panel_droidalone</item>
         <item name="android:windowBackground">@color/light_blue_theme</item>
+
+        <item name="android:textColorPrimary">@color/darkest_brown_theme</item>
+        <item name="android:textColorSecondary">@color/dark_brown_theme</item>
+
     </style>
 
 

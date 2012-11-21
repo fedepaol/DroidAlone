@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/main_menu_toggle"
-          android:icon="@drawable/ic_trash"
+          android:icon="@drawable/trash"
           android:showAsAction="always"/>
 
     <item android:id="@+id/main_menu_clean"
@@ -11,16 +11,16 @@
 
     <item android:id="@+id/main_menu_wizard"
           android:title="@string/wizard"
-          android:icon="@drawable/ic_trash"
+          android:icon="@drawable/wizard"
           android:showAsAction="never"/>
 
     <item android:id="@+id/main_menu_option"
           android:title="@string/options"
-          android:icon="@drawable/ic_trash"
+          android:icon="@drawable/options"
           android:showAsAction="never"/>
 
     <item android:id="@+id/main_menu_help"
           android:title="@string/help_name"
-          android:icon="@drawable/ic_trash"
+          android:icon="@drawable/help"
           android:showAsAction="never"/>
 </menu>
