@@ -107,8 +107,6 @@ public class MailWizard extends SherlockActivity {
 					});
 				}else{
 					storeValues(true);
-					Intent i = new Intent(mContext, SmsWizard.class);
-			        startActivity(i);
 			        finish();
 				}
 			}

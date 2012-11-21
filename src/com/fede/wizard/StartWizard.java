@@ -15,6 +15,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,11 +44,32 @@ public class StartWizard extends SherlockActivity {
 		mEditor = mPrefs.edit();
 
         setupButtons();
-        fillValues();
+        mPwd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
 
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                setNextEnabled();
+            }
+        });
+
+        fillValues();
     }
     
-    
+
+    private void setNextEnabled(){
+        if(mPwd.getText().equals("")){
+            mNextButton.setEnabled(false);
+        }else{
+            mNextButton.setEnabled(true);
+        }
+    }
 
     private void fillValues(){
     	String pwd = PrefUtils.getStringPreference(mPrefs, R.string.password_key, this);
