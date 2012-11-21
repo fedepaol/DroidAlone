@@ -17,10 +17,10 @@
     <item android:id="@+id/main_menu_option"
           android:title="@string/options"
           android:icon="@drawable/ic_trash"
-          android:showAsAction="ifRoom|withText"/>
+          android:showAsAction="never"/>
 
     <item android:id="@+id/main_menu_help"
           android:title="@string/help_name"
           android:icon="@drawable/ic_trash"
-          android:showAsAction="ifRoom|withText"/>
+          android:showAsAction="never"/>
 </menu>
