@@ -30,7 +30,11 @@ import java.util.Properties;
    // }  
    
      public GMailSender(String user, String password) {  
-         this.user = user;  
+         if(user.toLowerCase().endsWith("@gmail.com")){
+             this.user = user;
+         }else{
+             this.user = user + "@gmail.com";   // in case the user did not put @gmail.com
+         }
          this.password = password;  
    
          Properties props = new Properties();  

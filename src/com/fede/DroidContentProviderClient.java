@@ -14,7 +14,7 @@ import android.net.Uri;
 import java.util.Date;
 
 public class DroidContentProviderClient{
-    public enum EventType {FAILURE, FORWARDED_CALL, COMMAND, REPLY} ;
+    public enum EventType {FAILURE, FORWARDED_CALL, FORWARDED_SMS, COMMAND, REPLY} ;
 
 	// -------------- EVENT HELPERS ------------------
     public static Uri addEvent(String Description, Date Time, String ShortDesc, EventType type, Context c){

@@ -64,7 +64,7 @@ public class StartWizard extends SherlockActivity {
     
 
     private void setNextEnabled(){
-        if(mPwd.getText().equals("")){
+        if(mPwd.getText().toString().equals("")){
             mNextButton.setEnabled(false);
         }else{
             mNextButton.setEnabled(true);

@@ -341,7 +341,7 @@ public class CommandSms {
 			buf.append(missed);
 			buf.append("  ");	
 		}
-		EventForwarder f = new EventForwarder(buf.toString(), context);
+		EventForwarder f = new EventForwarder(buf.toString(), DroidContentProviderClient.EventType.FORWARDED_CALL, context);
 		f.forward();
 	}
 	

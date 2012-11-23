@@ -236,8 +236,11 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
                 case FAILURE:
                     icon.setImageResource(R.drawable.error);
                 break;
+                case FORWARDED_SMS:
+                    icon.setImageResource(R.drawable.forwarded_sms);
+                    break;
                 case FORWARDED_CALL:
-                    icon.setImageResource(R.drawable.forwarded_call);
+                    icon.setImageResource(R.drawable.forwarded);
                 break;
                 case REPLY:
                     icon.setImageResource(R.drawable.replied);

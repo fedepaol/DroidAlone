@@ -102,7 +102,7 @@ public class GeneralUtils {
 		
 		if(!sent){
 			try{
-				sender.sendMail("[PHONEALONE]", 
+				sender.sendMail("[DROIDALONE]",
 						body, 
 						"HomeAloneSoftware", 
 				  		 mailDest);

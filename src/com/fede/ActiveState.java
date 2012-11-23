@@ -68,7 +68,7 @@ public class ActiveState implements ServiceState {
 		String callString = s.getString(R.string.call_from);
 		String msg = String.format(callString, getCallerNameString(number, s), number);
 		
-		EventForwarder f = new EventForwarder(msg, s);
+		EventForwarder f = new EventForwarder(msg, DroidContentProviderClient.EventType.FORWARDED_CALL, s);
 		
 		f.forward(); 
 		sendReply(s, number);
@@ -104,7 +104,7 @@ public class ActiveState implements ServiceState {
 	private void handleSmsToNotify(HomeAloneService s, Bundle b, String body){
 		String number =  b.getString(HomeAloneService.NUMBER);
 		String msg = String.format("Sms %s %s:%s", getCallerNameString(number, s),number, body);
-		EventForwarder f = new EventForwarder(msg, s);
+		EventForwarder f = new EventForwarder(msg, DroidContentProviderClient.EventType.FORWARDED_SMS, s);
 		f.forward();
 		sendReply(s, number);
 	}

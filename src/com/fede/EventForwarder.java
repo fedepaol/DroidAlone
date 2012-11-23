@@ -22,10 +22,12 @@ import com.fede.Utilities.PrefUtils;
 public class EventForwarder {
 	private String toForward;
 	private Context c;
+    private DroidContentProviderClient.EventType mEventType;
 	
-	public EventForwarder(String toForward, Context c) {
+	public EventForwarder(String toForward, DroidContentProviderClient.EventType type, Context c) {
 		this.toForward = toForward;
 		this.c = c;
+        mEventType = type;
 	}
 	
 	public void forward() 
