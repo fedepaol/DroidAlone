@@ -24,10 +24,10 @@
     <string name="reply_name">Risposta</string>
     <string name="reply_summary">Risposta da notificare</string>
     <string name="reply_key">REPLY</string>
-    <string name="gmail_pwd">Password dell\'account GMail</string>
+    <string name="gmail_pwd">Password GMail</string>
     <string name="gmail_pwd_summary">Password dell\'account da utilizzare per mandare le mail</string>
     <string name="gmail_pwd_key">gmail_pwd</string>
-    <string name="gmail_user">Utente Gmail</string>
+    <string name="gmail_user">Utente GMail</string>
     <string name="gmail_user_summary">Utente dell\'account da usare per mandare le mail</string>
     <string name="gmail_user_key">gmail_user</string>
     <string name="call_from">Chiamata da %1$s %2$s</string>

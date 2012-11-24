@@ -219,6 +219,7 @@ public class GeneralUtils {
         String expandedTitle = c.getString(R.string.home_alone_event);
 
         Intent intent = new Intent(c, FirstActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra(EVENT_LIST_INTENT, true);
         PendingIntent launchIntent = PendingIntent.getActivity(c, 0, intent, 0);
 
