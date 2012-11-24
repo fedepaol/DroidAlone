@@ -20,20 +20,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-        <groupId>android.support</groupId>
-             <artifactId>compatibility-v13</artifactId>
-             <version>r10</version>
-        </dependency>
-        <dependency>
              <groupId>android.support</groupId>
              <artifactId>compatibility-v7-gridlayout</artifactId>
              <version>10</version>
-             <type>apklib</type>
-        </dependency>
-        <dependency>
-             <groupId>com.actionbarsherlock</groupId>
-             <artifactId>actionbarsherlock</artifactId>
-             <version>4.2.0</version>
              <type>apklib</type>
         </dependency>
         <dependency>
@@ -42,6 +31,13 @@
              <version>10</version>
              <type>jar</type>
         </dependency>
+        <dependency>
+             <groupId>com.actionbarsherlock</groupId>
+             <artifactId>actionbarsherlock</artifactId>
+             <version>4.2.0</version>
+             <type>apklib</type>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -56,9 +52,13 @@
                     <resourceDirectory>${project.basedir}/res</resourceDirectory>
                     <nativeLibrariesDirectory>${project.basedir}/src/main/native</nativeLibrariesDirectory>
                     <sdk>
-                        <platform>10</platform>
+                        <platform>15</platform>
                     </sdk>
-                                        <undeployBeforeDeploy>true</undeployBeforeDeploy>
+                    <proguard>
+                        <config>proguard-android.txt</config>
+                        <skip>false</skip>
+                      </proguard>
+                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
                 </configuration>
                 <extensions>true</extensions>
             </plugin>
