@@ -40,7 +40,6 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
         }
     }
 
-    private Cursor mEventCursor;
 	private java.text.DateFormat mDateFormat;
 	private java.text.DateFormat mTimeFormat;
 
@@ -144,7 +143,7 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
                 break;
             case R.id.main_menu_wizard:
                 launchWizard();
-            break;
+                break;
 		}
 
 		return true;
