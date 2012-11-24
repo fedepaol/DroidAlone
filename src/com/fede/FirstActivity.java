@@ -72,6 +72,10 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
         mList.setAdapter(mEventsAdapter);
         mList.setEmptyView(findViewById(R.id.empty_evts));
 
+        if(PrefUtils.showWizard(this)){
+            launchWizard();
+        }
+
 
     }
 
@@ -194,7 +198,7 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
             dateCalendar.setTime(date);
             Calendar today = Calendar.getInstance();
             if (
-                    today.get(Calendar.YEAR) - 1900 == dateCalendar.get(Calendar.YEAR)&&
+                    today.get(Calendar.YEAR) == dateCalendar.get(Calendar.YEAR)&&
                     today.get(Calendar.MONTH) == dateCalendar.get(Calendar.MONTH)&&
                     today.get(Calendar.DAY_OF_MONTH) == dateCalendar.get(Calendar.DAY_OF_MONTH)) {
                 return true;
