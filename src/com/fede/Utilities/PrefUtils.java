@@ -151,22 +151,27 @@ public class PrefUtils {
 		String SMS_ENABLE_KEY = c.getString(R.string.forward_to_sms_key);
 		String SMS_TO_FWD_KEY = c.getString(R.string.sms_to_forward_key);
 		
-		if(prefs.getBoolean(SMS_ENABLE_KEY, false) == true){
-			b.append("sms:" + prefs.getString(SMS_TO_FWD_KEY, "") + " ");
+		if(prefs.getBoolean(SMS_ENABLE_KEY, false)){
+			b.append("sms:");
+            b.append(prefs.getString(SMS_TO_FWD_KEY, ""));
+            b.append(" ");
 		}
 		
 		String MAIL_ENABLE_KEY = c.getString(R.string.forward_to_mail_key);
 		String MAIL_TO_FWD_KEY = c.getString(R.string.mail_to_forward_key);
 
-		if(prefs.getBoolean(MAIL_ENABLE_KEY, false) == true){
-			b.append("mail:" + prefs.getString(MAIL_TO_FWD_KEY, "") + " ");
+		if(prefs.getBoolean(MAIL_ENABLE_KEY, false)){
+			b.append("mail:");
+            b.append(prefs.getString(MAIL_TO_FWD_KEY, ""));
+            b.append(" ");
 		}
 		
 		String REPLYL_ENABLE_KEY = c.getString(R.string.reply_enable_key);
 		String REPLY_KEY = c.getString(R.string.reply_key);
 
-		if(prefs.getBoolean(REPLYL_ENABLE_KEY, false) == true){
-			b.append("reply:" + prefs.getString(REPLY_KEY, ""));
+		if(prefs.getBoolean(REPLYL_ENABLE_KEY, false)){
+			b.append("reply:");
+            b.append(prefs.getString(REPLY_KEY, ""));
 		}
 
 		return b.toString();

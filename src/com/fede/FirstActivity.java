@@ -175,7 +175,6 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
 	    							// do nothing
 	    						} });
     	ad.show();
-    	return;
 	}
 
 

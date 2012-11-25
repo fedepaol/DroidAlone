@@ -25,15 +25,11 @@ public class InactiveState implements ServiceState {
 	@Override
 	public void handleIncomingCall(HomeAloneService s, Bundle b) {
 		// if inactive returns 
-		return;
-
 	}
 
 	@Override
 	public void handlePhoneIdle(HomeAloneService s) {
 		// if inactive returns 
-		return;
-
 	}
 
 	

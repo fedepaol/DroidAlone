@@ -72,7 +72,6 @@ public class ActiveState implements ServiceState {
 		
 		f.forward(); 
 		sendReply(s, number);
-		return;
 
 	}
 	
@@ -125,17 +124,12 @@ public class ActiveState implements ServiceState {
 	}
 	
 
-	private boolean isDroidAloneMessage(String msg, Context c)
-	{
-		if(msg.startsWith(c.getString(R.string.message_header))){
-			return true;
-		}
-		return false;
+	private boolean isDroidAloneMessage(String msg, Context c) {
+		return msg.startsWith(c.getString(R.string.message_header));
 	}
 
 	@Override
-	public void handleSms(HomeAloneService s, Bundle b) 
-	{
+	public void handleSms(HomeAloneService s, Bundle b)  {
 		String body = b.getString(HomeAloneService.MESSAGE_BODY);
 		if(isDroidAloneMessage(body, s)){	// Do nothing to avoid loops
 			GeneralUtils.notifyEvent(s.getString(R.string.loop_message),
@@ -152,7 +146,7 @@ public class ActiveState implements ServiceState {
 	@Override
 	public void handlePhoneOffHook(HomeAloneService s) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(s);
-		if(PrefUtils.getBoolPreference(prefs, R.string.skip_handled_key, s) == false)
+		if(!PrefUtils.getBoolPreference(prefs, R.string.skip_handled_key, s))
 			return;
 		
 		Cursor c = DroidContentProviderClient.getAllCall(s);

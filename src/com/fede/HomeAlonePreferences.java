@@ -142,7 +142,6 @@ public class HomeAlonePreferences extends PreferenceActivity implements OnShared
 				prefEditor.putBoolean(REPLY_ENABLE_KEY, false);
 				prefEditor.commit();
 				}
-			return;
 		}
 	
 	}

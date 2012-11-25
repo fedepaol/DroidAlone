@@ -9,13 +9,21 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/no_events" />
-    <TextView
-            style="@style/NoEventsText"
+            android:src="@drawable/icon" />
+   <TextView
+            style="@style/NoEventsTitle"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_events_to_show"
+        />
+    <TextView
+            style="@style/NoEventsText"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_events_to_show_description"
         />
 
 </LinearLayout>

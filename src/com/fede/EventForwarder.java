@@ -35,19 +35,19 @@ public class EventForwarder {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(c);
 		boolean forwardedToSms = false;
 		boolean forwardedToMail = false;
-		if(PrefUtils.getBoolPreference(prefs, R.string.forward_to_sms_key, c) == true){
+		if(PrefUtils.getBoolPreference(prefs, R.string.forward_to_sms_key, c)){
 			GeneralUtils.sendSms(PrefUtils.getStringPreference(prefs, R.string.sms_to_forward_key, c), 
 					toForward, c);
 			forwardedToSms = true;
 		}
 		
 	
-		if(PrefUtils.getBoolPreference(prefs, R.string.forward_to_mail_key, c) == true){
+		if(PrefUtils.getBoolPreference(prefs, R.string.forward_to_mail_key, c)){
 			try{
 				GeneralUtils.sendMail(c, toForward);
 				forwardedToMail = true;
 			}catch (Exception e){
-				;	// I made the beer with it
+					// I made the beer with it
 			}
 		}
 		

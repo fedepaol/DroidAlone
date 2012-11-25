@@ -37,14 +37,14 @@ public class IncomingSmsReceiver extends BroadcastReceiver {
 	{
 		// TODO
 		Log.d("SMS", "Received message");
-		for(int i = 0; i < messages.length; i++){
+		for(SmsMessage m : messages){
 			Intent myServiceIntent = new Intent(c, HomeAloneService.class);
 			
 			myServiceIntent.putExtra(HomeAloneService.EVENT_TYPE, 
 									 HomeAloneService.RECEIVED_SMS);
 			
-			String body = messages[i].getMessageBody();
-			String from = messages[i].getOriginatingAddress();
+			String body = m.getMessageBody();
+			String from = m.getOriginatingAddress();
 			myServiceIntent.putExtra(HomeAloneService.NUMBER, from);
 			myServiceIntent.putExtra(HomeAloneService.MESSAGE_BODY, body);
 			c.startService(myServiceIntent);

@@ -42,7 +42,7 @@ import com.fede.Utilities.PrefUtils;
 public class CommandSms {
 
 
-	public enum BoolCommand {UNDEF, ENABLED, DISABLED};
+	public enum BoolCommand {UNDEF, ENABLED, DISABLED}
 	public static final String STATUS_COMMAND = "s";
 	public static final String STATUS_OFF = "off";
 	public static final String STATUS_ON = "on";
@@ -243,10 +243,8 @@ public class CommandSms {
 	// sms
 	private boolean isDisableFeatureCommand(String s)
 	{
-		if(s.equals(""))
-			return true;
-		return false;
-	}
+        return s.equals("");
+    }
 	
 	private void sendHelpMessage(){
 		GeneralUtils.sendSms(incomingNumber, EXAMPLE, context);

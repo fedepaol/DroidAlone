@@ -177,8 +177,6 @@ public class GeneralUtils {
 													// do nothing
 												} });
 			
-			
-    	return;    
 	}
 	
 	
@@ -191,7 +189,6 @@ public class GeneralUtils {
     	
     	ad.setPositiveButton(button1String,l);
     	ad.show();
-    	return;    
 	}
 	
 	public static void showConfirmDialog(String errorString, Context context, OnClickListener l)
@@ -203,13 +200,12 @@ public class GeneralUtils {
     	ad.setPositiveButton(R.string.ok_name,l);
     	ad.setNegativeButton(R.string.cancel, null);
     	ad.show();
-    	return;    
 	}
 	
 	public static void notifyEvent(String event, String fullDescEvent, DroidContentProviderClient.EventType type, Context c){
         DroidContentProviderClient.addEvent(fullDescEvent, new Date(), event, type,	c);
 
-		if(PrefUtils.homeAloneEnabled(c) == false)	// if the status is disabled I dont want to show the notification
+		if(!PrefUtils.homeAloneEnabled(c))	// if the status is disabled I dont want to show the notification
 			return;
 		
 		String svcName = Context.NOTIFICATION_SERVICE;

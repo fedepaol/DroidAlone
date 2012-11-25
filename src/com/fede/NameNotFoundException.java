@@ -12,9 +12,7 @@ limitations under the License.*/
 package com.fede;
 
 public class NameNotFoundException extends Exception{
-	public NameNotFoundException(String r)
-	{
-		return;
+	public NameNotFoundException(String r) {
 	}
 }
 
