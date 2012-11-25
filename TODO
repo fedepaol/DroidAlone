@@ -1,10 +1,7 @@
-Auto wizard startup
 Analytics
 Bugsense
 
-Holo everywhere
 Password piu' sicura
-Lista vuota di eventi piu' bellina
 
 Cosa mancava
 No styles
@@ -13,6 +10,7 @@ Lista vuota
 Content provider + loader. Used script
 Abilitare / disabilitare broadcast receiver
 Used grid layout for compatibility
+Proguard
 
 
 Fatti
@@ -23,3 +21,6 @@ Deprecated notification constructor
 Bottone per accendere / spengere
 Figurine x tipo di evento
 Dropdown list / Descrizione migliore
+Auto wizard startup
+Holo everywhere
+Lista vuota di eventi piu' bellina
