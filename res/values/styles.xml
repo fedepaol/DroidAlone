@@ -47,7 +47,7 @@
     </style>
 
    <style name="NoEventsText">
-       <item name="android:textColor">@color/medium_brown_theme</item>
+       <item name="android:textColor">@color/darkest_brown_theme</item>
        <item name="android:layout_marginTop">@dimen/margin_medium</item>
        <item name="android:textSize">@dimen/text_size_large</item>
    </style>
