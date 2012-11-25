@@ -1,7 +1,5 @@
 <resources>
-<color name="light_blue">#00FFFF</color>
 <color name="white">#FFF</color>
-<color name="green">#7000FF7F</color>
 
 <color name="light_blue_theme">#BEC2E3</color>
 <color name="lightest_brown_theme">#F3E6C5</color>

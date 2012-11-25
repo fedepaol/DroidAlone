@@ -21,8 +21,7 @@ import android.util.Log;
 public class IncomingSmsReceiver extends BroadcastReceiver {
 
 	@Override
-	public void onReceive(Context context, Intent intent) 
-	{
+	public void onReceive(Context context, Intent intent)  {
 		Bundle bundle = intent.getExtras(); 
 		if (bundle != null) {
 			Object[] pdus = (Object[]) bundle.get("pdus"); 
@@ -33,9 +32,7 @@ public class IncomingSmsReceiver extends BroadcastReceiver {
 		}		
 	}
 	
-	private void notifyMessages(Context c, SmsMessage[] messages)
-	{
-		// TODO
+	private void notifyMessages(Context c, SmsMessage[] messages) {
 		Log.d("SMS", "Received message");
 		for(SmsMessage m : messages){
 			Intent myServiceIntent = new Intent(c, HomeAloneService.class);

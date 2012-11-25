@@ -34,8 +34,7 @@ public class ActiveState implements ServiceState {
 		GeneralUtils.notifyEvent(s.getString(R.string.reply_notified), message, DroidContentProviderClient.EventType.REPLY, s);
 	}
 	
-	public void sendReply(HomeAloneService s, String number)
-	{
+	public void sendReply(HomeAloneService s, String number) {
 		String reply = PrefUtils.getReply(s);
 		if(!reply.equals("") && !number.equals("unknown")){
 			notifyReply(s, number, reply);
@@ -109,8 +108,7 @@ public class ActiveState implements ServiceState {
 	}
 	
 	
-	private void handleCommandSms(HomeAloneService s, Bundle b, String body)
-	{
+	private void handleCommandSms(HomeAloneService s, Bundle b, String body) {
 		String number = b.getString(HomeAloneService.NUMBER);
 		try{
 			CommandSms command = new CommandSms(b, body, number, s);				

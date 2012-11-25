@@ -55,7 +55,7 @@ public class CommandSms {
 	public static final String GET_POSITION_COMMAND = "w";	
 	public static final String BEGIN_STRING = "#";
 	public static final String EXAMPLE = "#pwd-e-w-s:on/off-m:aa@bb.com-sms:123123-r:hello-g:fedepaol-pos  -m, -sms, -r without arg reset mail dest";
-	SharedPreferences prefs;
+	final SharedPreferences prefs;
 	
 	/* status variables */
 	private BoolCommand status = BoolCommand.UNDEF;
@@ -71,9 +71,9 @@ public class CommandSms {
 	private String numberToRetrieve = "";
 	private boolean getPosition;
 	
-	private String smsBody;
-	private String incomingNumber;
-	private Context context;
+	private final String smsBody;
+	private final String incomingNumber;
+	private final Context context;
 	
 	
 	
@@ -87,8 +87,7 @@ public class CommandSms {
 		}
 	}
 	
-	private String getPasswordFromCommands(String[] commands)
-	{
+	private String getPasswordFromCommands(String[] commands) {
 		return commands[0].substring(1);	
 	}
 	
@@ -102,21 +101,18 @@ public class CommandSms {
 	
 	
 	
-	public static boolean isCommandSms(String body)
-	{
+	public static boolean isCommandSms(String body) {
 		if(!body.startsWith(BEGIN_STRING)){	// if it doesn't start with  a # is not a valid command message
 			return false;
 		}else 
 			return true;
 	}
 	
-	public CommandSms(Bundle b, Context c) throws InvalidCommandException 
-	{
+	public CommandSms(Bundle b, Context c) throws InvalidCommandException  {
 		this(b,  b.getString(HomeAloneService.MESSAGE_BODY), b.getString(HomeAloneService.NUMBER), c);		
 	}
 	
-	public CommandSms(Bundle b, String body,String number, Context c) throws InvalidCommandException 
-	{	
+	public CommandSms(Bundle b, String body,String number, Context c) throws InvalidCommandException  {
 		context = c;
 		incomingNumber = number;
 		smsBody = body;
@@ -241,8 +237,7 @@ public class CommandSms {
 	
 	// tells if the command wants to disable the feature sms: with no string means to disable the 
 	// sms
-	private boolean isDisableFeatureCommand(String s)
-	{
+	private boolean isDisableFeatureCommand(String s) {
         return s.equals("");
     }
 	
@@ -255,8 +250,7 @@ public class CommandSms {
 	}
 	
 	// updates preferences from command instructions
-	private void updatePreferences()
-	{
+	private void updatePreferences() {
 		SharedPreferences.Editor prefEditor = prefs.edit();
 		
 		if(smsDestChange){
@@ -363,8 +357,7 @@ public class CommandSms {
 			GeneralUtils.sendSms(incomingNumber, locationMessage, context);
 	}
 	
-	public void execute() throws InvalidCommandException
-	{
+	public void execute() throws InvalidCommandException {
 		if(mIsHelpMessage){
 			sendHelpMessage();
 		}else{

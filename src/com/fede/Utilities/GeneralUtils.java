@@ -42,13 +42,11 @@ public class GeneralUtils {
 	public static final String EVENT_LIST_INTENT = "ShowEventList";
 	static TestStubInterface mTest = null;
 	
-	public static void setStubInterface(TestStubInterface test)
-	{
+	public static void setStubInterface(TestStubInterface test) {
 		mTest = test; 
 	}
 	
-	public static void sendSms(String number, String message, Context c)
-	{
+	public static void sendSms(String number, String message, Context c) {
 		if(mTest != null){	// TODO Test only
 			mTest.sendSms(number, message);
 			return;
@@ -130,8 +128,7 @@ public class GeneralUtils {
 } 
 	
 	// Returns contact name from number
-	public static String getNameFromNumber(String number, Context c) throws NameNotFoundException
-	{
+	public static String getNameFromNumber(String number, Context c) throws NameNotFoundException {
 		String name;
 		String[] columns = {ContactsContract.PhoneLookup.DISPLAY_NAME};
 		
@@ -169,8 +166,7 @@ public class GeneralUtils {
 	    	return false;
 	}
 	
-	public static void showErrorDialog(String errorString, Context context)
-	{
+	public static void showErrorDialog(String errorString, Context context) {
 		showErrorDialog(errorString, context,
 											new OnClickListener() { 
 												public void onClick(DialogInterface dialog, int arg1) {
@@ -180,8 +176,7 @@ public class GeneralUtils {
 	}
 	
 	
-	public static void showErrorDialog(String errorString, Context context, OnClickListener l)
-	{
+	public static void showErrorDialog(String errorString, Context context, OnClickListener l) {
     	String button1String = context.getString(R.string.ok_name); 
     	AlertDialog.Builder ad = new AlertDialog.Builder(context); 
     	ad.setTitle(context.getString(R.string.error_name)); 
@@ -191,8 +186,7 @@ public class GeneralUtils {
     	ad.show();
 	}
 	
-	public static void showConfirmDialog(String errorString, Context context, OnClickListener l)
-	{
+	public static void showConfirmDialog(String errorString, Context context, OnClickListener l) {
     	AlertDialog.Builder ad = new AlertDialog.Builder(context); 
     	 
     	ad.setMessage(errorString); 

@@ -58,8 +58,7 @@ public class HomeAloneService extends IntentService {
 	
 	
 	// this is not that useful since this is an use & throw away service
-	public void setState(ServiceState s)
-	{
+	public void setState(ServiceState s) {
 		state = s;
 		PrefUtils.setStatus(s.getServiceState(), this);
 	}

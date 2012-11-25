@@ -20,18 +20,15 @@ import com.fede.Utilities.PrefUtils;
 
 // Forwards the string to a certain destination
 public class EventForwarder {
-	private String toForward;
-	private Context c;
-    private DroidContentProviderClient.EventType mEventType;
-	
+	private final String toForward;
+	private final Context c;
+
 	public EventForwarder(String toForward, DroidContentProviderClient.EventType type, Context c) {
 		this.toForward = toForward;
 		this.c = c;
-        mEventType = type;
 	}
 	
-	public void forward() 
-	{
+	public void forward()  {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(c);
 		boolean forwardedToSms = false;
 		boolean forwardedToMail = false;

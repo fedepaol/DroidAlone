@@ -181,8 +181,8 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
 
     class EventListAdapter extends CursorAdapter {
 
-        Context mContext;
-        private LayoutInflater mInflater;
+        final Context mContext;
+        private final LayoutInflater mInflater;
 
         public EventListAdapter(Context context, Cursor c) {
             super(context, c, true);

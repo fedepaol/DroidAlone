@@ -35,8 +35,7 @@ public class PrefUtils {
 	private static final int ACTUAL_VERSION = 6;
 
 	
-	public static boolean showWizard(Context c)
-	{
+	public static boolean showWizard(Context c) {
 		int mode = Activity.MODE_PRIVATE;
 		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);		
 		boolean res = mySharedPreferences.getBoolean(PREFERENCE_WIZARD_SHOWN, true);
@@ -49,8 +48,7 @@ public class PrefUtils {
 		return res;
 	}
 	
-	public static boolean showChangeLog(Context c)
-	{
+	public static boolean showChangeLog(Context c) {
 		int mode = Activity.MODE_PRIVATE;
 		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);		
 		Long lastVersion = mySharedPreferences.getLong(PREFERENCE_LAST_VERSION, 0);
@@ -64,15 +62,13 @@ public class PrefUtils {
 		return false;
 	}
 	
-	public static boolean homeAloneEnabled(Context c)
-	{
+	public static boolean homeAloneEnabled(Context c) {
 		int mode = Activity.MODE_PRIVATE;
 		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);		
 		return mySharedPreferences.getBoolean(STATUS_ENABLED, false);
 	}
 
-	public static void setStatus(boolean enabled, Context c)
-	{
+	public static void setStatus(boolean enabled, Context c) {
 		int mode = Activity.MODE_PRIVATE;
 		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);
 		SharedPreferences.Editor editor = mySharedPreferences.edit();	
@@ -95,15 +91,13 @@ public class PrefUtils {
 		c.sendBroadcast(i);
 	}
 	
-	public static Long getLastFlushedCalls(Context c)
-	{
+	public static Long getLastFlushedCalls(Context c) {
 		int mode = Activity.MODE_PRIVATE;
 		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);		
 		return mySharedPreferences.getLong(LAST_FLUSHED, 0);
 	}
 	
-	public static void setLastFlushedCalls(Long lastFlushed, Context c)
-	{
+	public static void setLastFlushedCalls(Long lastFlushed, Context c) {
 		int mode = Activity.MODE_PRIVATE;
 		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);		
 		SharedPreferences.Editor editor = mySharedPreferences.edit();	
@@ -114,8 +108,7 @@ public class PrefUtils {
 	
 
 
-	public static void setLastFlushedCalls(Context c)
-	{
+	public static void setLastFlushedCalls(Context c) {
 		int mode = Activity.MODE_PRIVATE;
 		SharedPreferences mySharedPreferences = c.getSharedPreferences(PREF_NAME, mode);		
 		SharedPreferences.Editor editor = mySharedPreferences.edit();
@@ -125,8 +118,7 @@ public class PrefUtils {
 
 	}
 	
-	public static String getReply(Context c)
-	{
+	public static String getReply(Context c) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(c);
 		String REPLYL_ENABLE_KEY = c.getString(R.string.reply_enable_key);
 		String REPLY_KEY = c.getString(R.string.reply_key);
@@ -137,8 +129,7 @@ public class PrefUtils {
 		}
 	}
 	
-	public static String getPreferencesStatus(Context c)
-	{
+	public static String getPreferencesStatus(Context c) {
 		StringBuffer b = new StringBuffer();
 		if(homeAloneEnabled(c)){
 			b.append("s:on ");	
@@ -177,8 +168,7 @@ public class PrefUtils {
 		return b.toString();
 	}
 	
-	 public static boolean validMailUserPwd(Context c, SharedPreferences prefs)
-	{
+	 public static boolean validMailUserPwd(Context c, SharedPreferences prefs) {
 		String mailUser = getStringPreference(prefs, R.string.gmail_user_key, c);
 		String mailPassword = getStringPreference(prefs, R.string.gmail_pwd_key, c);
 		        

@@ -109,8 +109,7 @@ public class LocationUpdater {
 	
 	
 	
-	public LocationUpdater(Context c) throws LocationNotFoundException
-	{		
+	public LocationUpdater(Context c) throws LocationNotFoundException {
 		mLManager = (LocationManager)c.getSystemService(Context.LOCATION_SERVICE);
 		if(!mLManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
 			throw new LocationNotFoundException(c.getString(R.string.location_not_found), c);
