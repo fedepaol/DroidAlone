@@ -108,9 +108,20 @@
     <string name="help_file_name">help_it.html</string>
     <string name="change_log_title">Changelog</string>
     <string name="change_log">Version 1.6: Aggiunta opzione per scartare le telefonate gestite. Si può scegliere di essere notificati o meno delle telefonate a cui si è risposto mentre DroidAlone era attivo</string>
-     <string name="skip_handled_key">skiphandled</string>
-     <string name="skip_handled_calls">Scarta telefonate gestite</string>
-     <string name="skip_handled_summary">Non notifica le telefonate gestite</string>
-     <string name="skipped">Scartata:</string>
-     <string name="skipped_call">Chiamata scartata</string>
+    <string name="skip_handled_key">skiphandled</string>
+    <string name="skip_handled_calls">Scarta telefonate gestite</string>
+    <string name="skip_handled_summary">Non notifica le telefonate gestite</string>
+    <string name="skipped">Scartata:</string>
+    <string name="skipped_call">Chiamata scartata</string>
+    <string name="no_events_to_show">Nessun evento</string>
+    <string name="no_events_to_show_description">Invia un sms con #PASS-s:on\nper attivare</string>
+    <string name="license_name">Licenze</string>
+    <string name="clean">Azzera</string>
+    <string name="status_changed">Stato modificato</string>
+    <string name="active_state">Abilitato</string>
+    <string name="active_state_reboot">Abilitato dopo il riavvio</string>
+
+
+
+
      </resources>
