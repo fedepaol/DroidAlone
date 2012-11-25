@@ -114,12 +114,13 @@
     <string name="skipped">Scartata:</string>
     <string name="skipped_call">Chiamata scartata</string>
     <string name="no_events_to_show">Nessun evento</string>
-    <string name="no_events_to_show_description">Invia un sms con #PASS-s:on\nper attivare</string>
+    <string name="no_events_to_show_description">Sms con #XXXX-s:on\nper attivare, dove XXXX è la tua password</string>
     <string name="license_name">Licenze</string>
     <string name="clean">Azzera</string>
     <string name="status_changed">Stato modificato</string>
     <string name="active_state">Abilitato</string>
     <string name="active_state_reboot">Abilitato dopo il riavvio</string>
+    <string name="no_events_to_show_description">Sms con\n#XXXX-s:on per attivare\n#XXXX-s:off per disabilitare\nUsa la password al posto di XXXX\nControlla la sezione help del menu per dettagli</string>
 
 
 

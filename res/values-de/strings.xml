@@ -110,10 +110,10 @@
     <string name="skipped">Nicht weitergeleitet:</string>
     <string name="skipped_call">Nicht weitergeleiteter Anruf</string>
     <string name="no_events_to_show">Keine Termine</string>
-    <string name="no_events_to_show_description">Senden Sie eine SMS mit #PASS-s:on\n aktivierung</string>
+    <string name="no_events_to_show_description">SMS mit #XXXX-s:on\n aktivierung</string>
     <string name="license_name">Lizenzen</string>
     <string name="clean">Rücksetzen</string>
     <string name="status_changed">Geändert worden</string>
     <string name="active_state">Aktiviert</string>
-    <string name="active_state_reboot">aktiviert nach dem Neustart</string>
+    <string name="active_state_reboot">Aktiviert nach dem Neustart</string>
 </resources>
