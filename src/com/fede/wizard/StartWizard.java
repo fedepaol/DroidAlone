@@ -24,6 +24,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.fede.R;
 import com.fede.Utilities.GeneralUtils;
 import com.fede.Utilities.PrefUtils;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 public class StartWizard extends SherlockActivity {
 	private Button 				mNextButton;
@@ -31,12 +32,18 @@ public class StartWizard extends SherlockActivity {
 	private EditText			mPwd;
 	private SharedPreferences	mPrefs;
 	private SharedPreferences.Editor mEditor;
-	
+    private GoogleAnalyticsTracker mTracker;
+
 	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        mTracker = GoogleAnalyticsTracker.getInstance();
+        mTracker.startNewSession(getString(R.string.analytics), this);
+
         setContentView(R.layout.wizard_password_intro);
         
         mPwd = (EditText) findViewById(R.id.Wizard_password);
@@ -106,8 +113,16 @@ public class StartWizard extends SherlockActivity {
 		
 		mCancelButton.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View view){
-					finish();
+                mTracker.trackEvent( "Tutorial",  "Dismissed",  "", 1);
+                finish();
 			}
 		});
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mTracker.stopSession();
     }
 }

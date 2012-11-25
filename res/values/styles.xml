@@ -39,11 +39,16 @@
       <item name="android:inputType">textImeMultiLine</item>
   </style>
 
+    <style name="NoEventsTitle">
+        <item name="android:textColor">@color/darkest_brown_theme</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_size_xxlarge</item>
+    </style>
+
    <style name="NoEventsText">
-       <item name="android:textColor">@color/darkest_brown_theme</item>
-       <item name="android:textStyle">bold</item>
-       <item name="android:textSize">@dimen/text_size_xlarge</item>
-        </style>
+       <item name="android:textColor">@color/medium_brown_theme</item>
+       <item name="android:textSize">@dimen/text_size_large</item>
+   </style>
 
    <style name="WizardEditText.Password">
        <item name="android:inputType">textPassword</item>

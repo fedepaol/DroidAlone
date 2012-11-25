@@ -20,6 +20,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.fede.Utilities.GeneralUtils;
 import com.fede.Utilities.PrefUtils;
 import com.fede.wizard.StartWizard;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -47,6 +48,7 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
     private EventsReceiver mReceiver;
     private EventListAdapter mEventsAdapter;
     private ListView mList;
+    GoogleAnalyticsTracker mTracker;
 
 	private static final int MENU_DELETE = Menu.FIRST;
 
@@ -70,6 +72,11 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
         mList = (ListView) findViewById(R.id.event_list);
         mList.setAdapter(mEventsAdapter);
         mList.setEmptyView(findViewById(R.id.empty_evts));
+
+        mTracker = GoogleAnalyticsTracker.getInstance();
+        mTracker.startNewSession(getString(R.string.analytics), this);
+
+        mTracker.trackPageView("Main");
 
         if(PrefUtils.showWizard(this)){
             launchWizard();
@@ -283,5 +290,11 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
         mEventsAdapter.swapCursor(null);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Stop the tracker when it is no longer needed.
+        mTracker.stopSession();
+    }
 
 }
