@@ -57,6 +57,7 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         setContentView(R.layout.event_list);
 
         mDateFormat = android.text.format.DateFormat.getDateFormat(this);    // short date
@@ -72,16 +73,15 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
         mList = (ListView) findViewById(R.id.event_list);
         mList.setAdapter(mEventsAdapter);
         mList.setEmptyView(findViewById(R.id.empty_evts));
-
         mTracker = GoogleAnalyticsTracker.getInstance();
         mTracker.startNewSession(getString(R.string.analytics), this);
-
         mTracker.trackPageView("Main");
+
 
         if(PrefUtils.showWizard(this)){
             launchWizard();
+            return;
         }
-
 
     }
 

@@ -221,8 +221,6 @@ public class GeneralUtils {
                 .build();
 
 		notification.number = -1;
-		notification.flags |= Notification.FLAG_NO_CLEAR;
-		
 
         Intent i = new Intent(HomeAloneService.HOMEALONE_EVENT_PROCESSED);
         c.sendBroadcast(i);
