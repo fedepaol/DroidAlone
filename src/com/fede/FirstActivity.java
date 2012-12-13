@@ -60,6 +60,7 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
 
         setContentView(R.layout.event_list);
 
+
         mDateFormat = android.text.format.DateFormat.getDateFormat(this);    // short date
         mTimeFormat = android.text.format.DateFormat.getTimeFormat(this);    // 12/24 time
 
@@ -293,6 +294,7 @@ public class FirstActivity extends SherlockFragmentActivity implements LoaderMan
     protected void onDestroy() {
         super.onDestroy();
         // Stop the tracker when it is no longer needed.
+        mTracker.dispatch();
         mTracker.stopSession();
     }
 

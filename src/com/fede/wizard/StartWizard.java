@@ -114,15 +114,17 @@ public class StartWizard extends SherlockActivity {
 		mCancelButton.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View view){
                 mTracker.trackEvent( "Tutorial",  "Dismissed",  "", 1);
+                mTracker.dispatch();
                 finish();
 			}
 		});
     }
 
 
+
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         mTracker.stopSession();
+        super.onDestroy();
     }
 }

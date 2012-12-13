@@ -21,7 +21,6 @@
     <string name="reply_enable_key">ENABLE_REPLY</string>
     <string name="reply_category">Antwort-Mitteilung</string>
     <string name="reply">Abwesenheits-Mitteilung</string>
-    <string name="reply_name">Antwort</string>
     <string name="reply_summary">Antwort, die zurückgesandt wird</string>
     <string name="reply_key">REPLY</string>
     <string name="gmail_pwd">Gmail Account Passwort</string>
@@ -31,8 +30,6 @@
     <string name="gmail_user_summary">User-ID des Accounts, der für die Mail-Weiterleitung genutzt wird</string>
     <string name="gmail_user_key">gmail_user</string>
     <string name="call_from">Anruf von %1$s %2$s</string>
-    <string name="activate">Aktivieren</string>
-    <string name="deactivate">Deaktivieren</string>
     <string name="options">Optionen</string>
     <string name="forwarding_options">Weiterleitungs-Optionen</string>
     <string name="forwarding_options_summary">Weiterleitungs-Optionen für eingehende Anrufe und SMS</string>
@@ -54,9 +51,7 @@
     <string name="network_not_available">Keine Netzwerkverbindung</string>
     <string name="home_alone_event">DroidAlone Aktivitäten</string>
     <string name="events">Aktivitäten</string>
-    <string name="delete_all">Alle löschen</string>
     <string name="forwarding_not_enabled">Mindestens eine Weiterleitungs-Funktion muss aktiviert sein</string>
-    <string name="event_list">Überwachte Aktivitäten</string>
     <string name="reply_notified_to">Antwort: %1$s gesendet an: %2$s</string>
     <string name="sent_via_sms">Per SMS übermittelt an:</string>
     <string name="name_not_found">Name nicht gefunden</string>
@@ -98,7 +93,6 @@
     <string name="inactive_state">Deaktiviert</string>
     <string name="active_state">Aktiviert</string>
     <string name="help_name">Hilfe</string>
-    <string name="please_set_password">Bitte Passwort eingeben</string>
     <string name="help_file_name">help_de.html</string>
     <string name="loop_message">Loop Warnung</string>
     <string name="message_header">alone:</string>    

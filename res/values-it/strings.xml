@@ -21,7 +21,6 @@
     <string name="reply_enable_key">ENABLE_REPLY</string>
     <string name="reply_category">Messaggio di risposta</string>
     <string name="reply">Risposta alle chiamate perse</string>
-    <string name="reply_name">Risposta</string>
     <string name="reply_summary">Risposta da notificare</string>
     <string name="reply_key">REPLY</string>
     <string name="gmail_pwd">Password GMail</string>
@@ -31,8 +30,6 @@
     <string name="gmail_user_summary">Utente dell\'account da usare per mandare le mail</string>
     <string name="gmail_user_key">gmail_user</string>
     <string name="call_from">Chiamata da %1$s %2$s</string>
-    <string name="activate">Abilita</string>
-    <string name="deactivate">Disabilita</string>
     <string name="options">Opzioni</string>
     <string name="forwarding_options">Opzioni di inoltro</string>
     <string name="forwarding_options_summary">Opzioni di inoltro degli eventi ricevuti</string>
@@ -54,9 +51,7 @@
     <string name="network_not_available">Rete non disponibile</string>
     <string name="home_alone_event">Evento DroidAlone</string>
     <string name="events">Eventi ricevuti</string>
-    <string name="delete_all">Cancella tutto</string>
     <string name="forwarding_not_enabled">Almeno un tipo di inoltro deve essere abilitato</string>
-    <string name="event_list">Eventi gestiti</string>
     <string name="reply_notified_to">Risposta %1$s notificata a %2$s</string>
     <string name="sent_via_sms">Inviato via sms</string>
     <string name="name_not_found">Nome non trovato</string>
@@ -103,7 +98,6 @@
     <string name="active_state">Acceso</string>
     <string name="help_name">Help</string>
     <string name="message_header">alone:</string>
-    <string name="please_set_password">Per favore imposta la password</string>
     <string name="intro">Benvenuto su Droid Alone. Questo wizard ti guiderà attraverso il setup dell\'applicazione. \nPremi cancella se vuoi andare direttamente all\'applicazione. Puoi rilanciare questo wizard in ogni momento dal menu della pagina principale. Le singole opzioni possono essere impostate dal menu.</string>
     <string name="help_file_name">help_it.html</string>
     <string name="change_log_title">Changelog</string>
