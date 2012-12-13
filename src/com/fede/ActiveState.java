@@ -158,6 +158,7 @@ public class ActiveState implements ServiceState {
             } while (c.moveToNext());
          }
 		c.close();
+        DroidContentProviderClient.removeAllCall(s);
 
 	}
 
