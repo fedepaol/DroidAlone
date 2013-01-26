@@ -42,6 +42,10 @@ public class IncomingSmsReceiver extends BroadcastReceiver {
 			
 			String body = m.getMessageBody();
 			String from = m.getOriginatingAddress();
+
+            if(from == null || from.equals("")){
+                from = "unknown";
+            }
 			myServiceIntent.putExtra(HomeAloneService.NUMBER, from);
 			myServiceIntent.putExtra(HomeAloneService.MESSAGE_BODY, body);
 			c.startService(myServiceIntent);
